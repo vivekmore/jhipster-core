@@ -12,6 +12,7 @@ describe('ASTBuilder', () => {
 
     const ast = buildAst(parseResult.cst);
     expect(ast).to.deep.equal({
+      applications: [],
       constants: [],
       entities:  [
         {
@@ -50,6 +51,7 @@ describe('ASTBuilder', () => {
 
     const ast = buildAst(parseResult.cst);
     expect(ast).to.deep.equal({
+      applications: [],
       entities:  [
         {
           name:      'Person',
