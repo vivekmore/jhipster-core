@@ -49,6 +49,17 @@ describe('ChevrotainParser', () => {
           expect(cst.children.fieldDeclaration[2].children.NAME[0].image).to.equal('language');
         });
       });
+      describe('when parsing applications', () => {
+        const input = 'application { config {} }';
+        const result = parse(input, 'applicationDeclaration');
+        const cst = result.cst;
+
+        it('parses them', () => {
+          expect(result.parseErrors).to.be.empty;
+          expect(cst.name).to.equal('applicationDeclaration');
+          // TODO check everything's there
+        });
+      });
     });
     describe('with an invalid JDL', () => {
       describe('with a single syntax error', () => {
@@ -136,8 +147,8 @@ describe('ChevrotainParser', () => {
         it('provides suggestions', () => {
           const input = '';
           const result = getSyntacticAutoCompleteSuggestions(input);
-          expect(result).to.have.lengthOf(2);
-          expect(result).to.have.members([tokens.NAME, tokens.ENTITY]);
+          expect(result).to.have.lengthOf(3);
+          expect(result).to.have.members([tokens.NAME, tokens.ENTITY, tokens.APPLICATION]);
         });
       });
       describe('with a custom start rule', () => {
