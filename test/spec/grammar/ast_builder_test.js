@@ -96,12 +96,19 @@ describe('ASTBuilder', () => {
     });
   });
   describe('when parsing applications', () => {
-    const input = 'application { config { baseName toto } }';
+    const input = `
+    application {
+      config {
+        baseName toto
+        packageName com.jhipster.myapp
+      }
+    }
+    `;
     const parseResult = parse(input);
     const ast = buildAst(parseResult.cst);
     it('converts it to an object', () => {
       expect(ast).to.deep.equal({
-        applications: [{ config: { baseName: 'toto' } }],
+        applications: [{ config: { baseName: 'toto', packageName: 'com.jhipster.myapp' } }],
         entities: [],
         constants: []
       });

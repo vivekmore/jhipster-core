@@ -50,7 +50,14 @@ describe('ChevrotainParser', () => {
         });
       });
       describe('when parsing applications', () => {
-        const input = 'application { config { baseName toto } }';
+        const input = `
+        application {
+          config {
+            baseName toto
+            packageName com.jhipster.myapp
+          }
+        }
+        `;
         const result = parse(input, 'applicationDeclaration');
         const cst = result.cst;
 
@@ -58,6 +65,7 @@ describe('ChevrotainParser', () => {
           expect(cst.name).to.equal('applicationDeclaration');
           const applicationConfig = cst.children.applicationBody[0].children.applicationConfig[0].children;
           expect(applicationConfig.applicationBaseName[0].children.NAME[0].image).to.equal('toto');
+          expect(applicationConfig.applicationPackageName[0].children.NAME[0].image).to.equal('com.jhipster.myapp');
         });
         it('does not generate any error', () => {
           expect(result.parseErrors).to.be.empty;
