@@ -60,6 +60,6 @@ describe('Chevrotain Lexer POC', () => {
     expect(errors[0].message).to.include('skipped 3 characters');
 
     expect(lexResult.tokens).to.have.lengthOf(9,
-      'All 9 tokens should have been lexed even thought "@@@" caused a syntax error');
+      'All 9 tokens should have been lexed even though "@@@" caused a syntax error');
   });
 });
