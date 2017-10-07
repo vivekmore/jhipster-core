@@ -56,6 +56,7 @@ describe('ChevrotainParser', () => {
             baseName toto
             packageName com.jhipster.myapp
             authenticationType jwt
+            hibernateCache ehcache
           }
         }
         `;
@@ -68,6 +69,7 @@ describe('ChevrotainParser', () => {
           expect(applicationConfig.applicationBaseName[0].children.NAME[0].image).to.equal('toto');
           expect(applicationConfig.applicationPackageName[0].children.NAME[0].image).to.equal('com.jhipster.myapp');
           expect(applicationConfig.applicationAuthenticationType[0].children.NAME[0].image).to.equal('jwt');
+          expect(applicationConfig.applicationHibernateCache[0].children.NAME[0].image).to.equal('ehcache');
         });
         it('does not generate any error', () => {
           expect(result.parseErrors).to.be.empty;
