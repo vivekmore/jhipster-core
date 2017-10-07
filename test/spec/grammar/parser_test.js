@@ -55,6 +55,7 @@ describe('ChevrotainParser', () => {
           config {
             baseName toto
             packageName com.jhipster.myapp
+            authenticationType jwt
           }
         }
         `;
@@ -66,6 +67,7 @@ describe('ChevrotainParser', () => {
           const applicationConfig = cst.children.applicationBody[0].children.applicationConfig[0].children;
           expect(applicationConfig.applicationBaseName[0].children.NAME[0].image).to.equal('toto');
           expect(applicationConfig.applicationPackageName[0].children.NAME[0].image).to.equal('com.jhipster.myapp');
+          expect(applicationConfig.applicationAuthenticationType[0].children.NAME[0].image).to.equal('jwt');
         });
         it('does not generate any error', () => {
           expect(result.parseErrors).to.be.empty;

@@ -101,6 +101,7 @@ describe('ASTBuilder', () => {
       config {
         baseName toto
         packageName com.jhipster.myapp
+        authenticationType jwt
       }
     }
     `;
@@ -108,7 +109,7 @@ describe('ASTBuilder', () => {
     const ast = buildAst(parseResult.cst);
     it('converts it to an object', () => {
       expect(ast).to.deep.equal({
-        applications: [{ config: { baseName: 'toto', packageName: 'com.jhipster.myapp' } }],
+        applications: [{ config: { baseName: 'toto', packageName: 'com.jhipster.myapp', authenticationType: 'jwt' } }],
         entities: [],
         constants: []
       });
