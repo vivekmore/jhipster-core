@@ -47,6 +47,8 @@
     "lodash": "4.17.4"
   },
   "devDependencies": {
+    "@types/chai": "4.0.4",
+    "@types/mocha": "2.2.43",
     "awesome-typescript-loader": "3.2.3",
     "chai": "3.5.0",
     "eslint": "3.19.0",
@@ -57,6 +59,7 @@
     "mocha-clean": "1.0.0",
     "pegjs": "0.10.0",
     "source-map-loader": "0.2.2",
+    "ts-node": "3.3.0",
     "typescript": "2.5.3",
     "webpack": "3.7.1"
   },
