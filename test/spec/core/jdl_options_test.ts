@@ -1,5 +1,5 @@
+import { expect } from 'chai';
 /* eslint-disable no-unused-expressions */
-const expect = require('chai').expect;
 
 const fail = expect.fail;
 const JDLOptions = require('../../../lib/core/jdl_options');

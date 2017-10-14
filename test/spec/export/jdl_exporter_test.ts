@@ -1,10 +1,9 @@
-
+import { expect } from 'chai';
+import * as fs from 'fs';
 
 /* eslint-disable no-new, no-unused-expressions */
-const expect = require('chai').expect;
 
 const fail = expect.fail;
-const fs = require('fs');
 const readEntityJSON = require('../../../lib/reader/json_file_reader').readEntityJSON;
 const Exporter = require('../../../lib/export/jdl_exporter');
 const JDLReader = require('../../../lib/reader/jdl_reader');

@@ -1,7 +1,6 @@
-
+import { expect } from 'chai';
 
 /* eslint-disable no-new, no-unused-expressions */
-const expect = require('chai').expect;
 const RELATIONSHIP_TYPES = require('../../../../lib/core/jhipster/relationship_types').RELATIONSHIP_TYPES;
 const exists = require('../../../../lib/core/jhipster/relationship_types').exists;
 

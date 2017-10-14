@@ -1,7 +1,6 @@
-
+import { expect } from 'chai';
 
 /* eslint-disable no-new, no-unused-expressions */
-const expect = require('chai').expect;
 
 const fail = expect.fail;
 const merge = require('../../../lib/utils/object_utils').merge;

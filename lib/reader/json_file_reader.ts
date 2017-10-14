@@ -1,7 +1,7 @@
 import { JhipsterCoreException } from '../exceptions/jhipster_core_exception';
 import { JhipsterCoreExceptionType } from '../exceptions/jhipster_core_exception_type';
+import * as fs from 'fs';
 
-const fs = require('fs');
 const _ = require('lodash');
 const isNilOrEmpty = require('../utils/string_utils').isNilOrEmpty;
 
@@ -25,7 +25,7 @@ function readEntityJSON(filePath) {
     }
     throw new JhipsterCoreException(JhipsterCoreExceptionType.FileNotFound, `The passed file '${filePath}' couldn't be found.`);
   }
-  return JSON.parse(fs.readFileSync(filePath));
+  return JSON.parse(fs.readFileSync(filePath).toString());
 }
 
 function toFilePath(entityName) {

@@ -1,7 +1,5 @@
-
-/* define global expect */
+import { expect } from 'chai';
 /* eslint-disable no-new, no-unused-expressions */
-const expect = require('chai').expect;
 
 const fail = expect.fail;
 const camelCase = require('../../../lib/utils/string_utils').camelCase;

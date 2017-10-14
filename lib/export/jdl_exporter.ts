@@ -1,7 +1,6 @@
 import { JhipsterCoreException } from '../exceptions/jhipster_core_exception';
 import { JhipsterCoreExceptionType } from '../exceptions/jhipster_core_exception_type';
-
-const fs = require('fs');
+import * as fs from 'fs';
 
 module.exports = {
   exportToJDL

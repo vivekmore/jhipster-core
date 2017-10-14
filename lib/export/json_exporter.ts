@@ -1,7 +1,7 @@
 import { JhipsterCoreException } from '../exceptions/jhipster_core_exception';
 import { JhipsterCoreExceptionType } from '../exceptions/jhipster_core_exception_type';
+import * as fs from 'fs';
 
-const fs = require('fs');
 const readEntityJSON = require('../reader/json_file_reader').readEntityJSON;
 const toFilePath = require('../reader/json_file_reader').toFilePath;
 const doesfileExist = require('../reader/json_file_reader').doesfileExist;

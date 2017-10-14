@@ -1,7 +1,6 @@
-
+import { expect } from 'chai';
 
 /* eslint-disable no-new, no-unused-expressions */
-const expect = require('chai').expect;
 const JDLEntity = require('../../../lib/core/jdl_entity');
 const JDLField = require('../../../lib/core/jdl_field');
 const JDLValidation = require('../../../lib/core/jdl_validation');

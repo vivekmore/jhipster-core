@@ -1,7 +1,7 @@
 import { JhipsterCoreException } from '../exceptions/jhipster_core_exception';
 import { JhipsterCoreExceptionType } from '../exceptions/jhipster_core_exception_type';
+import * as fs from 'fs';
 
-const fs = require('fs');
 const chalk = require('chalk'); // eslint-disable-line import/no-extraneous-dependencies
 const pegjsParser = require('../dsl/pegjs_parser');
 

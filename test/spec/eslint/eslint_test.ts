@@ -1,6 +1,5 @@
+import { expect } from 'chai';
 
-
-const fail = require('chai').expect;
 const glob = require('glob'); // eslint-disable-line import/no-extraneous-dependencies
 const CLIEngine = require('eslint').CLIEngine;
 
@@ -20,7 +19,7 @@ describe('ESLint', () => {
 function generateTest(result) {
   it(`validates ${result.filePath}`, () => {
     if (result.messages.length > 0) {
-      fail(formatMessages(result.messages));
+      expect(formatMessages(result.messages));
     }
   });
 }

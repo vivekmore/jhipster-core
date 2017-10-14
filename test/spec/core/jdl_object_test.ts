@@ -1,7 +1,6 @@
-
+import { expect } from 'chai';
 
 /* eslint-disable no-new, no-unused-expressions */
-const expect = require('chai').expect;
 
 const fail = expect.fail;
 const BINARY_OPTIONS = require('../../../lib/core/jhipster/binary_options');

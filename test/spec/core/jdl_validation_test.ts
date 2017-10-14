@@ -1,7 +1,6 @@
-
+import { expect } from 'chai';
 
 /* eslint-disable no-new, no-unused-expressions */
-const expect = require('chai').expect;
 const JDLValidation = require('../../../lib/core/jdl_validation');
 const VALIDATIONS = require('../../../lib/core/jhipster/validations').VALIDATIONS;
 

@@ -1,8 +1,7 @@
-
+import { expect } from 'chai';
+import * as fs from 'fs';
 
 /* eslint-disable no-new, no-unused-expressions */
-const expect = require('chai').expect;
-const fs = require('fs');
 
 const fail = expect.fail;
 const Exporter = require('../../../lib/export/json_exporter');

@@ -1,7 +1,6 @@
-
+import { expect } from 'chai';
 
 /* eslint-disable no-new, no-unused-expressions */
-const expect = require('chai').expect;
 const isReserved = require('../../../../lib/core/jhipster/reserved_keywords').isReserved;
 const isReservedClassName = require('../../../../lib/core/jhipster/reserved_keywords').isReservedClassName;
 const isReservedFieldName = require('../../../../lib/core/jhipster/reserved_keywords').isReservedFieldName;

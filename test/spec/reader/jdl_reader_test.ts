@@ -1,9 +1,7 @@
-
+import { expect } from 'chai';
+import * as fs from 'fs';
 
 /* eslint-disable no-new, no-unused-expressions */
-const expect = require('chai').expect;
-const fs = require('fs');
-
 const fail = expect.fail;
 const parse = require('../../../lib/reader/jdl_reader').parse;
 const parseFromFiles = require('../../../lib/reader/jdl_reader').parseFromFiles;
