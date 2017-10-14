@@ -1,4 +1,4 @@
-
+import { JhipsterStringUtils } from '../lib/utils/string_utils';
 
 const BINARY_OPTIONS = require('../lib/core/jhipster/binary_options');
 const UNARY_OPTIONS = require('../lib/core/jhipster/unary_options');
@@ -27,7 +27,6 @@ const JSONFileReader = require('../lib/reader/json_file_reader');
 const ReservedKeywords = require('../lib/core/jhipster/reserved_keywords');
 const ObjectUtils = require('../lib/utils/object_utils');
 const FormatUtils = require('../lib/utils/format_utils');
-const StringUtils = require('../lib/utils/string_utils');
 const Set = require('../lib/utils/objects/set');
 
 export = {
@@ -79,6 +78,6 @@ export = {
   /* Objects */
   Set,
   /* Utils */
-  camelCase: StringUtils.camelCase,
+  camelCase: JhipsterStringUtils.camelCase,
   dateFormatForLiquibase: FormatUtils.dateFormatForLiquibase
 };

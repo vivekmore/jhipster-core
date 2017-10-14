@@ -1,8 +1,8 @@
 import { JhipsterCoreException } from '../exceptions/jhipster_core_exception';
 import { JhipsterCoreExceptionType } from '../exceptions/jhipster_core_exception_type';
+import { JhipsterStringUtils } from '../utils/string_utils';
 
 const merge = require('../utils/object_utils').merge;
-const isNilOrEmpty = require('../utils/string_utils').isNilOrEmpty;
 const ErrorCases = require('../exceptions/error_cases').ErrorCases;
 const JDLField = require('./jdl_field');
 const ReservedKeyWord = require('../core/jhipster/reserved_keywords');
@@ -12,7 +12,7 @@ const isReservedClassName = ReservedKeyWord.isReservedClassName;
 class JDLEntity {
   constructor(args) {
     const merged = merge(defaults(), args);
-    if (isNilOrEmpty(merged.name)) {
+    if (JhipsterStringUtils.isNilOrEmpty(merged.name)) {
       throw new JhipsterCoreException(
         JhipsterCoreExceptionType.NullPointer,
         'The name is mandatory to create an entity.');
@@ -49,12 +49,12 @@ class JDLEntity {
       errors.push(ErrorCases.entities.NoEntity);
       return errors;
     }
-    if (isNilOrEmpty(entity.name)) {
+    if (JhipsterStringUtils.isNilOrEmpty(entity.name)) {
       errors.push(ErrorCases.entities.NoName);
     } else if (isReservedClassName(entity.name)) {
       errors.push(ErrorCases.entities.ReservedWordAsName);
     }
-    if (isNilOrEmpty(entity.tableName)) {
+    if (JhipsterStringUtils.isNilOrEmpty(entity.tableName)) {
       errors.push(ErrorCases.entities.NoTableName);
     }
     if (!('fields' in entity)) {

@@ -1,8 +1,8 @@
 import { JhipsterCoreException } from '../exceptions/jhipster_core_exception';
 import { JhipsterCoreExceptionType } from '../exceptions/jhipster_core_exception_type';
+import { JhipsterStringUtils } from '../utils/string_utils';
 
 const merge = require('../utils/object_utils').merge;
-const isNilOrEmpty = require('../utils/string_utils').isNilOrEmpty;
 const JDLEntity = require('./jdl_entity');
 const Set = require('../utils/objects/set');
 const ErrorCases = require('../exceptions/error_cases').ErrorCases;
@@ -69,7 +69,7 @@ class AbstractJDLOption {
       errors.push(ErrorCases.options.NoOption);
       return errors;
     }
-    if (isNilOrEmpty(object.name)) {
+    if (JhipsterStringUtils.isNilOrEmpty(object.name)) {
       errors.push(ErrorCases.options.NoName);
     }
     if (!object.entityNames) {

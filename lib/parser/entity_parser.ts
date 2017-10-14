@@ -1,8 +1,8 @@
 import { JhipsterCoreException } from '../exceptions/jhipster_core_exception';
 import { JhipsterCoreExceptionType } from '../exceptions/jhipster_core_exception_type';
+import { JhipsterStringUtils } from '../utils/string_utils';
 
 const _ = require('lodash');
-const camelCase = require('../utils/string_utils').camelCase;
 const merge = require('../utils/object_utils').merge;
 const FieldTypes = require('../core/jhipster/field_types');
 const RelationshipTypes = require('../core/jhipster/relationship_types').RELATIONSHIP_TYPES;
@@ -162,7 +162,7 @@ function setFieldsOfEntity(entityName) {
     const fieldName = fieldNames[i];
     const jdlField = jdlObject.entities[entityName].fields[fieldName];
     const fieldData = {
-      fieldName: camelCase(fieldName)
+      fieldName: JhipsterStringUtils.camelCase(fieldName)
     };
     const comment = formatComment(jdlField.comment);
     if (comment) {
@@ -275,23 +275,23 @@ function setSourceAssociationsForClass(relatedRelationships, entityName) {
     }
     if (relatedRelationship.type === RelationshipTypes.ONE_TO_ONE) {
       splitField = extractField(relatedRelationship.injectedFieldInFrom);
-      relationship.relationshipName = camelCase(splitField.relationshipName);
-      relationship.otherEntityName = camelCase(relatedRelationship.to.name);
+      relationship.relationshipName = JhipsterStringUtils.camelCase(splitField.relationshipName);
+      relationship.otherEntityName = JhipsterStringUtils.camelCase(relatedRelationship.to.name);
       relationship.otherEntityField = _.lowerFirst(splitField.otherEntityField);
       relationship.ownerSide = true;
       relationship.otherEntityRelationshipName = _.lowerFirst(relatedRelationship.injectedFieldInTo || relatedRelationship.from.name);
     } else if (relatedRelationship.type === RelationshipTypes.ONE_TO_MANY) {
       splitField = extractField(relatedRelationship.injectedFieldInFrom);
       otherSplitField = extractField(relatedRelationship.injectedFieldInTo);
-      relationship.relationshipName = camelCase(splitField.relationshipName || relatedRelationship.to.name);
-      relationship.otherEntityName = camelCase(relatedRelationship.to.name);
+      relationship.relationshipName = JhipsterStringUtils.camelCase(splitField.relationshipName || relatedRelationship.to.name);
+      relationship.otherEntityName = JhipsterStringUtils.camelCase(relatedRelationship.to.name);
       relationship.otherEntityRelationshipName = _.lowerFirst(otherSplitField.relationshipName);
       if (!relatedRelationship.injectedFieldInTo) {
         relationship.otherEntityRelationshipName = _.lowerFirst(relatedRelationship.from.name);
         otherSplitField = extractField(relatedRelationship.injectedFieldInTo);
         const otherSideRelationship = {
-          relationshipName: camelCase(relatedRelationship.from.name),
-          otherEntityName: camelCase(relatedRelationship.from.name),
+          relationshipName: JhipsterStringUtils.camelCase(relatedRelationship.from.name),
+          otherEntityName: JhipsterStringUtils.camelCase(relatedRelationship.from.name),
           relationshipType: _.kebabCase(RelationshipTypes.MANY_TO_ONE),
           otherEntityField: _.lowerFirst(otherSplitField.otherEntityField)
         };
@@ -300,14 +300,14 @@ function setSourceAssociationsForClass(relatedRelationships, entityName) {
       }
     } else if (relatedRelationship.type === RelationshipTypes.MANY_TO_ONE && relatedRelationship.injectedFieldInFrom) {
       splitField = extractField(relatedRelationship.injectedFieldInFrom);
-      relationship.relationshipName = camelCase(splitField.relationshipName);
-      relationship.otherEntityName = camelCase(relatedRelationship.to.name);
+      relationship.relationshipName = JhipsterStringUtils.camelCase(splitField.relationshipName);
+      relationship.otherEntityName = JhipsterStringUtils.camelCase(relatedRelationship.to.name);
       relationship.otherEntityField = _.lowerFirst(splitField.otherEntityField);
     } else if (relatedRelationship.type === RelationshipTypes.MANY_TO_MANY) {
       splitField = extractField(relatedRelationship.injectedFieldInFrom);
       relationship.otherEntityRelationshipName = _.lowerFirst(extractField(relatedRelationship.injectedFieldInTo).relationshipName);
-      relationship.relationshipName = camelCase(splitField.relationshipName);
-      relationship.otherEntityName = camelCase(relatedRelationship.to.name);
+      relationship.relationshipName = JhipsterStringUtils.camelCase(splitField.relationshipName);
+      relationship.otherEntityName = JhipsterStringUtils.camelCase(relatedRelationship.to.name);
       relationship.otherEntityField = _.lowerFirst(splitField.otherEntityField);
       relationship.ownerSide = true;
     }
@@ -333,27 +333,27 @@ function setDestinationAssociationsForClass(relatedRelationships, entityName) {
     if (relatedRelationship.type === RelationshipTypes.ONE_TO_ONE) {
       splitField = extractField(relatedRelationship.injectedFieldInTo);
       otherSplitField = extractField(relatedRelationship.injectedFieldInFrom);
-      relationship.relationshipName = camelCase(splitField.relationshipName);
-      relationship.otherEntityName = camelCase(relatedRelationship.from.name);
+      relationship.relationshipName = JhipsterStringUtils.camelCase(splitField.relationshipName);
+      relationship.otherEntityName = JhipsterStringUtils.camelCase(relatedRelationship.from.name);
       relationship.ownerSide = false;
       relationship.otherEntityRelationshipName = _.lowerFirst(otherSplitField.relationshipName);
     } else if (relatedRelationship.type === RelationshipTypes.ONE_TO_MANY) {
       relatedRelationship.injectedFieldInTo = relatedRelationship.injectedFieldInTo || _.lowerFirst(relatedRelationship.from);
       splitField = extractField(relatedRelationship.injectedFieldInTo);
-      relationship.relationshipName = camelCase(splitField.relationshipName || relatedRelationship.from.name);
-      relationship.otherEntityName = camelCase(relatedRelationship.from.name);
+      relationship.relationshipName = JhipsterStringUtils.camelCase(splitField.relationshipName || relatedRelationship.from.name);
+      relationship.otherEntityName = JhipsterStringUtils.camelCase(relatedRelationship.from.name);
       relationship.otherEntityField = _.lowerFirst(splitField.otherEntityField);
     } else if (relatedRelationship.type === RelationshipTypes.MANY_TO_ONE && relatedRelationship.injectedFieldInTo) {
       splitField = extractField(relatedRelationship.injectedFieldInTo);
-      relationship.relationshipName = camelCase(splitField.relationshipName);
-      relationship.otherEntityName = camelCase(relatedRelationship.from.name);
+      relationship.relationshipName = JhipsterStringUtils.camelCase(splitField.relationshipName);
+      relationship.otherEntityName = JhipsterStringUtils.camelCase(relatedRelationship.from.name);
       relationship.relationshipType = 'one-to-many';
       otherSplitField = extractField(relatedRelationship.injectedFieldInFrom);
       relationship.otherEntityRelationshipName = _.lowerFirst(otherSplitField.relationshipName);
     } else if (relatedRelationship.type === RelationshipTypes.MANY_TO_MANY) {
       splitField = extractField(relatedRelationship.injectedFieldInTo);
-      relationship.relationshipName = camelCase(splitField.relationshipName);
-      relationship.otherEntityName = camelCase(relatedRelationship.from.name);
+      relationship.relationshipName = JhipsterStringUtils.camelCase(splitField.relationshipName);
+      relationship.otherEntityName = JhipsterStringUtils.camelCase(relatedRelationship.from.name);
       relationship.ownerSide = false;
       relationship.otherEntityRelationshipName = _.lowerFirst(extractField(relatedRelationship.injectedFieldInFrom).relationshipName);
     }

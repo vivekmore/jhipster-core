@@ -1,8 +1,8 @@
 import { JhipsterCoreException } from '../exceptions/jhipster_core_exception';
 import { JhipsterCoreExceptionType } from '../exceptions/jhipster_core_exception_type';
+import { JhipsterStringUtils } from '../utils/string_utils';
 
 const merge = require('../utils/object_utils').merge;
-const isNilOrEmpty = require('../utils/string_utils').isNilOrEmpty;
 const ErrorCases = require('../exceptions/error_cases').ErrorCases;
 const Set = require('../utils/objects/set');
 const ReservedKeyWord = require('../core/jhipster/reserved_keywords');
@@ -43,7 +43,7 @@ class JDLEnum {
       errors.push(ErrorCases.enums.NoEnum);
       return errors;
     }
-    if (isNilOrEmpty(object.name)) {
+    if (JhipsterStringUtils.isNilOrEmpty(object.name)) {
       errors.push(ErrorCases.enums.NoName);
     } else if (isReservedClassName(object.name)) {
       errors.push(ErrorCases.enums.ReservedWordAsName);

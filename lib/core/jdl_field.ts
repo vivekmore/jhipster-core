@@ -1,8 +1,8 @@
 import { JhipsterCoreException } from '../exceptions/jhipster_core_exception';
 import { JhipsterCoreExceptionType } from '../exceptions/jhipster_core_exception_type';
+import { JhipsterStringUtils } from '../utils/string_utils';
 
 const merge = require('../utils/object_utils').merge;
-const isNilOrEmpty = require('../utils/string_utils').isNilOrEmpty;
 const ErrorCases = require('../exceptions/error_cases').ErrorCases;
 const JDLValidation = require('./jdl_validation');
 const ReservedKeyWord = require('../core/jhipster/reserved_keywords');
@@ -12,7 +12,7 @@ const isReservedFieldName = ReservedKeyWord.isReservedFieldName;
 class JDLField {
   constructor(args) {
     const merged = merge(defaults(), args);
-    if (isNilOrEmpty(merged.name) || isNilOrEmpty(merged.type)) {
+    if (JhipsterStringUtils.isNilOrEmpty(merged.name) || JhipsterStringUtils.isNilOrEmpty(merged.type)) {
       throw new JhipsterCoreException(
         JhipsterCoreExceptionType.NullPointer,
         'The field name and type are mandatory.');
@@ -49,12 +49,12 @@ class JDLField {
       errors.push(ErrorCases.fields.NoField);
       return errors;
     }
-    if (isNilOrEmpty(field.name)) {
+    if (JhipsterStringUtils.isNilOrEmpty(field.name)) {
       errors.push(ErrorCases.fields.NoName);
     } else if (isReservedFieldName(field.name)) {
       errors.push(ErrorCases.fields.ReservedWordAsName);
     }
-    if (isNilOrEmpty(field.type)) {
+    if (JhipsterStringUtils.isNilOrEmpty(field.type)) {
       errors.push(ErrorCases.fields.NoType);
     }
     if (field.validations) {

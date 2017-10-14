@@ -1,22 +1,20 @@
 import { JhipsterCoreException } from '../exceptions/jhipster_core_exception';
 import { JhipsterCoreExceptionType } from '../exceptions/jhipster_core_exception_type';
 
-export = {
-  isNilOrEmpty,
-  camelCase
-};
+export class JhipsterStringUtils {
 
-function isNilOrEmpty(string) {
-  return string == null || string === '';
-}
+  public static isNilOrEmpty(s: string): boolean {
+    return s == null || s === '';
+  }
 
-function camelCase(string) {
-  if (string == null) {
-    throw new JhipsterCoreException(JhipsterCoreExceptionType.NullPointer, 'The passed string cannot be nil.');
+  public static camelCase(s: string): string {
+    if (s == null) {
+      throw new JhipsterCoreException(JhipsterCoreExceptionType.NullPointer, 'The passed string cannot be nil.');
+    }
+    if (s === '') {
+      return s;
+    }
+    s = s.replace(/[\W_]/g, '');
+    return `${s[0].toLowerCase()}${s.slice(1, s.length)}`;
   }
-  if (string === '') {
-    return string;
-  }
-  string = string.replace(/[\W_]/g, '');
-  return `${string[0].toLowerCase()}${string.slice(1, string.length)}`;
 }
