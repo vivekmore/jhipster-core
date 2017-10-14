@@ -1,9 +1,8 @@
-
+import { JhipsterCoreException } from '../exceptions/jhipster_core_exception';
+import { JhipsterCoreExceptionType } from '../exceptions/jhipster_core_exception_type';
 
 const merge = require('../utils/object_utils').merge;
 const _ = require('lodash');
-const BuildException = require('../exceptions/exception_factory').BuildException;
-const exceptions = require('../exceptions/exception_factory').exceptions;
 const ErrorCases = require('../exceptions/error_cases').ErrorCases;
 const JDLEntity = require('./jdl_entity');
 const RELATIONSHIP_TYPES = require('./jhipster/relationship_types').RELATIONSHIP_TYPES;
@@ -13,10 +12,10 @@ class JDLRelationship {
   constructor(args) {
     const merged = merge(defaults(), args);
     if (!JDLEntity.isValid(merged.from) || !JDLEntity.isValid(merged.to)) {
-      throw new BuildException(exceptions.InvalidObject, 'Valid source and destination entities are required.');
+      throw new JhipsterCoreException(JhipsterCoreExceptionType.InvalidObject, 'Valid source and destination entities are required.');
     }
     if (!exists(merged.type) || !(merged.injectedFieldInFrom || merged.injectedFieldInTo)) {
-      throw new BuildException(exceptions.NullPointer, 'The type, and at least one injected field must be passed.');
+      throw new JhipsterCoreException(JhipsterCoreExceptionType.NullPointer, 'The type, and at least one injected field must be passed.');
     }
     this.from = merged.from;
     this.to = merged.to;
@@ -75,8 +74,8 @@ class JDLRelationship {
   validate() {
     const errors = JDLRelationship.checkValidity(this);
     if (errors.length !== 0) {
-      throw new BuildException(
-        exceptions.InvalidObject,
+      throw new JhipsterCoreException(
+        JhipsterCoreExceptionType.InvalidObject,
         `The exception is not in a valid state.\nErrors: ${errors.join(', ')}.`);
     }
     checkRelationshipType(this);
@@ -124,8 +123,8 @@ function checkRelationshipType(relationship) {
   switch (relationship.type) {
   case RELATIONSHIP_TYPES.ONE_TO_ONE:
     if (!relationship.injectedFieldInFrom) {
-      throw new BuildException(
-        exceptions.MalformedAssociation,
+      throw new JhipsterCoreException(
+        JhipsterCoreExceptionType.MalformedAssociation,
         `In the One-to-One relationship from ${relationship.from.name} to ${relationship.to.name}, `
         + 'the source entity must possess the destination in a One-to-One '
         + ' relationship, or you must invert the direction of the relationship.');
@@ -142,8 +141,8 @@ function checkRelationshipType(relationship) {
     break;
   case RELATIONSHIP_TYPES.MANY_TO_ONE:
     if (relationship.injectedFieldInFrom && relationship.injectedFieldInTo) {
-      throw new BuildException(
-        exceptions.MalformedAssociation,
+      throw new JhipsterCoreException(
+        JhipsterCoreExceptionType.MalformedAssociation,
         `In the Many-to-One relationship from ${relationship.from.name} to ${relationship.to.name}, `
         + 'only unidirectionality is supported for a Many-to-One relationship, '
         + 'you should create a bidirectional One-to-Many relationship instead.');
@@ -151,15 +150,15 @@ function checkRelationshipType(relationship) {
     break;
   case RELATIONSHIP_TYPES.MANY_TO_MANY:
     if (!relationship.injectedFieldInFrom || !relationship.injectedFieldInTo) {
-      throw new BuildException(
-        exceptions.MalformedAssociation,
+      throw new JhipsterCoreException(
+        JhipsterCoreExceptionType.MalformedAssociation,
         `In the Many-to-Many relationship from ${relationship.from.name} to ${relationship.to.name}, `
         + 'only bidirectionality is supported for a Many-to-Many relationship.');
     }
     break;
   default: // never happens, ever.
-    throw new BuildException(
-      exceptions.Assertion,
+    throw new JhipsterCoreException(
+      JhipsterCoreExceptionType.Assertion,
       `This case shouldn't have happened with type ${relationship.type}.`);
   }
 }

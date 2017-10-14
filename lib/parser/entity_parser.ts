@@ -1,4 +1,5 @@
-
+import { JhipsterCoreException } from '../exceptions/jhipster_core_exception';
+import { JhipsterCoreExceptionType } from '../exceptions/jhipster_core_exception_type';
 
 const _ = require('lodash');
 const camelCase = require('../utils/string_utils').camelCase;
@@ -10,8 +11,6 @@ const formatComment = require('../utils/format_utils').formatComment;
 const dateFormatForLiquibase = require('../utils/format_utils').dateFormatForLiquibase;
 const UnaryOptions = require('../core/jhipster/unary_options').UNARY_OPTIONS;
 const BinaryOptions = require('../core/jhipster/binary_options').BINARY_OPTIONS;
-const BuildException = require('../exceptions/exception_factory').BuildException;
-const exceptions = require('../exceptions/exception_factory').exceptions;
 
 const USER = 'User';
 
@@ -32,8 +31,8 @@ module.exports = {
 function parse(args) {
   const merged = merge(defaults(), args);
   if (!args || !merged.jdlObject || !args.databaseType) {
-    throw new BuildException(
-      exceptions.NullPointer,
+    throw new JhipsterCoreException(
+      JhipsterCoreExceptionType.NullPointer,
       'The JDL object and the database type are both mandatory.');
   }
   if (merged.applicationType !== 'gateway') {
@@ -67,11 +66,10 @@ function resetState() {
 
 function checkNoSQLModeling(passedJdlObject, passedDatabaseType) {
   if (passedJdlObject.relationships.size !== 0 && !DatabaseTypes.isSql(passedDatabaseType)) {
-    throw new BuildException(
-      exceptions.NoSQLModeling, 'NoSQL entities don\'t have relationships.');
+    throw new JhipsterCoreException(
+      JhipsterCoreExceptionType.NoSQLModeling, 'NoSQL entities don\'t have relationships.');
   }
 }
-
 
 function initializeEntities() {
   for (let i = 0, entityNames = Object.keys(jdlObject.entities); i < entityNames.length; i++) {

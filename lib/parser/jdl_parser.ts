@@ -1,4 +1,5 @@
-
+import { JhipsterCoreException } from '../exceptions/jhipster_core_exception';
+import { JhipsterCoreExceptionType } from '../exceptions/jhipster_core_exception_type';
 
 const _ = require('lodash');
 const JDLObject = require('../core/jdl_object');
@@ -14,8 +15,6 @@ const BinaryOptions = require('../core/jhipster/binary_options');
 const FieldTypes = require('../core/jhipster/field_types');
 const DatabaseTypes = require('../core/jhipster/database_types');
 const formatComment = require('../utils/format_utils').formatComment;
-const BuildException = require('../exceptions/exception_factory').BuildException;
-const exceptions = require('../exceptions/exception_factory').exceptions;
 const ReservedKeyWords = require('../core/jhipster/reserved_keywords');
 
 const isReservedClassName = ReservedKeyWords.isReservedClassName;
@@ -38,7 +37,7 @@ let isType;
  */
 function parse(passedDocument, passedDatabaseType, applicationType, applicationName) {
   if (!passedDocument || !passedDatabaseType) {
-    throw new BuildException(exceptions.NullPointer, 'The parsed JDL content and the database type must be passed.');
+    throw new JhipsterCoreException(JhipsterCoreExceptionType.NullPointer, 'The parsed JDL content and the database type must be passed.');
   }
   init(passedDocument, passedDatabaseType, applicationType);
   fillEnums();
@@ -62,8 +61,8 @@ function fillEnums() {
   for (let i = 0; i < document.enums.length; i++) {
     const enumObj = document.enums[i];
     if (isReservedClassName(enumObj.name)) {
-      throw new BuildException(
-        exceptions.IllegalName,
+      throw new JhipsterCoreException(
+        JhipsterCoreExceptionType.IllegalName,
         `The name '${enumObj.name}' is reserved keyword and can not be used as enum class name.`);
     }
     jdlObject.addEnum(new JDLEnum({
@@ -78,13 +77,13 @@ function fillClassesAndFields(passedDatabaseType) {
   for (let i = 0; i < document.entities.length; i++) {
     const entity = document.entities[i];
     if (isReservedClassName(entity.name)) {
-      throw new BuildException(
-        exceptions.IllegalName,
+      throw new JhipsterCoreException(
+        JhipsterCoreExceptionType.IllegalName,
         `The name '${entity.name}' is a reserved keyword and can not be used as entity class name.`);
     }
     if (isReservedTableName(entity.tableName, passedDatabaseType)) {
-      throw new BuildException(
-        exceptions.IllegalName,
+      throw new JhipsterCoreException(
+        JhipsterCoreExceptionType.IllegalName,
         `The name '${entity.tableName}' is a reserved keyword and can not be used as an entity table name.`);
     }
     const tableName = entity.tableName || entity.name;
@@ -115,8 +114,8 @@ function getFields(entity, passedDatabaseType) {
       continue; // eslint-disable-line no-continue
     }
     if (isReservedFieldName(fieldName)) {
-      throw new BuildException(
-        exceptions.IllegalName,
+      throw new JhipsterCoreException(
+        JhipsterCoreExceptionType.IllegalName,
         `The name '${fieldName}' is a reserved keyword and can not be used as entity field name.`);
     }
     if (jdlObject.enums[field.type] || isType(field.type)) {
@@ -130,7 +129,7 @@ function getFields(entity, passedDatabaseType) {
       }
       fields[fieldName] = fieldObject;
     } else {
-      throw new BuildException(exceptions.WrongType, `The type '${field.type}' doesn't exist for ${passedDatabaseType}.`);
+      throw new JhipsterCoreException(JhipsterCoreExceptionType.WrongType, `The type '${field.type}' doesn't exist for ${passedDatabaseType}.`);
     }
   }
   return fields;
@@ -141,8 +140,8 @@ function getValidations(field, isAnEnum) {
   for (let i = 0; i < field.validations.length; i++) {
     const validation = field.validations[i];
     if (!FieldTypes.hasValidation(field.type, validation.key, isAnEnum)) {
-      throw new BuildException(
-        exceptions.WrongValidation,
+      throw new JhipsterCoreException(
+        JhipsterCoreExceptionType.WrongValidation,
         `The validation '${validation.key}' isn't supported for the type '${field.type}'.`);
     }
     if (validation.constant) {
@@ -178,8 +177,8 @@ function checkEntityDeclaration(relationship) {
   const absentEntities = [];
 
   if (relationship.from.name.toLowerCase() === USER.toLowerCase()) {
-    throw new BuildException(
-      exceptions.IllegalAssociation,
+    throw new JhipsterCoreException(
+      JhipsterCoreExceptionType.IllegalAssociation,
       `Relationships from User entity is not supported in the declaration between ${relationship.from.name} and `
       + `${relationship.to.name}.`
     );
@@ -191,8 +190,8 @@ function checkEntityDeclaration(relationship) {
     absentEntities.push(relationship.to.name);
   }
   if (absentEntities.length !== 0) {
-    throw new BuildException(
-      exceptions.UndeclaredEntity,
+    throw new JhipsterCoreException(
+      JhipsterCoreExceptionType.UndeclaredEntity,
       `In the relationship between ${relationship.from.name} and `
       + `${relationship.to.name}, ${absentEntities.join(' and ')} `
       + `${(absentEntities.length === 1 ? 'is' : 'are')} not declared.`
@@ -255,8 +254,8 @@ function addOption(key, value) {
     excludedNames: document[key][value].excluded
   });
   if (document[key].value !== undefined || !JDLBinaryOption.isValid(option)) {
-    throw new BuildException(
-      exceptions.InvalidObject,
+    throw new JhipsterCoreException(
+      JhipsterCoreExceptionType.InvalidObject,
       `The parsed ${key} option is not valid for value ${value}.`);
   }
   jdlObject.addOption(option);
@@ -267,7 +266,7 @@ function fillBinaryOptions(passedDatabaseType) {
     _.forEach(document[optionValue], (documentOptionValue, documentOptionKey) => {
       if (optionValue === BinaryOptions.BINARY_OPTIONS.PAGINATION
         && passedDatabaseType === DatabaseTypes.Types.cassandra) {
-        throw new BuildException(exceptions.IllegalOption, 'Pagination isn\'t allowed when the app uses Cassandra.');
+        throw new JhipsterCoreException(JhipsterCoreExceptionType.IllegalOption, 'Pagination isn\'t allowed when the app uses Cassandra.');
       }
       addOption(optionValue, documentOptionKey);
     });

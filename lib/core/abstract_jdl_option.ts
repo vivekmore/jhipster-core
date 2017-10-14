@@ -1,18 +1,17 @@
-
+import { JhipsterCoreException } from '../exceptions/jhipster_core_exception';
+import { JhipsterCoreExceptionType } from '../exceptions/jhipster_core_exception_type';
 
 const merge = require('../utils/object_utils').merge;
 const isNilOrEmpty = require('../utils/string_utils').isNilOrEmpty;
 const JDLEntity = require('./jdl_entity');
 const Set = require('../utils/objects/set');
 const ErrorCases = require('../exceptions/error_cases').ErrorCases;
-const BuildException = require('../exceptions/exception_factory').BuildException;
-const exceptions = require('../exceptions/exception_factory').exceptions;
 
 class AbstractJDLOption {
   constructor(args) {
     const merged = merge(defaults(), args);
     if (!merged.name) {
-      throw new BuildException(exceptions.NullPointer, 'The option\'s name must be passed.');
+      throw new JhipsterCoreException(JhipsterCoreExceptionType.NullPointer, 'The option\'s name must be passed.');
     }
     this.name = merged.name;
     this.entityNames = new Set(merged.entityNames);
@@ -25,8 +24,8 @@ class AbstractJDLOption {
   addEntity(entity) {
     const errors = JDLEntity.checkValidity(entity);
     if (errors.length !== 0) {
-      throw new BuildException(
-        exceptions.InvalidObject,
+      throw new JhipsterCoreException(
+        JhipsterCoreExceptionType.InvalidObject,
         `The passed entity must be valid.\nErrors: ${errors.join(', ')}`);
     }
     if (this.excludedNames.has(entity.name)) {
@@ -50,8 +49,8 @@ class AbstractJDLOption {
   excludeEntity(entity) {
     const errors = JDLEntity.checkValidity(entity);
     if (errors.length !== 0) {
-      throw new BuildException(
-        exceptions.InvalidObject,
+      throw new JhipsterCoreException(
+        JhipsterCoreExceptionType.InvalidObject,
         `The passed entity must be valid.\nErrors: ${errors.join(', ')}`);
     }
     if (this.entityNames.has(entity.name)) {
@@ -61,7 +60,7 @@ class AbstractJDLOption {
   }
 
   getType() {
-    throw new BuildException(exceptions.UnsupportedOperation);
+    throw new JhipsterCoreException(JhipsterCoreExceptionType.UnsupportedOperation);
   }
 
   static checkValidity(object) {

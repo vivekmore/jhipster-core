@@ -1,11 +1,11 @@
+import { JhipsterCoreException } from '../../exceptions/jhipster_core_exception';
+import { JhipsterCoreExceptionType } from '../../exceptions/jhipster_core_exception_type';
 
 const Set = require('../../utils/objects/set');
 const _ = require('lodash');
 const _v = require('./validations');
 const JDLEnum = require('../jdl_enum');
 const DatabaseTypes = require('./database_types').Types;
-const BuildException = require('../../exceptions/exception_factory').BuildException;
-const exceptions = require('../../exceptions/exception_factory').exceptions;
 
 const VALIDATIONS = _v.VALIDATIONS;
 
@@ -103,25 +103,25 @@ const CASSANDRA_VALIDATIONS = {
 };
 function isSQLType(type) {
   if (!type) {
-    throw new BuildException(exceptions.NullPointer, 'The passed type must not be nil.');
+    throw new JhipsterCoreException(JhipsterCoreExceptionType.NullPointer, 'The passed type must not be nil.');
   }
   return (_.snakeCase(type).toUpperCase() in SQL_TYPES) || type instanceof JDLEnum;
 }
 function isMongoDBType(type) {
   if (!type) {
-    throw new BuildException(exceptions.NullPointer, 'The passed type must not be nil.');
+    throw new JhipsterCoreException(JhipsterCoreExceptionType.NullPointer, 'The passed type must not be nil.');
   }
   return (_.snakeCase(type).toUpperCase() in MONGODB_TYPES) || type instanceof JDLEnum;
 }
 function isCassandraType(type) {
   if (!type) {
-    throw new BuildException(exceptions.NullPointer, 'The passed type must not be nil.');
+    throw new JhipsterCoreException(JhipsterCoreExceptionType.NullPointer, 'The passed type must not be nil.');
   }
   return (_.snakeCase(type).toUpperCase() in CASSANDRA_TYPES) && !(type instanceof JDLEnum);
 }
 function hasValidation(type, validation, isAnEnum) {
   if (!type || !validation) {
-    throw new BuildException(exceptions.NullPointer, 'The passed type and value must not be nil.');
+    throw new JhipsterCoreException(JhipsterCoreExceptionType.NullPointer, 'The passed type and value must not be nil.');
   }
   if (isAnEnum) {
     type = 'Enum';
@@ -132,7 +132,7 @@ function hasValidation(type, validation, isAnEnum) {
 }
 function getIsType(databaseType, callback) {
   if (!databaseType) {
-    throw new BuildException(exceptions.NullPointer, 'The passed type must not be nil.');
+    throw new JhipsterCoreException(JhipsterCoreExceptionType.NullPointer, 'The passed type must not be nil.');
   }
   let isType;
   switch (databaseType) {
@@ -152,8 +152,8 @@ function getIsType(databaseType, callback) {
     break;
   default:
     callback && callback();
-    throw new BuildException(
-      exceptions.IllegalArgument,
+    throw new JhipsterCoreException(
+      JhipsterCoreExceptionType.IllegalArgument,
       'The passed database type must either be \'sql\', \'mysql\', \'mariadb\', \'postgresql\', \'oracle\', \'mssql\', \'mongodb\', or \'cassandra\'');
   }
   return isType;

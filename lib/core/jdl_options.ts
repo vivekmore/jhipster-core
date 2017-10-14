@@ -1,6 +1,6 @@
+import { JhipsterCoreException } from '../exceptions/jhipster_core_exception';
+import { JhipsterCoreExceptionType } from '../exceptions/jhipster_core_exception_type';
 const AbstractJDLOption = require('./abstract_jdl_option');
-const BuildException = require('../exceptions/exception_factory').BuildException;
-const exceptions = require('../exceptions/exception_factory').exceptions;
 
 class JDLOptions {
   constructor() {
@@ -10,8 +10,8 @@ class JDLOptions {
   addOption(option) {
     const errors = AbstractJDLOption.checkValidity(option);
     if (errors.length !== 0) {
-      throw new BuildException(
-        exceptions.InvalidObject,
+      throw new JhipsterCoreException(
+        JhipsterCoreExceptionType.InvalidObject,
         `The passed options is invalid'.\nErrors: ${errors.join(', ')}`);
     }
     const key = getOptionKey(option);

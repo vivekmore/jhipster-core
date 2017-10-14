@@ -1,4 +1,5 @@
-
+import { JhipsterCoreException } from '../exceptions/jhipster_core_exception';
+import { JhipsterCoreExceptionType } from '../exceptions/jhipster_core_exception_type';
 
 const JDLEntity = require('./jdl_entity');
 const JDLEnum = require('./jdl_enum');
@@ -6,8 +7,6 @@ const JDLRelationship = require('./jdl_relationship');
 const JDLRelationships = require('./jdl_relationships');
 const JDLAbstractRelationship = require('./abstract_jdl_option');
 const JDLOptions = require('./jdl_options');
-const BuildException = require('../exceptions/exception_factory').BuildException;
-const exceptions = require('../exceptions/exception_factory').exceptions;
 
 class JDLObject {
   constructor() {
@@ -28,8 +27,8 @@ class JDLObject {
   addEntity(entity) {
     const errors = JDLEntity.checkValidity(entity);
     if (errors.length !== 0) {
-      throw new BuildException(
-        exceptions.InvalidObject,
+      throw new JhipsterCoreException(
+        JhipsterCoreExceptionType.InvalidObject,
         `The entity must be valid in order to be added.\nErrors: ${errors.join(', ')}`);
     }
     this.entities[entity.name] = entity;
@@ -42,8 +41,8 @@ class JDLObject {
   addEnum(enumToAdd) {
     const errors = JDLEnum.checkValidity(enumToAdd);
     if (errors.length !== 0) {
-      throw new BuildException(
-        exceptions.InvalidObject,
+      throw new JhipsterCoreException(
+        JhipsterCoreExceptionType.InvalidObject,
         `The enum must be valid in order to be added.\nErrors: ${errors.join(', ')}`);
     }
     this.enums[enumToAdd.name] = enumToAdd;
@@ -52,8 +51,8 @@ class JDLObject {
   addRelationship(relationship) {
     const errors = JDLRelationship.checkValidity(relationship);
     if (errors.length !== 0) {
-      throw new BuildException(
-        exceptions.InvalidObject,
+      throw new JhipsterCoreException(
+        JhipsterCoreExceptionType.InvalidObject,
         `The relationship must be valid in order to be added.\nErrors: ${errors.join(', ')}`);
     }
     this.relationships.add(relationship);
@@ -62,8 +61,8 @@ class JDLObject {
   addOption(option) {
     const errors = JDLAbstractRelationship.checkValidity(option);
     if (errors.length !== 0) {
-      throw new BuildException(
-        exceptions.InvalidObject,
+      throw new JhipsterCoreException(
+        JhipsterCoreExceptionType.InvalidObject,
         `The option must be valid in order to be added.\nErrors: ${errors.join(', ')}`);
     }
     this.options.addOption(option);

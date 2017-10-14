@@ -1,11 +1,10 @@
-
-
-const BuildException = require('../../exceptions/exception_factory').BuildException;
-const exceptions = require('../../exceptions/exception_factory').exceptions;
-
 /**
  * Custom implementation of a Set.
  */
+
+import { JhipsterCoreException } from '../../exceptions/jhipster_core_exception';
+import { JhipsterCoreExceptionType } from '../../exceptions/jhipster_core_exception_type';
+
 class Set {
   constructor(array) {
     this.container = array ? convertToMap(array) : {};
@@ -17,7 +16,7 @@ class Set {
 
   add(element) {
     if (!element) {
-      throw new BuildException(exceptions.NullPointer, 'Can\'t add a nil element to the set.');
+      throw new JhipsterCoreException(JhipsterCoreExceptionType.NullPointer, 'Can\'t add a nil element to the set.');
     }
     if (element in this.container) {
       return false;
@@ -28,7 +27,7 @@ class Set {
 
   addArrayElements(array) {
     if (!array) {
-      throw new BuildException(exceptions.NullPointer, 'Can\'t add elements from a nil object.');
+      throw new JhipsterCoreException(JhipsterCoreExceptionType.NullPointer, 'Can\'t add elements from a nil object.');
     }
     let atLeastOneAdded = false;
     for (let i = 0; i < array.length; i++) {
@@ -42,7 +41,7 @@ class Set {
 
   addSetElements(otherSet) {
     if (!otherSet) {
-      throw new BuildException(exceptions.NullPointer, 'Can\'t add elements from a nil object.');
+      throw new JhipsterCoreException(JhipsterCoreExceptionType.NullPointer, 'Can\'t add elements from a nil object.');
     }
     let atLeastOneAdded = false;
     Object.keys(otherSet.container).forEach((element) => {
@@ -72,7 +71,7 @@ class Set {
 
   forEach(passedFunction, thisArg) {
     if (!passedFunction) {
-      throw new BuildException(exceptions.NullPointer, 'The function must not be nil.');
+      throw new JhipsterCoreException(JhipsterCoreExceptionType.NullPointer, 'The function must not be nil.');
     }
     Object.keys(this.container).forEach((element) => {
       passedFunction.call(thisArg, element);
@@ -81,7 +80,7 @@ class Set {
 
   map(passedFunction, thisArg) {
     if (!passedFunction) {
-      throw new BuildException(exceptions.NullPointer, 'The function must not be nil.');
+      throw new JhipsterCoreException(JhipsterCoreExceptionType.NullPointer, 'The function must not be nil.');
     }
     const newContainer = {};
     Object.keys(this.container).forEach((element) => {
@@ -93,7 +92,7 @@ class Set {
 
   filter(passedFunction, thisArg) {
     if (!passedFunction) {
-      throw new BuildException(exceptions.NullPointer, 'The function must not be nil.');
+      throw new JhipsterCoreException(JhipsterCoreExceptionType.NullPointer, 'The function must not be nil.');
     }
     const newContainer = {};
     Object.keys(this.container).forEach((element) => {

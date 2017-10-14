@@ -1,12 +1,11 @@
-
+import { JhipsterCoreException } from '../exceptions/jhipster_core_exception';
+import { JhipsterCoreExceptionType } from '../exceptions/jhipster_core_exception_type';
 
 const fs = require('fs');
 const readEntityJSON = require('../reader/json_file_reader').readEntityJSON;
 const toFilePath = require('../reader/json_file_reader').toFilePath;
 const doesfileExist = require('../reader/json_file_reader').doesfileExist;
 const areJHipsterEntitiesEqual = require('../utils/object_utils').areEntitiesEqual;
-const BuildException = require('../exceptions/exception_factory').BuildException;
-const exceptions = require('../exceptions/exception_factory').exceptions;
 
 module.exports = {
   exportToJSON,
@@ -16,8 +15,8 @@ module.exports = {
 
 function exportToJSON(entities, forceNoFiltering) {
   if (!entities) {
-    throw new BuildException(
-      exceptions.NullPointer,
+    throw new JhipsterCoreException(
+      JhipsterCoreExceptionType.NullPointer,
       'Entities have to be passed to be exported.');
   }
   createJHipsterJSONFolder();

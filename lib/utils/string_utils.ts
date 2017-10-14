@@ -1,7 +1,5 @@
-
-
-const BuildException = require('../exceptions/exception_factory').BuildException;
-const exceptions = require('../exceptions/exception_factory').exceptions;
+import { JhipsterCoreException } from '../exceptions/jhipster_core_exception';
+import { JhipsterCoreExceptionType } from '../exceptions/jhipster_core_exception_type';
 
 module.exports = {
   isNilOrEmpty,
@@ -14,7 +12,7 @@ function isNilOrEmpty(string) {
 
 function camelCase(string) {
   if (string == null) {
-    throw new BuildException(exceptions.NullPointer, 'The passed string cannot be nil.');
+    throw new JhipsterCoreException(JhipsterCoreExceptionType.NullPointer, 'The passed string cannot be nil.');
   }
   if (string === '') {
     return string;

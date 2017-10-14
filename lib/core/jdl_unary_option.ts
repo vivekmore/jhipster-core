@@ -1,9 +1,8 @@
-
+import { JhipsterCoreException } from '../exceptions/jhipster_core_exception';
+import { JhipsterCoreExceptionType } from '../exceptions/jhipster_core_exception_type';
 
 const AbstractJDLOption = require('./abstract_jdl_option');
 const UNARY_OPTIONS = require('./jhipster/unary_options');
-const BuildException = require('../exceptions/exception_factory').BuildException;
-const exceptions = require('../exceptions/exception_factory').exceptions;
 
 /**
  * For flags such as skipServer, skipClient, etc.
@@ -12,7 +11,7 @@ class JDLUnaryOption extends AbstractJDLOption {
   constructor(args) {
     super(args);
     if (!UNARY_OPTIONS.exists(this.name)) {
-      throw new BuildException(exceptions.IllegalArgument, `The option's name must be valid, got '${this.name}'.`);
+      throw new JhipsterCoreException(JhipsterCoreExceptionType.IllegalArgument, `The option's name must be valid, got '${this.name}'.`);
     }
   }
 

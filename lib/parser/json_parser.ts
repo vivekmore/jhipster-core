@@ -1,4 +1,5 @@
-
+import { JhipsterCoreException } from '../exceptions/jhipster_core_exception';
+import { JhipsterCoreExceptionType } from '../exceptions/jhipster_core_exception_type';
 
 const _ = require('lodash');
 const JDLObject = require('../core/jdl_object');
@@ -12,8 +13,6 @@ const JDLBinaryOption = require('../core/jdl_binary_option');
 const RelationshipTypes = require('../core/jhipster/relationship_types').RELATIONSHIP_TYPES;
 const UnaryOptions = require('../core/jhipster/unary_options').UNARY_OPTIONS;
 const BinaryOptions = require('../core/jhipster/binary_options').BINARY_OPTIONS;
-const BuildException = require('../exceptions/exception_factory').BuildException;
-const exceptions = require('../exceptions/exception_factory').exceptions;
 
 module.exports = {
   parseEntities,
@@ -31,7 +30,7 @@ const USER_ENTITY = new JDLEntity({ name: USER });
  */
 function parseEntities(entities, jdl) {
   if (!entities) {
-    throw new BuildException(exceptions.NullPointer, 'Entities have to be passed to be converted.');
+    throw new JhipsterCoreException(JhipsterCoreExceptionType.NullPointer, 'Entities have to be passed to be converted.');
   }
   if (!jdl) {
     jdl = new JDLObject();
@@ -40,8 +39,8 @@ function parseEntities(entities, jdl) {
   for (let i = 0, entityNames = Object.keys(entities); i < entityNames.length; i++) {
     const entityName = entityNames[i];
     if (entityName === USER && !skipUserManagement) {
-      throw new BuildException(
-        exceptions.IllegalName,
+      throw new JhipsterCoreException(
+        JhipsterCoreExceptionType.IllegalName,
         'User entity name is reserved if skipUserManagement is not set.');
     }
     const entity = entities[entityName];

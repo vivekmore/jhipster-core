@@ -1,9 +1,8 @@
-
+import { JhipsterCoreException } from '../exceptions/jhipster_core_exception';
+import { JhipsterCoreExceptionType } from '../exceptions/jhipster_core_exception_type';
 
 const AbstractJDLOption = require('./abstract_jdl_option');
 const BINARY_OPTIONS = require('./jhipster/binary_options');
-const BuildException = require('../exceptions/exception_factory').BuildException;
-const exceptions = require('../exceptions/exception_factory').exceptions;
 
 /**
  * For options like the DTO, the service, etc.
@@ -16,8 +15,8 @@ class JDLBinaryOption extends AbstractJDLOption {
       if (!args.value) {
         valueText = 'no value';
       }
-      throw new BuildException(
-        exceptions.IllegalArgument,
+      throw new JhipsterCoreException(
+        JhipsterCoreExceptionType.IllegalArgument,
         `The option's name and value must be valid, got ${valueText} for '${this.name}'.`);
     }
     this.value = args.value;

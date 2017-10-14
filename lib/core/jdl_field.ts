@@ -1,9 +1,8 @@
-
+import { JhipsterCoreException } from '../exceptions/jhipster_core_exception';
+import { JhipsterCoreExceptionType } from '../exceptions/jhipster_core_exception_type';
 
 const merge = require('../utils/object_utils').merge;
 const isNilOrEmpty = require('../utils/string_utils').isNilOrEmpty;
-const BuildException = require('../exceptions/exception_factory').BuildException;
-const exceptions = require('../exceptions/exception_factory').exceptions;
 const ErrorCases = require('../exceptions/error_cases').ErrorCases;
 const JDLValidation = require('./jdl_validation');
 const ReservedKeyWord = require('../core/jhipster/reserved_keywords');
@@ -14,13 +13,13 @@ class JDLField {
   constructor(args) {
     const merged = merge(defaults(), args);
     if (isNilOrEmpty(merged.name) || isNilOrEmpty(merged.type)) {
-      throw new BuildException(
-        exceptions.NullPointer,
+      throw new JhipsterCoreException(
+        JhipsterCoreExceptionType.NullPointer,
         'The field name and type are mandatory.');
     }
     if (isReservedFieldName(merged.name)) {
-      throw new BuildException(
-        exceptions.IllegalName,
+      throw new JhipsterCoreException(
+        JhipsterCoreExceptionType.IllegalName,
         `The field name cannot be a reserved keyword, got: ${merged.name}.`
       );
     }
@@ -37,8 +36,8 @@ class JDLField {
   addValidation(validation) {
     const errors = JDLValidation.checkValidity(validation);
     if (errors.length !== 0) {
-      throw new BuildException(
-        exceptions.InvalidObject,
+      throw new JhipsterCoreException(
+        JhipsterCoreExceptionType.InvalidObject,
         `The passed validation must be valid.\nErrors: ${errors.join(', ')}`);
     }
     this.validations[validation.name] = validation;

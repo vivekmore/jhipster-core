@@ -1,11 +1,10 @@
-
+import { JhipsterCoreException } from '../exceptions/jhipster_core_exception';
+import { JhipsterCoreExceptionType } from '../exceptions/jhipster_core_exception_type';
 
 const _ = require('lodash');
 const fs = require('fs');
 const Parser = require('../parser/json_parser');
 const Reader = require('../reader/json_file_reader');
-const BuildException = require('../exceptions/exception_factory').BuildException;
-const exceptions = require('../exceptions/exception_factory').exceptions;
 
 module.exports = {
   parseFromDir
@@ -15,8 +14,8 @@ module.exports = {
 function parseFromDir(dir) {
   let isDir = false;
   if (!dir) {
-    throw new BuildException(
-      exceptions.IllegalArgument, 'The app directory must be passed.');
+    throw new JhipsterCoreException(
+      JhipsterCoreExceptionType.IllegalArgument, 'The app directory must be passed.');
   }
   try {
     isDir = fs.statSync(dir).isDirectory();
@@ -24,8 +23,8 @@ function parseFromDir(dir) {
     isDir = false;
   }
   if (!isDir) {
-    throw new BuildException(
-      exceptions.WrongDir,
+    throw new JhipsterCoreException(
+      JhipsterCoreExceptionType.WrongDir,
       'The passed dir must exist and must be a directory.');
   }
   const jdl = Parser.parseServerOptions(Reader.readEntityJSON(`${dir}/.yo-rc.json`)['generator-jhipster']);
@@ -38,8 +37,8 @@ function parseFromDir(dir) {
     return jdl;
   }
   if (!isJhipsterDirectory) {
-    throw new BuildException(
-      exceptions.WrongDir,
+    throw new JhipsterCoreException(
+      JhipsterCoreExceptionType.WrongDir,
       `'${entityDir}' must be a directory.`);
   }
   const entities = {};

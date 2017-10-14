@@ -1,8 +1,7 @@
-
+import { JhipsterCoreException } from '../exceptions/jhipster_core_exception';
+import { JhipsterCoreExceptionType } from '../exceptions/jhipster_core_exception_type';
 
 const fs = require('fs');
-const BuildException = require('../exceptions/exception_factory').BuildException;
-const exceptions = require('../exceptions/exception_factory').exceptions;
 
 module.exports = {
   exportToJDL
@@ -10,8 +9,8 @@ module.exports = {
 
 function exportToJDL(jdl, path) {
   if (!jdl) {
-    throw new BuildException(
-      exceptions.NullPointer,
+    throw new JhipsterCoreException(
+      JhipsterCoreExceptionType.NullPointer,
       'A JDLObject has to be passed to be exported.');
   }
   if (!path) {

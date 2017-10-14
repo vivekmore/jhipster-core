@@ -1,9 +1,8 @@
-
+import { JhipsterCoreException } from '../exceptions/jhipster_core_exception';
+import { JhipsterCoreExceptionType } from '../exceptions/jhipster_core_exception_type';
 
 const merge = require('../utils/object_utils').merge;
 const isNilOrEmpty = require('../utils/string_utils').isNilOrEmpty;
-const BuildException = require('../exceptions/exception_factory').BuildException;
-const exceptions = require('../exceptions/exception_factory').exceptions;
 const ErrorCases = require('../exceptions/error_cases').ErrorCases;
 const JDLField = require('./jdl_field');
 const ReservedKeyWord = require('../core/jhipster/reserved_keywords');
@@ -14,13 +13,13 @@ class JDLEntity {
   constructor(args) {
     const merged = merge(defaults(), args);
     if (isNilOrEmpty(merged.name)) {
-      throw new BuildException(
-        exceptions.NullPointer,
+      throw new JhipsterCoreException(
+        JhipsterCoreExceptionType.NullPointer,
         'The name is mandatory to create an entity.');
     }
     if (isReservedClassName(merged.name)) {
-      throw new BuildException(
-        exceptions.IllegalName,
+      throw new JhipsterCoreException(
+        JhipsterCoreExceptionType.IllegalName,
         `The name cannot be a reserved keyword, got: ${merged.name}.`
       );
     }
@@ -37,8 +36,8 @@ class JDLEntity {
       if (field) {
         fieldName = field.name;
       }
-      throw new BuildException(
-        exceptions.InvalidObject,
+      throw new JhipsterCoreException(
+        JhipsterCoreExceptionType.InvalidObject,
         `The passed field '${'' || fieldName}' must be valid for entity '${this.name}'.\nErrors: ${errors.join(', ')}`);
     }
     this.fields[field.name] = field;

@@ -1,10 +1,9 @@
-
+import { JhipsterCoreException } from '../exceptions/jhipster_core_exception';
+import { JhipsterCoreExceptionType } from '../exceptions/jhipster_core_exception_type';
 
 const fs = require('fs');
 const chalk = require('chalk'); // eslint-disable-line import/no-extraneous-dependencies
 const pegjsParser = require('../dsl/pegjs_parser');
-const BuildException = require('../exceptions/exception_factory').BuildException;
-const exceptions = require('../exceptions/exception_factory').exceptions;
 
 module.exports = {
   parse,
@@ -15,8 +14,8 @@ module.exports = {
 /* Parse the given content and return an intermediate object */
 function parse(content) {
   if (!content || content.length === 0) {
-    throw new BuildException(
-      exceptions.IllegalArgument, 'The content must be passed.');
+    throw new JhipsterCoreException(
+      JhipsterCoreExceptionType.IllegalArgument, 'The content must be passed.');
   }
   try {
     return pegjsParser.parse(filterJDLDirectives(removeInternalJDLComments(content)));
@@ -39,8 +38,8 @@ function filterJDLDirectives(content) {
 /* Parse the given files and return an intermediate object */
 function parseFromFiles(files) {
   if (!files || files.length === 0) {
-    throw new BuildException(
-      exceptions.IllegalArgument, 'The file/s must be passed.');
+    throw new JhipsterCoreException(
+      JhipsterCoreExceptionType.IllegalArgument, 'The file/s must be passed.');
   }
   checkAllTheFilesAreJDLFiles(files);
   return parse(files.length === 1
@@ -59,8 +58,8 @@ function checkAllTheFilesAreJDLFiles(files) {
 function checkFileIsJDLFile(file) {
   if (file.slice(file.length - 3, file.length) !== '.jh'
     && file.slice(file.length - 4, file.length) !== '.jdl') {
-    throw new BuildException(
-      exceptions.WrongFile,
+    throw new JhipsterCoreException(
+      JhipsterCoreExceptionType.WrongFile,
       `The passed file '${file}' must end with '.jh' or '.jdl' to be valid.`);
   }
 }
@@ -81,8 +80,8 @@ function readFileContent(file) {
     isDirOrInvalid = true;
   }
   if (isDirOrInvalid) {
-    throw new BuildException(
-      exceptions.WrongFile,
+    throw new JhipsterCoreException(
+      JhipsterCoreExceptionType.WrongFile,
       `The passed file '${file}' must exist and must not be a directory.`);
   }
   return fs.readFileSync(file, 'utf-8').toString();

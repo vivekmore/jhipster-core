@@ -1,8 +1,7 @@
-
+import { JhipsterCoreException } from '../exceptions/jhipster_core_exception';
+import { JhipsterCoreExceptionType } from '../exceptions/jhipster_core_exception_type';
 
 const JDLRelationship = require('./jdl_relationship');
-const BuildException = require('../exceptions/exception_factory').BuildException;
-const exceptions = require('../exceptions/exception_factory').exceptions;
 
 class JDLRelationships {
   constructor() {
@@ -17,10 +16,10 @@ class JDLRelationships {
 
   add(relationship) {
     if (!relationship) {
-      throw new BuildException(exceptions.NullPointer, 'A relationship must be passed.');
+      throw new JhipsterCoreException(JhipsterCoreExceptionType.NullPointer, 'A relationship must be passed.');
     }
     if (!JDLRelationship.isValid(relationship)) {
-      throw new BuildException(exceptions.InvalidObject, 'A valid relationship must be passed.');
+      throw new JhipsterCoreException(JhipsterCoreExceptionType.InvalidObject, 'A valid relationship must be passed.');
     }
     this.relationships[relationship.type][relationship.getId()] = relationship;
     this.size++;

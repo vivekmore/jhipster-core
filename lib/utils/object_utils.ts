@@ -1,7 +1,5 @@
-
-
-const BuildException = require('../exceptions/exception_factory').BuildException;
-const exceptions = require('../exceptions/exception_factory').exceptions;
+import { JhipsterCoreException } from '../exceptions/jhipster_core_exception';
+import { JhipsterCoreExceptionType } from '../exceptions/jhipster_core_exception_type';
 
 module.exports = {
   merge,
@@ -36,7 +34,7 @@ function merge(object1, object2) {
 
 function values(object) {
   if (object == null) {
-    throw new BuildException(exceptions.NullPointer, 'The passed object must not be nil.');
+    throw new JhipsterCoreException(JhipsterCoreExceptionType.NullPointer, 'The passed object must not be nil.');
   }
   const values = [];
   for (let i = 0, keys = Object.keys(object); i < keys.length; i++) {
