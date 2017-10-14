@@ -1,4 +1,5 @@
 import { expect } from 'chai';
+import { ApplicationTypes } from '../../../lib/core/jhipster/application_types';
 
 /* eslint-disable no-new, no-unused-expressions */
 
@@ -11,7 +12,6 @@ const JDLField = require('../../../lib/core/jdl_field');
 const JDLValidation = require('../../../lib/core/jdl_validation');
 const JDLUnaryOption = require('../../../lib/core/jdl_unary_option');
 const JDLBinaryOption = require('../../../lib/core/jdl_binary_option');
-const ApplicationTypes = require('../../../lib/core/jhipster/application_types').APPLICATION_TYPES;
 const DatabaseTypes = require('../../../lib/core/jhipster/database_types').Types;
 const FieldTypes = require('../../../lib/core/jhipster/field_types').SQL_TYPES;
 const Validations = require('../../../lib/core/jhipster/validations').VALIDATIONS;

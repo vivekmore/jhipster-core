@@ -1,5 +1,6 @@
 import { JhipsterCoreException } from '../exceptions/jhipster_core_exception';
 import { JhipsterCoreExceptionType } from '../exceptions/jhipster_core_exception_type';
+import { ApplicationTypes } from '../core/jhipster/application_types';
 
 const _ = require('lodash');
 const JDLObject = require('../core/jdl_object');
@@ -9,7 +10,6 @@ const JDLRelationship = require('../core/jdl_relationship');
 const JDLValidation = require('../core/jdl_validation');
 const JDLUnaryOption = require('../core/jdl_unary_option');
 const JDLBinaryOption = require('../core/jdl_binary_option');
-const ApplicationTypes = require('../core/jhipster/application_types').APPLICATION_TYPES;
 const UnaryOptions = require('../core/jhipster/unary_options');
 const BinaryOptions = require('../core/jhipster/binary_options');
 const FieldTypes = require('../core/jhipster/field_types');
