@@ -9,5 +9,8 @@
     "./lib/**/*",
     "./module/**/*",
     "./test/**/*"
+  ],
+  "typeRoots": [
+    "node_modules/@types"
   ]
 }
