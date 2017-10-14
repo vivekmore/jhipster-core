@@ -48,4 +48,4 @@ function getOptionKey(option) {
   return (option.getType() === 'UNARY') ? option.name : `${option.name}_${option.value}`;
 }
 
-module.exports = JDLOptions;
+export = JDLOptions;

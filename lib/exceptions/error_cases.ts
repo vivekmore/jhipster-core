@@ -42,6 +42,6 @@ const ERROR_CASES = {
   }
 };
 
-module.exports = {
+export = {
   ErrorCases: ERROR_CASES
 };

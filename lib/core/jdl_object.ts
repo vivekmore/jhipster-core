@@ -107,4 +107,4 @@ function optionsToString(options) {
   return `${string}\n`;
 }
 
-module.exports = JDLObject;
+export = JDLObject;

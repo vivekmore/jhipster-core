@@ -44,7 +44,7 @@ class JDLValidation {
   }
 }
 
-module.exports = JDLValidation;
+export = JDLValidation;
 
 function defaults() {
   return {

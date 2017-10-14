@@ -49,4 +49,4 @@ class JDLBinaryOption extends AbstractJDLOption {
   }
 }
 
-module.exports = JDLBinaryOption;
+export = JDLBinaryOption;

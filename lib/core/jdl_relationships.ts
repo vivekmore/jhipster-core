@@ -50,7 +50,7 @@ class JDLRelationships {
   }
 }
 
-module.exports = JDLRelationships;
+export = JDLRelationships;
 
 function relationshipTypeToString(relationships, type) {
   let relationship = `relationship ${type} {\n`;

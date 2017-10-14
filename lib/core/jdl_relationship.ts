@@ -105,7 +105,7 @@ class JDLRelationship {
   }
 }
 
-module.exports = JDLRelationship;
+export = JDLRelationship;
 
 function defaults() {
   return {

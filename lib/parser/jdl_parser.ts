@@ -22,7 +22,7 @@ const isReservedTableName = ReservedKeyWords.isReservedTableName;
 const isReservedFieldName = ReservedKeyWords.isReservedFieldName;
 
 
-module.exports = {
+export = {
   parse
 };
 

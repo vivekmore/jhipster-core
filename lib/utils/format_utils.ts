@@ -3,7 +3,7 @@
 const _ = require('lodash');
 const merge = require('./object_utils').merge;
 
-module.exports = {
+export = {
   formatComment,
   dateFormatForLiquibase
 };

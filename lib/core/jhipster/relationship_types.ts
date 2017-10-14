@@ -13,7 +13,7 @@ function exists(relationship) {
   return Object.keys(RELATIONSHIP_TYPES).map(key => RELATIONSHIP_TYPES[key]).includes(_.upperFirst(_.camelCase(relationship)));
 }
 
-module.exports = {
+export = {
   RELATIONSHIP_TYPES,
   exists
 };

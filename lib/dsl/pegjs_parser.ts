@@ -6000,7 +6000,7 @@ function peg$parse(input, options) {
   }
 }
 
-module.exports = {
+export = {
   SyntaxError: peg$SyntaxError,
   parse:       peg$parse
 };

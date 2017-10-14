@@ -5,6 +5,6 @@ const APPLICATION_TYPES = {
   GATEWAY: 'gateway'
 };
 
-module.exports = {
+export = {
   APPLICATION_TYPES
 };

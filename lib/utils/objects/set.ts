@@ -1,10 +1,9 @@
-/**
- * Custom implementation of a Set.
- */
-
 import { JhipsterCoreException } from '../../exceptions/jhipster_core_exception';
 import { JhipsterCoreExceptionType } from '../../exceptions/jhipster_core_exception_type';
 
+/**
+ * Custom implementation of a Set.
+ */
 class Set {
   constructor(array) {
     this.container = array ? convertToMap(array) : {};
@@ -113,7 +112,7 @@ class Set {
   }
 }
 
-module.exports = Set;
+export = Set;
 
 function convertToMap(array) {
   const map = {};

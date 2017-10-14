@@ -30,7 +30,7 @@ const FormatUtils = require('../lib/utils/format_utils');
 const StringUtils = require('../lib/utils/string_utils');
 const Set = require('../lib/utils/objects/set');
 
-module.exports = {
+export = {
   /* JHipster notions */
   JHipsterBinaryOptions: BINARY_OPTIONS,
   JHipsterUnaryOptions: UNARY_OPTIONS,

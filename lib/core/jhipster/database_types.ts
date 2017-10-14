@@ -14,7 +14,7 @@ const TYPES = {
 function isSql(type) {
   return TYPES.sql === type || TYPES.mysql === type || TYPES.postgresql === type || TYPES.oracle === type || TYPES.mariadb === type || TYPES.mssql === type;
 }
-module.exports = {
+export = {
   Types: TYPES,
   isSql
 };

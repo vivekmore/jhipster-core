@@ -1,7 +1,7 @@
 import { JhipsterCoreException } from '../exceptions/jhipster_core_exception';
 import { JhipsterCoreExceptionType } from '../exceptions/jhipster_core_exception_type';
 
-module.exports = {
+export = {
   merge,
   values,
   areEntitiesEqual: areJHipsterEntitiesEqual

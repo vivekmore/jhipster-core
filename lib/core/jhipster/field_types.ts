@@ -158,7 +158,7 @@ function getIsType(databaseType, callback) {
   }
   return isType;
 }
-module.exports = {
+export = {
   SQL_TYPES,
   MONGODB_TYPES,
   CASSANDRA_TYPES,

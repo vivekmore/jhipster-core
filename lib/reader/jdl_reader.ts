@@ -5,7 +5,7 @@ import * as fs from 'fs';
 const chalk = require('chalk'); // eslint-disable-line import/no-extraneous-dependencies
 const pegjsParser = require('../dsl/pegjs_parser');
 
-module.exports = {
+export = {
   parse,
   parseFromFiles,
   checkFileIsJDLFile

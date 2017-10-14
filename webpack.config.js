@@ -1,4 +1,4 @@
-module.exports = {
+export = {
   entry: "./module/index.ts",
   output: {
     filename: "./dist/bundle.js",

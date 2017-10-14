@@ -98,7 +98,7 @@ class AbstractJDLOption {
   }
 }
 
-module.exports = AbstractJDLOption;
+export = AbstractJDLOption;
 
 function defaults() {
   return {

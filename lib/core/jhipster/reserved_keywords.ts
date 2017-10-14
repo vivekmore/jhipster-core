@@ -180,7 +180,7 @@ function isReservedFieldName(keyword) {
   return isReserved(keyword, 'ANGULAR') || isReserved(keyword, 'TYPESCRIPT') || isReserved(keyword, 'JAVA');
 }
 
-module.exports = {
+export = {
   isReserved,
   isReservedClassName,
   isReservedTableName,

@@ -30,7 +30,7 @@ function needsValue(validation) {
   return VALUED[validation];
 }
 
-module.exports = {
+export = {
   VALIDATIONS,
   exists,
   needsValue

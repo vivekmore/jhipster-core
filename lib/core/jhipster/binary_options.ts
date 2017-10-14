@@ -33,7 +33,7 @@ function exists(passedOption, passedValue) {
   });
 }
 
-module.exports = {
+export = {
   BINARY_OPTIONS,
   BINARY_OPTION_VALUES: VALUES,
   exists

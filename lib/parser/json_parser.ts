@@ -14,7 +14,7 @@ const RelationshipTypes = require('../core/jhipster/relationship_types').RELATIO
 const UnaryOptions = require('../core/jhipster/unary_options').UNARY_OPTIONS;
 const BinaryOptions = require('../core/jhipster/binary_options').BINARY_OPTIONS;
 
-module.exports = {
+export = {
   parseEntities,
   parseServerOptions
 };

@@ -12,7 +12,7 @@ function exists(option) {
   return Object.keys(UNARY_OPTIONS).map(key => UNARY_OPTIONS[key]).includes(option);
 }
 
-module.exports = {
+export = {
   UNARY_OPTIONS,
   exists
 };

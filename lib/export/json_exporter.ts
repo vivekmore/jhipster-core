@@ -7,7 +7,7 @@ const toFilePath = require('../reader/json_file_reader').toFilePath;
 const doesfileExist = require('../reader/json_file_reader').doesfileExist;
 const areJHipsterEntitiesEqual = require('../utils/object_utils').areEntitiesEqual;
 
-module.exports = {
+export = {
   exportToJSON,
   createJHipsterJSONFolder,
   filterOutUnchangedEntities

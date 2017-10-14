@@ -6,7 +6,7 @@ const _ = require('lodash');
 const Parser = require('../parser/json_parser');
 const Reader = require('../reader/json_file_reader');
 
-module.exports = {
+export = {
   parseFromDir
 };
 

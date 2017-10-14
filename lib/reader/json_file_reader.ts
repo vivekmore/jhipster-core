@@ -5,7 +5,7 @@ import * as fs from 'fs';
 const _ = require('lodash');
 const isNilOrEmpty = require('../utils/string_utils').isNilOrEmpty;
 
-module.exports = {
+export = {
   readEntityJSON,
   toFilePath,
   doesfileExist

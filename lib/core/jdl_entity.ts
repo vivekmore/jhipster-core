@@ -89,7 +89,7 @@ class JDLEntity {
   }
 }
 
-module.exports = JDLEntity;
+export = JDLEntity;
 
 function defaults() {
   return {

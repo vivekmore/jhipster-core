@@ -91,7 +91,7 @@ class JDLField {
   }
 }
 
-module.exports = JDLField;
+export = JDLField;
 
 function defaults() {
   return {

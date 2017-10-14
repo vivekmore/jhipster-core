@@ -36,4 +36,4 @@ class JDLUnaryOption extends AbstractJDLOption {
   }
 }
 
-module.exports = JDLUnaryOption;
+export = JDLUnaryOption;

@@ -68,7 +68,7 @@ class JDLEnum {
   }
 }
 
-module.exports = JDLEnum;
+export = JDLEnum;
 
 function defaults() {
   return {

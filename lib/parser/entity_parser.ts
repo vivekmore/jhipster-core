@@ -18,7 +18,7 @@ let entities;
 let isType;
 let jdlObject;
 
-module.exports = {
+export = {
   parse
 };
 
