@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "module": "commonjs",
-    "outDir": "./built",
+    "outDir": "./dist",
     "allowJs": true,
     "target": "es5"
   },
@@ -9,6 +9,10 @@
     "./lib/**/*",
     "./module/**/*",
     "./test/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist"
   ],
   "typeRoots": [
     "node_modules/@types"
