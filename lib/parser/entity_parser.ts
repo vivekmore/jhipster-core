@@ -88,7 +88,7 @@ export class EntityParser {
           fluentMethods: true,
           relationships: [],
           fields: [],
-          changelogDate: JhipsterFormatUtils.dateFormatForLiquibase({increment: i}),
+          changelogDate: JhipsterFormatUtils.dateFormatForLiquibase({ increment: i }),
           javadoc: JhipsterFormatUtils.formatComment(jdlEntity.comment),
           entityTableName: _.snakeCase(jdlEntity.tableName),
           dto: 'no',

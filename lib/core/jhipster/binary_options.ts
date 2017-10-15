@@ -12,14 +12,14 @@ export class BinaryOptions {
   };
 
   public static readonly BINARY_OPTION_VALUES = {
-    dto: {MAPSTRUCT: 'mapstruct'},
-    service: {SERVICE_CLASS: 'serviceClass', SERVICE_IMPL: 'serviceImpl'},
+    dto: { MAPSTRUCT: 'mapstruct' },
+    service: { SERVICE_CLASS: 'serviceClass', SERVICE_IMPL: 'serviceImpl' },
     pagination: {
       PAGER: 'pager',
       PAGINATION: 'pagination',
       'INFINITE-SCROLL': 'infinite-scroll'
     },
-    searchEngine: {ELASTIC_SEARCH: 'elasticsearch'}
+    searchEngine: { ELASTIC_SEARCH: 'elasticsearch' }
   };
 
   public static exists(passedOption, passedValue?) {
