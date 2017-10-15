@@ -1,10 +1,10 @@
 import { expect } from 'chai';
+import { JDLRelationship } from '../../../lib/core/jdl_relationship';
 
 /* eslint-disable no-new, no-unused-expressions */
 
 const fail = expect.fail;
 const JDLEntity = require('../../../lib/core/jdl_entity');
-const JDLRelationship = require('../../../lib/core/jdl_relationship');
 const RELATIONSHIP_TYPES = require('../../../lib/core/jhipster/relationship_types').RELATIONSHIP_TYPES;
 
 describe('JDLRelationship', () => {

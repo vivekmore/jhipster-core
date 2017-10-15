@@ -8,9 +8,20 @@ const JDLEntity = require('./jdl_entity');
 const RELATIONSHIP_TYPES = require('./jhipster/relationship_types').RELATIONSHIP_TYPES;
 const exists = require('./jhipster/relationship_types').exists;
 
-class JDLRelationship {
+export class JDLRelationship {
+
+  from: any;
+  to: any;
+  type: any;
+  injectedFieldInFrom: any;
+  injectedFieldInTo: any;
+  isInjectedFieldInFromRequired: any;
+  isInjectedFieldInToRequired: any;
+  commentInFrom: any;
+  commentInTo: any;
+
   constructor(args) {
-    const merged = JhipsterObjectUtils.merge(defaults(), args);
+    const merged = JhipsterObjectUtils.merge(JDLRelationship.defaults(), args);
     if (!JDLEntity.isValid(merged.from) || !JDLEntity.isValid(merged.to)) {
       throw new JhipsterCoreException(JhipsterCoreExceptionType.InvalidObject, 'Valid source and destination entities are required.');
     }
@@ -78,7 +89,7 @@ class JDLRelationship {
         JhipsterCoreExceptionType.InvalidObject,
         `The exception is not in a valid state.\nErrors: ${errors.join(', ')}.`);
     }
-    checkRelationshipType(this);
+    JDLRelationship.checkRelationshipType(this);
   }
 
   toString() {
@@ -103,70 +114,68 @@ class JDLRelationship {
     string += '\n}';
     return string;
   }
-}
 
-export = JDLRelationship;
+  private static defaults() {
+    return {
+      type: RELATIONSHIP_TYPES.ONE_TO_ONE,
+      injectedFieldInFrom: null,
+      injectedFieldInTo: null,
+      isInjectedFieldInFromRequired: false,
+      isInjectedFieldInToRequired: false,
+      commentInFrom: '',
+      commentInTo: ''
+    };
+  }
 
-function defaults() {
-  return {
-    type: RELATIONSHIP_TYPES.ONE_TO_ONE,
-    injectedFieldInFrom: null,
-    injectedFieldInTo: null,
-    isInjectedFieldInFromRequired: false,
-    isInjectedFieldInToRequired: false,
-    commentInFrom: '',
-    commentInTo: ''
-  };
-}
+  private static checkRelationshipType(relationship) {
+    switch (relationship.type) {
+      case RELATIONSHIP_TYPES.ONE_TO_ONE:
+        if (!relationship.injectedFieldInFrom) {
+          throw new JhipsterCoreException(
+            JhipsterCoreExceptionType.MalformedAssociation,
+            `In the One-to-One relationship from ${relationship.from.name} to ${relationship.to.name}, `
+            + 'the source entity must possess the destination in a One-to-One '
+            + ' relationship, or you must invert the direction of the relationship.');
+        }
+        break;
+      case RELATIONSHIP_TYPES.ONE_TO_MANY:
+        if (!relationship.injectedFieldInFrom || !relationship.injectedFieldInTo) {
+          console.warn(
+            `In the One-to-Many relationship from ${relationship.from.name} to ${relationship.to.name}, `
+            + 'only bidirectionality is supported for a One-to-Many association. '
+            + 'The other side will be automatically added.');
+          JDLRelationship.addMissingSide(relationship);
+        }
+        break;
+      case RELATIONSHIP_TYPES.MANY_TO_ONE:
+        if (relationship.injectedFieldInFrom && relationship.injectedFieldInTo) {
+          throw new JhipsterCoreException(
+            JhipsterCoreExceptionType.MalformedAssociation,
+            `In the Many-to-One relationship from ${relationship.from.name} to ${relationship.to.name}, `
+            + 'only unidirectionality is supported for a Many-to-One relationship, '
+            + 'you should create a bidirectional One-to-Many relationship instead.');
+        }
+        break;
+      case RELATIONSHIP_TYPES.MANY_TO_MANY:
+        if (!relationship.injectedFieldInFrom || !relationship.injectedFieldInTo) {
+          throw new JhipsterCoreException(
+            JhipsterCoreExceptionType.MalformedAssociation,
+            `In the Many-to-Many relationship from ${relationship.from.name} to ${relationship.to.name}, `
+            + 'only bidirectionality is supported for a Many-to-Many relationship.');
+        }
+        break;
+      default: // never happens, ever.
+        throw new JhipsterCoreException(
+          JhipsterCoreExceptionType.Assertion,
+          `This case shouldn't have happened with type ${relationship.type}.`);
+    }
+  }
 
-function checkRelationshipType(relationship) {
-  switch (relationship.type) {
-  case RELATIONSHIP_TYPES.ONE_TO_ONE:
+  private static addMissingSide(relationship) {
     if (!relationship.injectedFieldInFrom) {
-      throw new JhipsterCoreException(
-        JhipsterCoreExceptionType.MalformedAssociation,
-        `In the One-to-One relationship from ${relationship.from.name} to ${relationship.to.name}, `
-        + 'the source entity must possess the destination in a One-to-One '
-        + ' relationship, or you must invert the direction of the relationship.');
+      relationship.injectedFieldInFrom = _.lowerFirst(relationship.to.name);
+      return;
     }
-    break;
-  case RELATIONSHIP_TYPES.ONE_TO_MANY:
-    if (!relationship.injectedFieldInFrom || !relationship.injectedFieldInTo) {
-      console.warn(
-        `In the One-to-Many relationship from ${relationship.from.name} to ${relationship.to.name}, `
-        + 'only bidirectionality is supported for a One-to-Many association. '
-        + 'The other side will be automatically added.');
-      addMissingSide(relationship);
-    }
-    break;
-  case RELATIONSHIP_TYPES.MANY_TO_ONE:
-    if (relationship.injectedFieldInFrom && relationship.injectedFieldInTo) {
-      throw new JhipsterCoreException(
-        JhipsterCoreExceptionType.MalformedAssociation,
-        `In the Many-to-One relationship from ${relationship.from.name} to ${relationship.to.name}, `
-        + 'only unidirectionality is supported for a Many-to-One relationship, '
-        + 'you should create a bidirectional One-to-Many relationship instead.');
-    }
-    break;
-  case RELATIONSHIP_TYPES.MANY_TO_MANY:
-    if (!relationship.injectedFieldInFrom || !relationship.injectedFieldInTo) {
-      throw new JhipsterCoreException(
-        JhipsterCoreExceptionType.MalformedAssociation,
-        `In the Many-to-Many relationship from ${relationship.from.name} to ${relationship.to.name}, `
-        + 'only bidirectionality is supported for a Many-to-Many relationship.');
-    }
-    break;
-  default: // never happens, ever.
-    throw new JhipsterCoreException(
-      JhipsterCoreExceptionType.Assertion,
-      `This case shouldn't have happened with type ${relationship.type}.`);
+    relationship.injectedFieldInTo = _.lowerFirst(relationship.from.name);
   }
-}
-
-function addMissingSide(relationship) {
-  if (!relationship.injectedFieldInFrom) {
-    relationship.injectedFieldInFrom = _.lowerFirst(relationship.to.name);
-    return;
-  }
-  relationship.injectedFieldInTo = _.lowerFirst(relationship.from.name);
 }

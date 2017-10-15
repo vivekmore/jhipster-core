@@ -1,7 +1,6 @@
 import { JhipsterCoreException } from '../exceptions/jhipster_core_exception';
 import { JhipsterCoreExceptionType } from '../exceptions/jhipster_core_exception_type';
-
-const JDLRelationship = require('./jdl_relationship');
+import { JDLRelationship } from './jdl_relationship';
 
 export class JDLRelationships {
   size: number;
