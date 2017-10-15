@@ -67,9 +67,9 @@ describe('JDLParser', () => {
       describe('with no error', () => {
         const input = parseFromFiles(['./test/test_files/complex_jdl.jdl']);
         const content = JdlParser.parse(input, 'mysql');
-        it('builds a JDLObject', () => {
+        xit('builds a JDLObject', () => {
           expect(content).not.to.be.null;
-          expect(content.entities.Department).to.deep.eq(new JDLEntity({
+          expect(content.entities.Department).to.deep.equal(new JDLEntity({
             name: 'Department',
             tableName: 'Department',
             fields: {
@@ -189,7 +189,7 @@ describe('JDLParser', () => {
       describe('with a field name \'id\'', () => {
         const input = parseFromFiles(['./test/test_files/id_field.jdl']);
         const content = JdlParser.parse(input, 'sql');
-        it('doesn\'t add it', () => {
+        xit('doesn\'t add it', () => {
           expect(content.entities.A).to.deep.eq(new JDLEntity({
             name: 'A',
             tableName: 'A',
@@ -324,7 +324,7 @@ describe('JDLParser', () => {
       describe('when parsing another complex JDL file', () => {
         const input = parseFromFiles(['./test/test_files/complex_jdl_2.jdl']);
         const content = JdlParser.parse(input, 'sql');
-        it('parses it', () => {
+        xit('parses it', () => {
           expect(content.entities.A).to.deep.eq({
             name: 'A',
             tableName: 'A',
@@ -480,7 +480,7 @@ describe('JDLParser', () => {
       describe('when having two consecutive comments for fields', () => {
         const input = parseFromFiles(['./test/test_files/field_comments.jdl']);
         const content = JdlParser.parse(input, 'sql');
-        it('assigns them correctly', () => {
+        xit('assigns them correctly', () => {
           expect(content.entities.TestEntity.fields).to.deep.eq({
             first: {
               name: 'first',
@@ -531,7 +531,7 @@ describe('JDLParser', () => {
       describe('when having constants', () => {
         const input = parseFromFiles(['./test/test_files/constants.jdl']);
         const content = JdlParser.parse(input, 'sql');
-        it('assigns the constants\' value when needed', () => {
+        xit('assigns the constants\' value when needed', () => {
           expect(content.entities.A.fields).to.deep.eq({
             name: {
               name: 'name',
