@@ -9,9 +9,14 @@ const ReservedKeyWord = require('../core/jhipster/reserved_keywords');
 
 const isReservedClassName = ReservedKeyWord.isReservedClassName;
 
-class JDLEnum {
-  constructor(args) {
-    const merged = JhipsterObjectUtils.merge(defaults(), args);
+export class JDLEnum {
+
+  comment: any;
+  name: any;
+  values: Set;
+
+  constructor(args?) {
+    const merged = JhipsterObjectUtils.merge(JDLEnum.defaults(), args);
     if (!merged.name) {
       throw new JhipsterCoreException(
         JhipsterCoreExceptionType.NullPointer,
@@ -66,12 +71,10 @@ class JDLEnum {
     }
     return `${comment}\nenum ${this.name} {\n  ${this.values.join(',\n  ')}\n}`;
   }
-}
 
-export = JDLEnum;
-
-function defaults() {
-  return {
-    values: new Set()
-  };
+  private static defaults() {
+    return {
+      values: new Set()
+    };
+  }
 }

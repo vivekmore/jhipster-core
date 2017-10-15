@@ -1,10 +1,10 @@
 import { expect } from 'chai';
+import { JDLEnum } from '../../../../lib/core/jdl_enum';
 
 /* eslint-disable no-new, no-unused-expressions */
 const fail = expect.fail;
 const FieldTypes = require('../../../../lib/core/jhipster/field_types');
 const Validations = require('../../../../lib/core/jhipster/validations').VALIDATIONS;
-const JDLEnum = require('../../../../lib/core/jdl_enum');
 
 describe('FieldTypes', () => {
   describe('::isSQLType', () => {

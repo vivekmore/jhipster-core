@@ -1,10 +1,10 @@
 import { JhipsterCoreException } from '../../exceptions/jhipster_core_exception';
 import { JhipsterCoreExceptionType } from '../../exceptions/jhipster_core_exception_type';
 import { Set } from '../../utils/objects/set';
+import { JDLEnum } from '../jdl_enum';
 import * as _ from 'lodash';
 
 const _v = require('./validations');
-const JDLEnum = require('../jdl_enum');
 const DatabaseTypes = require('./database_types').Types;
 
 const VALIDATIONS = _v.VALIDATIONS;

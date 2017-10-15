@@ -4,9 +4,8 @@ import { AbstractJDLOption } from './abstract_jdl_option';
 import { JDLRelationships } from './jdl_relationships';
 import { JDLRelationship } from './jdl_relationship';
 import { JDLOptions } from './jdl_options';
-
-const JDLEntity = require('./jdl_entity');
-const JDLEnum = require('./jdl_enum');
+import { JDLEntity } from './jdl_entity';
+import { JDLEnum } from './jdl_enum';
 
 export class JDLObject {
 

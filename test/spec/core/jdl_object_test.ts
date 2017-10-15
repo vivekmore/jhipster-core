@@ -5,6 +5,8 @@ import { JDLBinaryOption } from '../../../lib/core/jdl_binary_option';
 import { JDLRelationship } from '../../../lib/core/jdl_relationship';
 import { JDLObject } from '../../../lib/core/jdl_object';
 import { JDLField } from '../../../lib/core/jdl_field';
+import { JDLEnum } from '../../../lib/core/jdl_enum';
+import { JDLEntity } from '../../../lib/core/jdl_entity';
 
 /* eslint-disable no-new, no-unused-expressions */
 
@@ -12,8 +14,6 @@ const fail = expect.fail;
 const BINARY_OPTIONS = require('../../../lib/core/jhipster/binary_options');
 const UNARY_OPTIONS = require('../../../lib/core/jhipster/unary_options');
 const RELATIONSHIP_TYPES = require('../../../lib/core/jhipster/relationship_types');
-const JDLEntity = require('../../../lib/core/jdl_entity');
-const JDLEnum = require('../../../lib/core/jdl_enum');
 
 describe('JDLObject', () => {
   describe('#addEntity', () => {

@@ -18,6 +18,7 @@ import { JDLObject } from '../lib/core/jdl_object';
 import { JDLOptions } from '../lib/core/jdl_options';
 import { JDLField } from '../lib/core/jdl_field';
 import { JDLEntity } from '../lib/core/jdl_entity';
+import { JDLEnum } from '../lib/core/jdl_enum';
 
 const BINARY_OPTIONS = require('../lib/core/jhipster/binary_options');
 const UNARY_OPTIONS = require('../lib/core/jhipster/unary_options');
@@ -27,7 +28,6 @@ const VALIDATIONS = require('../lib/core/jhipster/validations');
 const DATABASE_TYPES = require('../lib/core/jhipster/database_types');
 const convertToJDL = JdlParser.parse;
 const convertToJHipsterJSON = EntityParser.parse;
-const JDLEnum = require('../lib/core/jdl_enum');
 const exportToJDL = JdlExporter.exportToJDL;
 const ReservedKeywords = require('../lib/core/jhipster/reserved_keywords');
 const Set = require('../lib/utils/objects/set');

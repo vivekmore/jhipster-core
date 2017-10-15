@@ -1,8 +1,7 @@
 import { expect } from 'chai';
+import { JDLEnum } from '../../../lib/core/jdl_enum';
 
 /* eslint-disable no-new, no-unused-expressions */
-const JDLEnum = require('../../../lib/core/jdl_enum');
-
 const fail = expect.fail;
 
 describe('JDLEnum', () => {

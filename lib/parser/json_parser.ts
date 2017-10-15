@@ -8,8 +8,8 @@ import { JDLRelationship } from '../core/jdl_relationship';
 import { JDLObject } from '../core/jdl_object';
 import { JDLField } from '../core/jdl_field';
 import { JDLEntity } from '../core/jdl_entity';
+import { JDLEnum } from '../core/jdl_enum';
 
-const JDLEnum = require('../core/jdl_enum');
 const RelationshipTypes = require('../core/jhipster/relationship_types').RELATIONSHIP_TYPES;
 const UnaryOptions = require('../core/jhipster/unary_options').UNARY_OPTIONS;
 const BinaryOptions = require('../core/jhipster/binary_options').BINARY_OPTIONS;
