@@ -4,9 +4,12 @@ import { JhipsterCoreExceptionType } from '../../exceptions/jhipster_core_except
 /**
  * Custom implementation of a Set.
  */
-class Set {
-  constructor(array) {
-    this.container = array ? convertToMap(array) : {};
+export class Set {
+
+  private container: any;
+
+  constructor(array?) {
+    this.container = array ? Set.convertToMap(array) : {};
   }
 
   has(element) {
@@ -68,7 +71,7 @@ class Set {
     return Object.keys(this.container).length;
   }
 
-  forEach(passedFunction, thisArg) {
+  forEach(passedFunction, thisArg?) {
     if (!passedFunction) {
       throw new JhipsterCoreException(JhipsterCoreExceptionType.NullPointer, 'The function must not be nil.');
     }
@@ -77,7 +80,7 @@ class Set {
     });
   }
 
-  map(passedFunction, thisArg) {
+  map(passedFunction, thisArg?) {
     if (!passedFunction) {
       throw new JhipsterCoreException(JhipsterCoreExceptionType.NullPointer, 'The function must not be nil.');
     }
@@ -89,7 +92,7 @@ class Set {
     return this;
   }
 
-  filter(passedFunction, thisArg) {
+  filter(passedFunction, thisArg?) {
     if (!passedFunction) {
       throw new JhipsterCoreException(JhipsterCoreExceptionType.NullPointer, 'The function must not be nil.');
     }
@@ -103,21 +106,19 @@ class Set {
     return this;
   }
 
-  join(delimiter) {
+  join(delimiter?) {
     return Object.keys(this.container).join((!delimiter) ? ',' : delimiter);
   }
 
   toString() {
     return `[${Object.keys(this.container).toString()}]`;
   }
-}
 
-export = Set;
-
-function convertToMap(array) {
-  const map = {};
-  for (let i = 0; i < array.length; i++) {
-    map[array[i]] = null;
+  private static convertToMap(array) {
+    const map = {};
+    for (let i = 0; i < array.length; i++) {
+      map[array[i]] = null;
+    }
+    return map;
   }
-  return map;
 }

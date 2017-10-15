@@ -1,7 +1,7 @@
 import { expect } from 'chai';
+import { Set } from '../../../../lib/utils/objects/set';
 
 /* eslint-disable no-new, no-unused-expressions */
-const Set = require('../../../../lib/utils/objects/set');
 
 describe('Set', () => {
   describe('::new', () => {
