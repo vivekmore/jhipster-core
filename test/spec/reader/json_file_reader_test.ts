@@ -1,12 +1,13 @@
 import { expect } from 'chai';
+import { JsonFileReader } from '../../../lib/reader/json_file_reader';
 /* eslint-disable no-new, no-unused-expressions */
 
 const fail = expect.fail;
-const toFilePath = require('../../../lib/reader/json_file_reader').toFilePath;
-const doesfileExist = require('../../../lib/reader/json_file_reader').doesfileExist;
-const readEntityJSON = require('../../../lib/reader/json_file_reader').readEntityJSON;
+const toFilePath = JsonFileReader.toFilePath;
+const doesfileExist = JsonFileReader.doesfileExist;
+const readEntityJSON = JsonFileReader.readEntityJSON;
 
-describe('JSONFileReader', () => {
+describe('JsonFileReader', () => {
   describe('::readEntityJSON', () => {
     describe('when passing an invalid argument', () => {
       describe('because it is nil', () => {
