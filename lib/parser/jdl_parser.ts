@@ -2,6 +2,7 @@ import { JhipsterCoreException } from '../exceptions/jhipster_core_exception';
 import { JhipsterCoreExceptionType } from '../exceptions/jhipster_core_exception_type';
 import { ApplicationTypes } from '../core/jhipster/application_types';
 import * as _ from 'lodash';
+import { JhipsterFormatUtils } from '../utils/format_utils';
 
 const JDLObject = require('../core/jdl_object');
 const JDLEnum = require('../core/jdl_enum');
@@ -14,7 +15,6 @@ const UnaryOptions = require('../core/jhipster/unary_options');
 const BinaryOptions = require('../core/jhipster/binary_options');
 const FieldTypes = require('../core/jhipster/field_types');
 const DatabaseTypes = require('../core/jhipster/database_types');
-const formatComment = require('../utils/format_utils').formatComment;
 const ReservedKeyWords = require('../core/jhipster/reserved_keywords');
 
 const isReservedClassName = ReservedKeyWords.isReservedClassName;
@@ -68,7 +68,7 @@ function fillEnums() {
     jdlObject.addEnum(new JDLEnum({
       name: enumObj.name,
       values: enumObj.values,
-      comment: formatComment(enumObj.javadoc)
+      comment: JhipsterFormatUtils.formatComment(enumObj.javadoc)
     }));
   }
 }
@@ -91,7 +91,7 @@ function fillClassesAndFields(passedDatabaseType) {
       name: entity.name,
       tableName,
       fields: getFields(entity, passedDatabaseType),
-      comment: formatComment(entity.javadoc)
+      comment: JhipsterFormatUtils.formatComment(entity.javadoc)
     });
   }
 
@@ -125,7 +125,7 @@ function getFields(entity, passedDatabaseType) {
         validations: getValidations(field, jdlObject.enums[field.type])
       });
       if (field.javadoc) {
-        fieldObject.comment = formatComment(field.javadoc);
+        fieldObject.comment = JhipsterFormatUtils.formatComment(field.javadoc);
       }
       fields[fieldName] = fieldObject;
     } else {
@@ -167,8 +167,8 @@ function fillAssociations() {
       injectedFieldInTo: relationship.to.injectedfield,
       isInjectedFieldInFromRequired: relationship.from.required,
       isInjectedFieldInToRequired: relationship.to.required,
-      commentInFrom: formatComment(relationship.from.javadoc),
-      commentInTo: formatComment(relationship.to.javadoc)
+      commentInFrom: JhipsterFormatUtils.formatComment(relationship.from.javadoc),
+      commentInTo: JhipsterFormatUtils.formatComment(relationship.to.javadoc)
     }));
   }
 }

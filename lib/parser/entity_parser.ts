@@ -1,14 +1,13 @@
 import { JhipsterCoreException } from '../exceptions/jhipster_core_exception';
 import { JhipsterCoreExceptionType } from '../exceptions/jhipster_core_exception_type';
 import { JhipsterStringUtils } from '../utils/string_utils';
-import * as _ from 'lodash';
 import { JhipsterObjectUtils } from '../utils/object_utils';
+import { JhipsterFormatUtils } from '../utils/format_utils';
+import * as _ from 'lodash';
 
 const FieldTypes = require('../core/jhipster/field_types');
 const RelationshipTypes = require('../core/jhipster/relationship_types').RELATIONSHIP_TYPES;
 const DatabaseTypes = require('../core/jhipster/database_types');
-const formatComment = require('../utils/format_utils').formatComment;
-const dateFormatForLiquibase = require('../utils/format_utils').dateFormatForLiquibase;
 const UnaryOptions = require('../core/jhipster/unary_options').UNARY_OPTIONS;
 const BinaryOptions = require('../core/jhipster/binary_options').BINARY_OPTIONS;
 
@@ -90,8 +89,8 @@ function initializeEntities() {
         fluentMethods: true,
         relationships: [],
         fields: [],
-        changelogDate: dateFormatForLiquibase({ increment: i }),
-        javadoc: formatComment(jdlEntity.comment),
+        changelogDate: JhipsterFormatUtils.dateFormatForLiquibase({ increment: i }),
+        javadoc: JhipsterFormatUtils.formatComment(jdlEntity.comment),
         entityTableName: _.snakeCase(jdlEntity.tableName),
         dto: 'no',
         pagination: 'no',
@@ -164,7 +163,7 @@ function setFieldsOfEntity(entityName) {
     const fieldData = {
       fieldName: JhipsterStringUtils.camelCase(fieldName)
     };
-    const comment = formatComment(jdlField.comment);
+    const comment = JhipsterFormatUtils.formatComment(jdlField.comment);
     if (comment) {
       fieldData.javadoc = comment;
     }
