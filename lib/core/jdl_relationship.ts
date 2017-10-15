@@ -2,9 +2,9 @@ import { JhipsterCoreException } from '../exceptions/jhipster_core_exception';
 import { JhipsterCoreExceptionType } from '../exceptions/jhipster_core_exception_type';
 import { JhipsterObjectUtils } from '../utils/object_utils';
 import * as _ from 'lodash';
+import { JDLEntity } from './jdl_entity';
 
 const ErrorCases = require('../exceptions/error_cases').ErrorCases;
-const JDLEntity = require('./jdl_entity');
 const RELATIONSHIP_TYPES = require('./jhipster/relationship_types').RELATIONSHIP_TYPES;
 const exists = require('./jhipster/relationship_types').exists;
 

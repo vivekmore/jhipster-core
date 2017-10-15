@@ -1,8 +1,8 @@
 import { expect } from 'chai';
 import { JDLBinaryOption } from '../../../lib/core/jdl_binary_option';
+import { JDLEntity } from '../../../lib/core/jdl_entity';
 
 /* eslint-disable no-new, no-unused-expressions */
-const JDLEntity = require('../../../lib/core/jdl_entity');
 const BINARY_OPTIONS = require('../../../lib/core/jhipster/binary_options').BINARY_OPTIONS;
 const BINARY_OPTION_VALUES = require('../../../lib/core/jhipster/binary_options').BINARY_OPTION_VALUES;
 

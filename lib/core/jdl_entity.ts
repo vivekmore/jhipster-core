@@ -2,16 +2,21 @@ import { JhipsterCoreException } from '../exceptions/jhipster_core_exception';
 import { JhipsterCoreExceptionType } from '../exceptions/jhipster_core_exception_type';
 import { JhipsterStringUtils } from '../utils/string_utils';
 import { JhipsterObjectUtils } from '../utils/object_utils';
+import { JDLField } from './jdl_field';
 
 const ErrorCases = require('../exceptions/error_cases').ErrorCases;
-const JDLField = require('./jdl_field');
 const ReservedKeyWord = require('../core/jhipster/reserved_keywords');
-
 const isReservedClassName = ReservedKeyWord.isReservedClassName;
 
-class JDLEntity {
-  constructor(args) {
-    const merged = JhipsterObjectUtils.merge(defaults(), args);
+export class JDLEntity {
+
+  name: any;
+  tableName: any;
+  fields: any;
+  comment: any;
+
+  constructor(args?) {
+    const merged = JhipsterObjectUtils.merge(JDLEntity.defaults(), args);
     if (JhipsterStringUtils.isNilOrEmpty(merged.name)) {
       throw new JhipsterCoreException(
         JhipsterCoreExceptionType.NullPointer,
@@ -83,35 +88,34 @@ class JDLEntity {
     }
     string += `entity ${this.name} (${this.tableName})`;
     if (Object.keys(this.fields).length !== 0) {
-      string += ` {\n${formatFieldObjects(this.fields)}\n}`;
+      string += ` {\n${JDLEntity.formatFieldObjects(this.fields)}\n}`;
     }
+    return string;
+  }
+
+  private static defaults() {
+    return {
+      fields: {}
+    };
+  }
+
+  private static formatFieldObjects(jdlFieldObjects) {
+    let string = '';
+    Object.keys(jdlFieldObjects).forEach((jdlField) => {
+      string += `${JDLEntity.formatFieldObject(jdlFieldObjects[jdlField])}`;
+    });
+    string = `${string.slice(0, string.length - 2)}`;
+    return string;
+  }
+
+  private static formatFieldObject(jdlFieldObject) {
+    let string = '';
+    const lines = jdlFieldObject.toString().split('\n');
+    for (let j = 0; j < lines.length; j++) {
+      string += `  ${lines[j]}\n`;
+    }
+    string = `${string.slice(0, string.length - 1)},\n`;
     return string;
   }
 }
 
-export = JDLEntity;
-
-function defaults() {
-  return {
-    fields: {}
-  };
-}
-
-function formatFieldObjects(jdlFieldObjects) {
-  let string = '';
-  Object.keys(jdlFieldObjects).forEach((jdlField) => {
-    string += `${formatFieldObject(jdlFieldObjects[jdlField])}`;
-  });
-  string = `${string.slice(0, string.length - 2)}`;
-  return string;
-}
-
-function formatFieldObject(jdlFieldObject) {
-  let string = '';
-  const lines = jdlFieldObject.toString().split('\n');
-  for (let j = 0; j < lines.length; j++) {
-    string += `  ${lines[j]}\n`;
-  }
-  string = `${string.slice(0, string.length - 1)},\n`;
-  return string;
-}

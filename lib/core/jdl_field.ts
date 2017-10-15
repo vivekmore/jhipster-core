@@ -9,9 +9,15 @@ const ReservedKeyWord = require('../core/jhipster/reserved_keywords');
 
 const isReservedFieldName = ReservedKeyWord.isReservedFieldName;
 
-class JDLField {
-  constructor(args) {
-    const merged = JhipsterObjectUtils.merge(defaults(), args);
+export class JDLField {
+
+  name: any;
+  type: any;
+  comment: any;
+  validations: any;
+
+  constructor(args?) {
+    const merged = JhipsterObjectUtils.merge(JDLField.defaults(), args);
     if (JhipsterStringUtils.isNilOrEmpty(merged.name) || JhipsterStringUtils.isNilOrEmpty(merged.type)) {
       throw new JhipsterCoreException(
         JhipsterCoreExceptionType.NullPointer,
@@ -23,6 +29,7 @@ class JDLField {
         `The field name cannot be a reserved keyword, got: ${merged.name}.`
       );
     }
+
     this.name = merged.name;
     this.type = merged.type;
     this.comment = merged.comment;
@@ -89,12 +96,10 @@ class JDLField {
     });
     return string;
   }
-}
 
-export = JDLField;
-
-function defaults() {
-  return {
-    validations: {}
-  };
+  private static defaults() {
+    return {
+      validations: {}
+    };
+  }
 }

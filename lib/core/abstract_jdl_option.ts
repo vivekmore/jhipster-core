@@ -3,8 +3,8 @@ import { JhipsterCoreExceptionType } from '../exceptions/jhipster_core_exception
 import { JhipsterStringUtils } from '../utils/string_utils';
 import { JhipsterObjectUtils } from '../utils/object_utils';
 import { Set } from '../utils/objects/set';
+import { JDLEntity } from './jdl_entity';
 
-const JDLEntity = require('./jdl_entity');
 const ErrorCases = require('../exceptions/error_cases').ErrorCases;
 
 export abstract class AbstractJDLOption {

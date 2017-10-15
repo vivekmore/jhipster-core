@@ -5,14 +5,14 @@ import { JdlParser } from '../../../lib/parser/jdl_parser';
 import { JDLValidation } from '../../../lib/core/jdl_validation';
 import { JDLUnaryOption } from '../../../lib/core/jdl_unary_option';
 import { JDLBinaryOption } from '../../../lib/core/jdl_binary_option';
+import { JDLField } from '../../../lib/core/jdl_field';
+import { JDLEntity } from '../../../lib/core/jdl_entity';
 
 /* eslint-disable no-new, no-unused-expressions */
 
 const fail = expect.fail;
 const parseFromFiles = JdlReader.parseFromFiles;
-const JDLEntity = require('../../../lib/core/jdl_entity');
 const JDLEnum = require('../../../lib/core/jdl_enum');
-const JDLField = require('../../../lib/core/jdl_field');
 const DatabaseTypes = require('../../../lib/core/jhipster/database_types').Types;
 const FieldTypes = require('../../../lib/core/jhipster/field_types').SQL_TYPES;
 const Validations = require('../../../lib/core/jhipster/validations').VALIDATIONS;

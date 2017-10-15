@@ -8,9 +8,9 @@ import { JDLUnaryOption } from '../core/jdl_unary_option';
 import { JDLBinaryOption } from '../core/jdl_binary_option';
 import { JDLRelationship } from '../core/jdl_relationship';
 import { JDLObject } from '../core/jdl_object';
+import { JDLField } from '../core/jdl_field';
 
 const JDLEnum = require('../core/jdl_enum');
-const JDLField = require('../core/jdl_field');
 const UnaryOptions = require('../core/jhipster/unary_options');
 const BinaryOptions = require('../core/jhipster/binary_options');
 const FieldTypes = require('../core/jhipster/field_types');
