@@ -1,11 +1,11 @@
 import { expect } from 'chai';
+import { JhipsterFormatUtils } from '../../../lib/utils/format_utils';
 
 /* eslint-disable no-new, no-unused-expressions */
-const FormatUtils = require('../../../lib/utils/format_utils');
-const formatComment = FormatUtils.formatComment;
-const dateFormatForLiquibase = FormatUtils.dateFormatForLiquibase;
+const formatComment = JhipsterFormatUtils.formatComment;
+const dateFormatForLiquibase = JhipsterFormatUtils.dateFormatForLiquibase;
 
-describe('FormatUtils', () => {
+describe('JhipsterFormatUtils', () => {
   describe('::formatComment', () => {
     describe('when the comment is in the one-line form', () => {
       const oneLineComment1 = ' comment ';
