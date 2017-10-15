@@ -3,8 +3,7 @@ import * as _ from 'lodash';
 import { JhipsterCoreException } from '../exceptions/jhipster_core_exception';
 import { JhipsterCoreExceptionType } from '../exceptions/jhipster_core_exception_type';
 import { JsonFileReader } from './json_file_reader';
-
-const Parser = require('../parser/json_parser');
+import { JsonParser } from '../parser/json_parser';
 
 export class JsonReader {
 
@@ -25,7 +24,7 @@ export class JsonReader {
         JhipsterCoreExceptionType.WrongDir,
         'The passed dir must exist and must be a directory.');
     }
-    const jdl = Parser.parseServerOptions(JsonFileReader.readEntityJSON(`${dir}/.yo-rc.json`)['generator-jhipster']);
+    const jdl = JsonParser.parseServerOptions(JsonFileReader.readEntityJSON(`${dir}/.yo-rc.json`)['generator-jhipster']);
     const entityDir = `${dir}/.jhipster`;
     let isJhipsterDirectory = false;
     try {
@@ -50,7 +49,7 @@ export class JsonReader {
         }
       }
     });
-    Parser.parseEntities(entities, jdl);
+    JsonParser.parseEntities(entities, jdl);
     return jdl;
   }
 }
