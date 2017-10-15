@@ -5,6 +5,7 @@ import { JhipsterFormatUtils } from '../lib/utils/format_utils';
 import { JdlReader } from '../lib/reader/jdl_reader';
 import { JsonFileReader } from '../lib/reader/json_file_reader';
 import { EntityParser } from '../lib/parser/entity_parser';
+import { JdlParser } from '../lib/parser/jdl_parser';
 
 const BINARY_OPTIONS = require('../lib/core/jhipster/binary_options');
 const UNARY_OPTIONS = require('../lib/core/jhipster/unary_options');
@@ -12,7 +13,7 @@ const RELATIONSHIP_TYPES = require('../lib/core/jhipster/relationship_types');
 const FIELD_TYPES = require('../lib/core/jhipster/field_types');
 const VALIDATIONS = require('../lib/core/jhipster/validations');
 const DATABASE_TYPES = require('../lib/core/jhipster/database_types');
-const convertToJDL = require('../lib/parser/jdl_parser').parse;
+const convertToJDL = JdlParser.parse;
 const convertToJHipsterJSON = EntityParser.parse;
 const JsonParser = require('../lib/parser/json_parser');
 const JDLObject = require('../lib/core/jdl_object');

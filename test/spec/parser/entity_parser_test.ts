@@ -2,11 +2,11 @@ import { expect } from 'chai';
 import { ApplicationTypes } from '../../../lib/core/jhipster/application_types';
 import { JdlReader } from '../../../lib/reader/jdl_reader';
 import { EntityParser } from '../../../lib/parser/entity_parser';
+import { JdlParser } from '../../../lib/parser/jdl_parser';
 
 /* eslint-disable no-new, no-unused-expressions */
 
 const fail = expect.fail;
-const JDLParser = require('../../../lib/parser/jdl_parser');
 const parseFromFiles = JdlReader.parseFromFiles;
 const DatabaseTypes = require('../../../lib/core/jhipster/database_types').Types;
 
@@ -26,7 +26,7 @@ describe('::convert', () => {
       const input = parseFromFiles(['./test/test_files/valid_jdl.jdl']);
       it('throws an error', () => {
         try {
-          EntityParser.parse({ jdlObject: JDLParser.parse(input, 'sql') });
+          EntityParser.parse({ jdlObject: JdlParser.parse(input, 'sql') });
           fail();
         } catch (error) {
           expect(error.name).to.eq('NullPointerException');
@@ -38,7 +38,7 @@ describe('::convert', () => {
       it('throws an error', () => {
         try {
           EntityParser.parse({
-            jdlObject: JDLParser.parse(input, 'sql'),
+            jdlObject: JdlParser.parse(input, 'sql'),
             databaseType: 'mongodb'
           });
           fail();
@@ -53,7 +53,7 @@ describe('::convert', () => {
       const input = parseFromFiles(['./test/test_files/complex_jdl.jdl']);
       it('does not fail because of NoSQL modeling mistakes', () => {
         EntityParser.parse({
-          jdlObject: JDLParser.parse(input, 'mysql'),
+          jdlObject: JdlParser.parse(input, 'mysql'),
           databaseType: 'cassandra',
           applicationType: 'gateway'
         });
@@ -62,7 +62,7 @@ describe('::convert', () => {
     describe('when converting JDL to entity json for SQL type', () => {
       const input = parseFromFiles(['./test/test_files/complex_jdl.jdl']);
       const content = EntityParser.parse({
-        jdlObject: JDLParser.parse(input, 'mysql'),
+        jdlObject: JdlParser.parse(input, 'mysql'),
         databaseType: 'mysql'
       });
       it('converts it', () => {
@@ -85,7 +85,7 @@ describe('::convert', () => {
     describe('when converting JDL to entity json for MongoDB type', () => {
       const input = parseFromFiles(['./test/test_files/mongo_jdl.jdl']);
       const content = EntityParser.parse({
-        jdlObject: JDLParser.parse(input, 'mongodb'),
+        jdlObject: JdlParser.parse(input, 'mongodb'),
         databaseType: 'mongodb'
       });
       it('converts it', () => {
@@ -101,7 +101,7 @@ describe('::convert', () => {
     describe('when converting JDL to entity json for Cassandra type', () => {
       const input = parseFromFiles(['./test/test_files/cassandra_jdl.jdl']);
       const content = EntityParser.parse({
-        jdlObject: JDLParser.parse(input, 'cassandra'),
+        jdlObject: JdlParser.parse(input, 'cassandra'),
         databaseType: 'cassandra'
       });
       it('converts it', () => {
@@ -117,7 +117,7 @@ describe('::convert', () => {
     describe('when converting a JDL to JSON with a required relationship', () => {
       const input = parseFromFiles(['./test/test_files/required_relationships.jdl']);
       const content = EntityParser.parse({
-        jdlObject: JDLParser.parse(input, 'sql'),
+        jdlObject: JdlParser.parse(input, 'sql'),
         databaseType: 'sql'
       });
       it('converts it', () => {
@@ -135,7 +135,7 @@ describe('::convert', () => {
     describe('when converting a JDL to JSON with fluent methods', () => {
       let input = parseFromFiles(['./test/test_files/fluent_methods.jdl']);
       let content = EntityParser.parse({
-        jdlObject: JDLParser.parse(input, 'sql'),
+        jdlObject: JdlParser.parse(input, 'sql'),
         databaseType: 'sql'
       });
       it('converts it', () => {
@@ -144,7 +144,7 @@ describe('::convert', () => {
         expect(content.C.fluentMethods).to.be.true;
         input = parseFromFiles(['./test/test_files/fluent_methods2.jdl']);
         content = EntityParser.parse({
-          jdlObject: JDLParser.parse(input, 'sql'),
+          jdlObject: JdlParser.parse(input, 'sql'),
           databaseType: 'sql'
         });
         expect(content.A.fluentMethods).to.be.true;
@@ -155,7 +155,7 @@ describe('::convert', () => {
     describe('when converting a JDL to JSON with all different types of bi-directional relationships', () => {
       const input = parseFromFiles(['./test/test_files/different_relationship_types.jdl']);
       const content = EntityParser.parse({
-        jdlObject: JDLParser.parse(input, 'sql'),
+        jdlObject: JdlParser.parse(input, 'sql'),
         databaseType: 'sql'
       });
       it('converts it', () => {
@@ -226,7 +226,7 @@ describe('::convert', () => {
     describe('when converting a JDL with blobs', () => {
       const input = parseFromFiles(['./test/test_files/blob_jdl.jdl']);
       const content = EntityParser.parse({
-        jdlObject: JDLParser.parse(input, 'sql'),
+        jdlObject: JdlParser.parse(input, 'sql'),
         databaseType: 'sql'
       });
       it('converts it', () => {
@@ -254,7 +254,7 @@ describe('::convert', () => {
     describe('when converting a JDL with filtering', () => {
       const input = parseFromFiles(['./test/test_files/filtering.jdl']);
       const content = EntityParser.parse({
-        jdlObject: JDLParser.parse(input, 'sql'),
+        jdlObject: JdlParser.parse(input, 'sql'),
         databaseType: 'sql'
       });
       it('converts it', () => {
@@ -266,7 +266,7 @@ describe('::convert', () => {
       describe('without the microservice option in the JDL', () => {
         const input = parseFromFiles(['./test/test_files/no_microservice.jdl']);
         const content = EntityParser.parse({
-          jdlObject: JDLParser.parse(input, DatabaseTypes.sql, ApplicationTypes.MICROSERVICE, 'toto'),
+          jdlObject: JdlParser.parse(input, DatabaseTypes.sql, ApplicationTypes.MICROSERVICE, 'toto'),
           databaseType: DatabaseTypes.sql
         });
 

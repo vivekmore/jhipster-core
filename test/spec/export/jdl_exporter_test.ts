@@ -4,13 +4,13 @@ import { JsonReader } from '../../../lib/reader/json_reader';
 import { JdlReader } from '../../../lib/reader/jdl_reader';
 import { JsonFileReader } from '../../../lib/reader/json_file_reader';
 import { EntityParser } from '../../../lib/parser/entity_parser';
+import { JdlParser } from '../../../lib/parser/jdl_parser';
 
 /* eslint-disable no-new, no-unused-expressions */
 
 const fail = expect.fail;
 const readEntityJSON = JsonFileReader.readEntityJSON;
 const Exporter = require('../../../lib/export/jdl_exporter');
-const JDLParser = require('../../../lib/parser/jdl_parser');
 
 describe('::exportToJDL', () => {
   describe('when passing invalid parameters', () => {
@@ -31,7 +31,7 @@ describe('::exportToJDL', () => {
       Exporter.exportToJDL(jdl);
       const input = JdlReader.parseFromFiles(['./jhipster-jdl.jh']);
       const newEntities = EntityParser.parse({
-        jdlObject: JDLParser.parse(input, 'sql'),
+        jdlObject: JdlParser.parse(input, 'sql'),
         databaseType: 'sql'
       });
       const previousEntities = {};

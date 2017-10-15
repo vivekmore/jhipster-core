@@ -2,12 +2,12 @@ import { expect } from 'chai';
 import * as fs from 'fs';
 import { JdlReader } from '../../../lib/reader/jdl_reader';
 import { EntityParser } from '../../../lib/parser/entity_parser';
+import { JdlParser } from '../../../lib/parser/jdl_parser';
 
 /* eslint-disable no-new, no-unused-expressions */
 
 const fail = expect.fail;
 const Exporter = require('../../../lib/export/json_exporter');
-const JDLParser = require('../../../lib/parser/jdl_parser');
 const parseFromFiles = JdlReader.parseFromFiles;
 
 describe('::exportToJSON', () => {
@@ -27,7 +27,7 @@ describe('::exportToJSON', () => {
     describe('when exporting JDL to entity json for SQL type', () => {
       const input = parseFromFiles(['./test/test_files/complex_jdl.jdl']);
       const content = EntityParser.parse({
-        jdlObject: JDLParser.parse(input, 'sql'),
+        jdlObject: JdlParser.parse(input, 'sql'),
         databaseType: 'sql'
       });
       Exporter.exportToJSON(content);
@@ -132,7 +132,7 @@ describe('::exportToJSON', () => {
     describe('when exporting JDL to entity json for an existing entity', () => {
       let input = parseFromFiles(['./test/test_files/valid_jdl.jdl']);
       let content = EntityParser.parse({
-        jdlObject: JDLParser.parse(input, 'sql'),
+        jdlObject: JdlParser.parse(input, 'sql'),
         databaseType: 'sql'
       });
       it('exports it with same changeLogDate', (done) => {
@@ -142,7 +142,7 @@ describe('::exportToJSON', () => {
         setTimeout(() => {
           input = parseFromFiles(['./test/test_files/valid_jdl.jdl']);
           content = EntityParser.parse({
-            jdlObject: JDLParser.parse(input, 'sql'),
+            jdlObject: JdlParser.parse(input, 'sql'),
             databaseType: 'sql'
           });
           Exporter.exportToJSON(content, true);
