@@ -1,12 +1,13 @@
 import { expect } from 'chai';
 import { ApplicationTypes } from '../../../lib/core/jhipster/application_types';
+import { JdlReader } from '../../../lib/reader/jdl_reader';
 
 /* eslint-disable no-new, no-unused-expressions */
 
 const fail = expect.fail;
 const JDLParser = require('../../../lib/parser/jdl_parser');
 const EntityParser = require('../../../lib/parser/entity_parser');
-const parseFromFiles = require('../../../lib/reader/jdl_reader').parseFromFiles;
+const parseFromFiles = JdlReader.parseFromFiles;
 const DatabaseTypes = require('../../../lib/core/jhipster/database_types').Types;
 
 describe('::convert', () => {

@@ -54,7 +54,7 @@ export class JdlReader {
     }
   }
 
-  private static checkFileIsJDLFile(file) {
+  public static checkFileIsJDLFile(file) {
     if (file.slice(file.length - 3, file.length) !== '.jh'
       && file.slice(file.length - 4, file.length) !== '.jdl') {
       throw new JhipsterCoreException(

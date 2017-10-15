@@ -1,5 +1,8 @@
-import { JhipsterStringUtils } from '../lib/utils/string_utils';
 import { JsonReader } from '../lib/reader/json_reader';
+import { JhipsterStringUtils } from '../lib/utils/string_utils';
+import { JhipsterObjectUtils } from '../lib/utils/object_utils';
+import { JhipsterFormatUtils } from '../lib/utils/format_utils';
+import { JdlReader } from '../lib/reader/jdl_reader';
 
 const BINARY_OPTIONS = require('../lib/core/jhipster/binary_options');
 const UNARY_OPTIONS = require('../lib/core/jhipster/unary_options');
@@ -7,7 +10,6 @@ const RELATIONSHIP_TYPES = require('../lib/core/jhipster/relationship_types');
 const FIELD_TYPES = require('../lib/core/jhipster/field_types');
 const VALIDATIONS = require('../lib/core/jhipster/validations');
 const DATABASE_TYPES = require('../lib/core/jhipster/database_types');
-const JDLReader = require('../lib/reader/jdl_reader');
 const convertToJDL = require('../lib/parser/jdl_parser').parse;
 const convertToJHipsterJSON = require('../lib/parser/entity_parser').parse;
 const JsonParser = require('../lib/parser/json_parser');
@@ -25,8 +27,6 @@ const JSONExporter = require('../lib/export/json_exporter');
 const exportToJDL = require('../lib/export/jdl_exporter').exportToJDL;
 const JSONFileReader = require('../lib/reader/json_file_reader');
 const ReservedKeywords = require('../lib/core/jhipster/reserved_keywords');
-const ObjectUtils = require('../lib/utils/object_utils');
-const FormatUtils = require('../lib/utils/format_utils');
 const Set = require('../lib/utils/objects/set');
 
 export = {
@@ -53,8 +53,8 @@ export = {
   JDLBinaryOption,
   JDLOptions,
   /* JDL reading */
-  parse: JDLReader.parse,
-  parseFromFiles: JDLReader.parseFromFiles,
+  parse: JdlReader.parse,
+  parseFromFiles: JdlReader.parseFromFiles,
   /* Json reading */
   parseJsonFromDir: JsonReader.parseFromDir,
   /* JDL conversion */
@@ -68,9 +68,9 @@ export = {
   /* JDL exporting */
   exportToJDL,
   /* JDL utils */
-  isJDLFile: JDLReader.checkFileIsJDLFile,
+  isJDLFile: JdlReader.checkFileIsJDLFile,
   /* JSON utils */
-  ObjectUtils,
+  ObjectUtils: JhipsterObjectUtils,
   createJHipsterJSONFolder: JSONExporter.createJHipsterJSONFolder,
   filterOutUnchangedEntities: JSONExporter.filterOutUnchangedEntities,
   readEntityJSON: JSONFileReader.readEntityJSON,
@@ -79,5 +79,5 @@ export = {
   Set,
   /* Utils */
   camelCase: JhipsterStringUtils.camelCase,
-  dateFormatForLiquibase: FormatUtils.dateFormatForLiquibase
+  dateFormatForLiquibase: JhipsterFormatUtils.dateFormatForLiquibase
 };

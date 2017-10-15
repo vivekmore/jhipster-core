@@ -1,10 +1,11 @@
 import { expect } from 'chai';
 import { ApplicationTypes } from '../../../lib/core/jhipster/application_types';
+import { JdlReader } from '../../../lib/reader/jdl_reader';
 
 /* eslint-disable no-new, no-unused-expressions */
 
 const fail = expect.fail;
-const parseFromFiles = require('../../../lib/reader/jdl_reader').parseFromFiles;
+const parseFromFiles = JdlReader.parseFromFiles;
 const JDLParser = require('../../../lib/parser/jdl_parser');
 const JDLEntity = require('../../../lib/core/jdl_entity');
 const JDLEnum = require('../../../lib/core/jdl_enum');

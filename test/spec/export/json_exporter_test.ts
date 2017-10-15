@@ -1,5 +1,6 @@
 import { expect } from 'chai';
 import * as fs from 'fs';
+import { JdlReader } from '../../../lib/reader/jdl_reader';
 
 /* eslint-disable no-new, no-unused-expressions */
 
@@ -7,7 +8,7 @@ const fail = expect.fail;
 const Exporter = require('../../../lib/export/json_exporter');
 const JDLParser = require('../../../lib/parser/jdl_parser');
 const EntityParser = require('../../../lib/parser/entity_parser');
-const parseFromFiles = require('../../../lib/reader/jdl_reader').parseFromFiles;
+const parseFromFiles = JdlReader.parseFromFiles;
 
 describe('::exportToJSON', () => {
   describe('when passing invalid parameters', () => {
