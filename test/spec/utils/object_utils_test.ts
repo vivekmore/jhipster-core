@@ -1,13 +1,14 @@
 import { expect } from 'chai';
+import { JhipsterObjectUtils } from '../../../lib/utils/object_utils';
 
 /* eslint-disable no-new, no-unused-expressions */
 
 const fail = expect.fail;
-const merge = require('../../../lib/utils/object_utils').merge;
-const values = require('../../../lib/utils/object_utils').values;
-const areEntitiesEqual = require('../../../lib/utils/object_utils').areEntitiesEqual;
+const merge = JhipsterObjectUtils.merge;
+const values = JhipsterObjectUtils.values;
+const areEntitiesEqual = JhipsterObjectUtils.areEntitiesEqual;
 
-describe('ObjectUtils', () => {
+describe('JhipsterObjectUtils', () => {
   describe('::merge', () => {
     const object1 = {
       a: 1,
