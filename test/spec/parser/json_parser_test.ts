@@ -1,10 +1,10 @@
 import { expect } from 'chai';
 import { JsonFileReader } from '../../../lib/reader/json_file_reader';
+import { JsonParser } from '../../../lib/parser/json_parser';
 
 /* eslint-disable no-new, no-unused-expressions */
 
 const fail = expect.fail;
-const Parser = require('../../../lib/parser/json_parser');
 const UnaryOptions = require('../../../lib/core/jhipster/unary_options').UNARY_OPTIONS;
 const BinaryOptions = require('../../../lib/core/jhipster/binary_options').BINARY_OPTIONS;
 const BinaryOptionValues = require('../../../lib/core/jhipster/binary_options').BINARY_OPTION_VALUES;
@@ -21,7 +21,7 @@ describe('::parse', () => {
     Task: JsonFileReader.readEntityJSON('./test/test_files/jhipster_app/.jhipster/Task.json')
   };
   entities.Employee.relationships.filter(r => r.relationshipName === 'department')[0].javadoc = undefined;
-  const content = Parser.parseEntities(entities);
+  const content = JsonParser.parseEntities(entities);
   describe('when parsing a JSON entity to JDL', () => {
     it('parses entity javadoc', () => {
       expect(content.entities.Employee.comment).eq('The Employee entity.');
@@ -141,7 +141,7 @@ describe('::parse', () => {
         Employee: JsonFileReader.readEntityJSON('./test/test_files/jhipster_app/.jhipster/Employee.json')
       };
       entities.Department.relationships.filter(r => r.relationshipName === 'employee')[0].javadoc = undefined;
-      const content = Parser.parseEntities(entities);
+      const content = JsonParser.parseEntities(entities);
       expect(
         content.relationships.relationships.OneToMany['OneToMany_Department{employee}_Employee{department(foo)}'].commentInFrom
       ).to.be.undefined;
@@ -169,7 +169,7 @@ describe('::parse', () => {
 
   describe('when parsing app config file to JDL', () => {
     const yoRcJson = JsonFileReader.readEntityJSON('./test/test_files/jhipster_app/.yo-rc.json');
-    const content = Parser.parseServerOptions(yoRcJson['generator-jhipster']);
+    const content = JsonParser.parseServerOptions(yoRcJson['generator-jhipster']);
     it('parses server options', () => {
       expect(content.getOptions().filter(
         option => option.name === UnaryOptions.SKIP_CLIENT && option.entityNames.has('*')).length
@@ -187,7 +187,7 @@ describe('::parse', () => {
         const entities = {
           Country: JsonFileReader.readEntityJSON('./test/test_files/jhipster_app/.jhipster/Country.json')
         };
-        const content = Parser.parseEntities(entities);
+        const content = JsonParser.parseEntities(entities);
         it('parses relationships to the JHipster managed User entity', () => {
           expect(content.relationships.relationships.OneToOne).has.property('OneToOne_Country{user}_User');
         });
@@ -195,7 +195,7 @@ describe('::parse', () => {
       describe('when there is a User.json entity', () => {
         it('throws an error ', () => {
           try {
-            Parser.parseEntities({
+            JsonParser.parseEntities({
               Country: JsonFileReader.readEntityJSON('./test/test_files/jhipster_app/.jhipster/Country.json'),
               User: JsonFileReader.readEntityJSON('./test/test_files/jhipster_app/.jhipster/Region.json')
             });
@@ -214,8 +214,8 @@ describe('::parse', () => {
       entities.User.relationships[0].otherEntityRelationshipName = 'user';
       const yoRcJson = JsonFileReader.readEntityJSON('./test/test_files/jhipster_app/.yo-rc.json');
       yoRcJson['generator-jhipster'].skipUserManagement = true;
-      const content = Parser.parseServerOptions(yoRcJson['generator-jhipster']);
-      Parser.parseEntities(entities, content);
+      const content = JsonParser.parseServerOptions(yoRcJson['generator-jhipster']);
+      JsonParser.parseEntities(entities, content);
       it('parses the User.json entity if skipUserManagement flag is set', () => {
         expect(content.entities.Country).not.to.be.undefined;
         expect(content.entities.User).not.to.be.undefined;
