@@ -3,12 +3,13 @@ import { ApplicationTypes } from '../../../lib/core/jhipster/application_types';
 import { JdlReader } from '../../../lib/reader/jdl_reader';
 import { EntityParser } from '../../../lib/parser/entity_parser';
 import { JdlParser } from '../../../lib/parser/jdl_parser';
+import { DatabaseTypes } from '../../../lib/core/jhipster/database_types';
 
 /* eslint-disable no-new, no-unused-expressions */
 
 const fail = expect.fail;
 const parseFromFiles = JdlReader.parseFromFiles;
-const DatabaseTypes = require('../../../lib/core/jhipster/database_types').Types;
+const DbTypes = DatabaseTypes.Types;
 
 describe('::convert', () => {
   describe('when passing invalid parameters', () => {
@@ -266,8 +267,8 @@ describe('::convert', () => {
       describe('without the microservice option in the JDL', () => {
         const input = parseFromFiles(['./test/test_files/no_microservice.jdl']);
         const content = EntityParser.parse({
-          jdlObject: JdlParser.parse(input, DatabaseTypes.sql, ApplicationTypes.MICROSERVICE, 'toto'),
-          databaseType: DatabaseTypes.sql
+          jdlObject: JdlParser.parse(input, DbTypes.sql, ApplicationTypes.MICROSERVICE, 'toto'),
+          databaseType: DbTypes.sql
         });
 
         it('adds it to every entity', () => {

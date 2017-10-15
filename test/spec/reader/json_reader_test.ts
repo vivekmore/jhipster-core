@@ -1,10 +1,11 @@
 import { expect } from 'chai';
 import { JsonReader } from '../../../lib/reader/json_reader';
+import { UnaryOptions } from '../../../lib/core/jhipster/unary_options';
 
 /* eslint-disable no-new, no-unused-expressions */
 
 const fail = expect.fail;
-const UnaryOptions = require('../../../lib/core/jhipster/unary_options').UNARY_OPTIONS;
+const UNARY_OPTIONS = UnaryOptions.UNARY_OPTIONS;
 
 describe('::parseFromDir', () => {
   describe('when passing invalid parameters', () => {
@@ -52,8 +53,8 @@ describe('::parseFromDir', () => {
         expect(content.entities.Task).not.to.be.undefined;
         expect(content.entities.NoEntity).to.be.undefined;
         expect(content.entities.BadEntity).to.be.undefined;
-        expect(content.getOptions().filter(o => o.name === UnaryOptions.SKIP_CLIENT).length).eq(1);
-        expect(content.getOptions().filter(o => o.name === UnaryOptions.SKIP_SERVER).length).eq(1);
+        expect(content.getOptions().filter(o => o.name === UNARY_OPTIONS.SKIP_CLIENT).length).eq(1);
+        expect(content.getOptions().filter(o => o.name === UNARY_OPTIONS.SKIP_SERVER).length).eq(1);
       });
     });
   });

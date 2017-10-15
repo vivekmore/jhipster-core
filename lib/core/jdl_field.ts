@@ -3,11 +3,10 @@ import { JhipsterCoreExceptionType } from '../exceptions/jhipster_core_exception
 import { JhipsterStringUtils } from '../utils/string_utils';
 import { JhipsterObjectUtils } from '../utils/object_utils';
 import { JDLValidation } from './jdl_validation';
+import { ReservedKeywords } from './jhipster/reserved_keywords';
+import { ErrorCasesEnum } from '../exceptions/error_cases';
 
-const ErrorCases = require('../exceptions/error_cases').ErrorCases;
-const ReservedKeyWord = require('../core/jhipster/reserved_keywords');
-
-const isReservedFieldName = ReservedKeyWord.isReservedFieldName;
+const isReservedFieldName = ReservedKeywords.isReservedFieldName;
 
 export class JDLField {
 
@@ -53,16 +52,16 @@ export class JDLField {
   static checkValidity(field) {
     const errors = [];
     if (!field) {
-      errors.push(ErrorCases.fields.NoField);
+      errors.push(ErrorCasesEnum.ErrorCases.fields.NoField);
       return errors;
     }
     if (JhipsterStringUtils.isNilOrEmpty(field.name)) {
-      errors.push(ErrorCases.fields.NoName);
+      errors.push(ErrorCasesEnum.ErrorCases.fields.NoName);
     } else if (isReservedFieldName(field.name)) {
-      errors.push(ErrorCases.fields.ReservedWordAsName);
+      errors.push(ErrorCasesEnum.ErrorCases.fields.ReservedWordAsName);
     }
     if (JhipsterStringUtils.isNilOrEmpty(field.type)) {
-      errors.push(ErrorCases.fields.NoType);
+      errors.push(ErrorCasesEnum.ErrorCases.fields.NoType);
     }
     if (field.validations) {
       for (let i = 0; i < field.validations.length; i++) {

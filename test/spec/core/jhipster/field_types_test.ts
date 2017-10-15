@@ -1,10 +1,11 @@
 import { expect } from 'chai';
 import { JDLEnum } from '../../../../lib/core/jdl_enum';
+import { FieldTypes } from '../../../../lib/core/jhipster/field_types';
+import { Validations } from '../../../../lib/core/jhipster/validations';
 
 /* eslint-disable no-new, no-unused-expressions */
 const fail = expect.fail;
-const FieldTypes = require('../../../../lib/core/jhipster/field_types');
-const Validations = require('../../../../lib/core/jhipster/validations').VALIDATIONS;
+const VALIDATIONS = Validations.VALIDATIONS;
 
 describe('FieldTypes', () => {
   describe('::isSQLType', () => {
@@ -166,7 +167,7 @@ describe('FieldTypes', () => {
           expect(error.name).to.eq('NullPointerException');
         }
         try {
-          FieldTypes.hasValidation(null, Validations.MAXLENGTH);
+          FieldTypes.hasValidation(null, VALIDATIONS.MAXLENGTH);
           fail();
         } catch (error) {
           expect(error.name).to.eq('NullPointerException');
@@ -181,12 +182,12 @@ describe('FieldTypes', () => {
     });
     describe('when passing a false argument', () => {
       it('returns false', () => {
-        expect(FieldTypes.hasValidation(FieldTypes.CASSANDRA_TYPES.BIG_DECIMAL, Validations.PATTERN)).to.be.false;
+        expect(FieldTypes.hasValidation(FieldTypes.CASSANDRA_TYPES.BIG_DECIMAL, VALIDATIONS.PATTERN)).to.be.false;
       });
     });
     describe('when passing a valid argument', () => {
       it('returns true', () => {
-        expect(FieldTypes.hasValidation(FieldTypes.CASSANDRA_TYPES.BIG_DECIMAL, Validations.MIN)).to.be.true;
+        expect(FieldTypes.hasValidation(FieldTypes.CASSANDRA_TYPES.BIG_DECIMAL, VALIDATIONS.MIN)).to.be.true;
       });
     });
   });

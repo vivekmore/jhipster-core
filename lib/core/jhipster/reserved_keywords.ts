@@ -26,32 +26,33 @@ const MYSQL_RESERVED_WORDS = [
   'YEAR_MONTH', 'ZEROFILL', 'GENERAL', 'IGNORE_SERVER_IDS', 'MASTER_HEARTBEAT_PERIOD', 'MAXVALUE',
   'RESIGNAL', 'SIGNAL', 'SLOW'];
 
-const RESERVED_WORDS = {
-  JHIPSTER: [
+export class ReservedKeywords {
+
+  public static readonly JHIPSTER = [
     'ACCOUNT', 'ACTIVATE', 'AUDITS', 'CONFIGURATION', 'DOCS', 'HEALTH', 'LOGS', 'METRICS', 'PASSWORD',
     'REGISTER', 'RESET', 'SESSIONS', 'SETTINGS', 'TEST', 'EVENTMANAGER', 'PRINCIPAL', 'ENTITY'
-  ],
-  ANGULAR: [
+  ];
+  public static readonly ANGULAR = [
     'CLASS', 'NODENAME', 'NODETYPE', 'COMPONENT', 'SUBSCRIPTION', 'RESPONSE',
     'OBSERVABLE', 'INJECTABLE', 'HTTP', 'ROUTER'
-  ],
-  JAVA: [
+  ];
+  public static readonly JAVA = [
     'ABSTRACT', 'CONTINUE', 'FOR', 'NEW', 'SWITCH', 'ASSERT', 'DEFAULT', 'GOTO', 'PACKAGE', 'SYNCHRONIZED',
     'BOOLEAN', 'DO', 'IF', 'PRIVATE', 'THIS', 'BREAK', 'DOUBLE', 'IMPLEMENTS', 'PROTECTED', 'THROW', 'BYTE',
     'ELSE', 'IMPORT', 'PUBLIC', 'THROWS', 'CASE', 'ENUM', 'INSTANCEOF', 'RETURN', 'TRANSIENT', 'CATCH',
     'EXTENDS', 'INT', 'SHORT', 'TRY', 'CHAR', 'FINAL', 'INTERFACE', 'STATIC', 'VOID', 'CLASS', 'FINALLY',
     'LONG', 'STRICTFP', 'VOLATILE', 'CONST', 'FLOAT', 'NATIVE', 'SUPER', 'WHILE'
-  ],
-  TYPESCRIPT: [
+  ];
+  public static readonly TYPESCRIPT = [
     'BREAK', 'CASE', 'CATCH', 'CLASS', 'CONST', 'CONSTRUCTOR', 'CONTINUE', 'DEBUGGER', 'DEFAULT', 'DELETE',
     'DO', 'ELSE', 'ENUM', 'EXPORT', 'EXTENDS', 'FALSE', 'FINALLY', 'FOR', 'FUNCTION', 'IF', 'IMPORT', 'IN',
     'INSTANCEOF', 'NEW', 'NULL', 'RETURN', 'SUPER', 'SWITCH', 'THIS', 'THROW', 'TRUE', 'TRY', 'TYPEOF',
     'VAR', 'VOID', 'WHILE', 'WITH', 'IMPLEMENTS', 'INTERFACE', 'LET', 'PACKAGE', 'PRIVATE', 'PROTECTED',
     'PUBLIC', 'STATIC', 'YIELD'
-  ],
-  MYSQL: MYSQL_RESERVED_WORDS,
-  MARIADB: MYSQL_RESERVED_WORDS,
-  POSTGRESQL: [
+  ];
+  public static readonly MYSQL = MYSQL_RESERVED_WORDS;
+  public static readonly MARIADB = MYSQL_RESERVED_WORDS;
+  public static readonly POSTGRESQL = [
     'ALL', 'ANALYSE', 'ANALYZE', 'AND', 'ANY', 'ARRAY', 'AS', 'ASC', 'ASYMMETRIC', 'AUTHORIZATION', 'BINARY',
     'BOTH', 'CASE', 'CAST', 'CHECK', 'COLLATE', 'COLLATION', 'COLUMN', 'CONCURRENTLY', 'CONSTRAINT', 'CREATE',
     'CROSS', 'CURRENT_CATALOG', 'CURRENT_DATE', 'CURRENT_ROLE', 'CURRENT_SCHEMA', 'CURRENT_TIME',
@@ -62,8 +63,8 @@ const RESERVED_WORDS = {
     'ON', 'ONLY', 'OR', 'ORDER', 'OUTER', 'OVERLAPS', 'PLACING', 'PRIMARY', 'REFERENCES', 'RETURNING',
     'RIGHT', 'SELECT', 'SESSION_USER', 'SIMILAR', 'SOME', 'SYMMETRIC', 'TABLE', 'THEN', 'TO', 'TRAILING',
     'TRUE', 'UNION', 'UNIQUE', 'USER', 'USING', 'VARIADIC', 'VERBOSE', 'WHEN', 'WHERE', 'WINDOW', 'WITH'
-  ],
-  CASSANDRA: [
+  ];
+  public static readonly CASSANDRA = [
     'ADD', 'ALL', 'ALTER', 'AND', 'ANY', 'APPLY', 'AS', 'ASC', 'ASCII', 'AUTHORIZE', 'BATCH', 'BEGIN',
     'BIGINT', 'BLOB', 'BOOLEAN', 'BY', 'CLUSTERING', 'COLUMNFAMILY', 'COMPACT', 'CONSISTENCY', 'COUNT',
     'COUNTER', 'CREATE', 'DECIMAL', 'DELETE', 'DESC', 'DOUBLE', 'DROP', 'EACH_QUORUM', 'FLOAT', 'FROM',
@@ -74,8 +75,8 @@ const RESERVED_WORDS = {
     'TTL', 'TWO', 'TYPE', 'UPDATE', 'USE', 'USER', 'USERS', 'USING', 'UUID', 'VALUES', 'VARCHAR',
     'VARINT', 'WHERE', 'WITH', 'WRITETIME', 'DISTINCT', 'BYTE', 'SMALLINT', 'COMPLEX', 'ENUM', 'DATE',
     'INTERVAL', 'MACADDR', 'BITSTRING'
-  ],
-  ORACLE: [
+  ];
+  public static readonly ORACLE = [
     'ACCESS', 'ACCOUNT', 'ACTIVATE', 'ADD', 'ADMIN', 'ADVISE', 'AFTER', 'ALL', 'ALL_ROWS', 'ALLOCATE',
     'ALTER', 'ANALYZE', 'AND', 'ANY', 'ARCHIVE', 'ARCHIVELOG', 'ARRAY', 'AS', 'ASC', 'AT', 'AUDIT',
     'AUTHENTICATED', 'AUTHORIZATION', 'AUTOEXTEND', 'AUTOMATIC', 'BACKUP', 'BECOME', 'BEFORE', 'BEGIN',
@@ -132,9 +133,9 @@ const RESERVED_WORDS = {
     'USE', 'USER', 'USING', 'VALIDATE', 'VALIDATION', 'VALUE', 'VALUES', 'VARCHAR', 'VARCHAR2',
     'VARYING', 'VIEW', 'WHEN', 'WHENEVER', 'WHERE', 'WITH', 'WITHOUT', 'WORK', 'WRITE', 'WRITEDOWN',
     'WRITEUP', 'XID', 'YEAR', 'ZONE'
-  ],
-  MONGODB: ['DOCUMENT'],
-  MSSQL: [
+  ];
+  public static readonly MONGODB = ['DOCUMENT'];
+  public static readonly MSSQL = [
     'ADD', 'ALL', 'ALTER', 'AND', 'ANY', 'AS', 'ASC', 'AUTHORIZATION', 'BACKUP', 'BEGIN', 'BETWEEN', 'BREAK',
     'BROWSE', 'BULK', 'BY', 'CASCADE', 'CASE', 'CHECK', 'CHECKPOINT', 'CLOSE', 'CLUSTERED', 'COALESCE',
     'COLLATE', 'COLUMN', 'COMMIT', 'COMPUTE', 'CONSTRAINT', 'CONTAINS', 'CONTAINSTABLE', 'CONTINUE',
@@ -156,41 +157,36 @@ const RESERVED_WORDS = {
     'TO', 'TOP', 'TRAN', 'TRANSACTION', 'TRIGGER', 'TRUNCATE', 'TRY_CONVERT', 'TSEQUAL', 'UNION',
     'UNIQUE', 'UNPIVOT', 'UPDATE', 'UPDATETEXT', 'USE', 'USER', 'VALUES', 'VARYING', 'VIEW',
     'WAITFOR', 'WHEN', 'WHERE', 'WHILE', 'WITH', 'WITHIN GROUP', 'WRITETEXT'
-  ]
-};
+  ];
 
-function isReserved(keyword, type) {
-  return keyword != null && type != null && RESERVED_WORDS[type.toUpperCase()] != null
-    && RESERVED_WORDS[type.toUpperCase()].indexOf(keyword.toUpperCase()) !== -1;
+  private static readonly RESERVED_WORDS = {
+    JAVA: ReservedKeywords.JAVA,
+    TYPESCRIPT: ReservedKeywords.TYPESCRIPT,
+    MYSQL: ReservedKeywords.MYSQL,
+    MARIADB: ReservedKeywords.MARIADB,
+    POSTGRESQL: ReservedKeywords.POSTGRESQL,
+    CASSANDRA: ReservedKeywords.CASSANDRA,
+    ORACLE: ReservedKeywords.ORACLE,
+    MONGODB: ReservedKeywords.MONGODB,
+    MSSQL: ReservedKeywords.MSSQL
+  };
+
+  public static isReserved(keyword?, type?) {
+    return keyword != null && type != null && ReservedKeywords.RESERVED_WORDS[type.toUpperCase()] != null
+      && ReservedKeywords.RESERVED_WORDS[type.toUpperCase()].indexOf(keyword.toUpperCase()) !== -1;
+  }
+
+  public static isReservedClassName(keyword) {
+    return ReservedKeywords.isReserved(keyword, 'JHIPSTER') || ReservedKeywords.isReserved(keyword, 'ANGULAR') || ReservedKeywords.isReserved(keyword, 'TYPESCRIPT') || ReservedKeywords.isReserved(keyword, 'JAVA');
+  }
+
+  public static isReservedTableName(keyword, databaseType) {
+    return (databaseType.toUpperCase() === 'SQL')
+      ? ReservedKeywords.isReserved(keyword, 'MYSQL') || ReservedKeywords.isReserved(keyword, 'POSTGRESQL') || ReservedKeywords.isReserved(keyword, 'ORACLE') || ReservedKeywords.isReserved(keyword, 'MSSQL')
+      : ReservedKeywords.isReserved(keyword, databaseType);
+  }
+
+  public static isReservedFieldName(keyword) {
+    return ReservedKeywords.isReserved(keyword, 'ANGULAR') || ReservedKeywords.isReserved(keyword, 'TYPESCRIPT') || ReservedKeywords.isReserved(keyword, 'JAVA');
+  }
 }
-
-function isReservedClassName(keyword) {
-  return isReserved(keyword, 'JHIPSTER') || isReserved(keyword, 'ANGULAR') || isReserved(keyword, 'TYPESCRIPT') || isReserved(keyword, 'JAVA');
-}
-
-function isReservedTableName(keyword, databaseType) {
-  return (databaseType.toUpperCase() === 'SQL')
-    ? isReserved(keyword, 'MYSQL') || isReserved(keyword, 'POSTGRESQL') || isReserved(keyword, 'ORACLE') || isReserved(keyword, 'MSSQL')
-    : isReserved(keyword, databaseType);
-}
-
-function isReservedFieldName(keyword) {
-  return isReserved(keyword, 'ANGULAR') || isReserved(keyword, 'TYPESCRIPT') || isReserved(keyword, 'JAVA');
-}
-
-export = {
-  isReserved,
-  isReservedClassName,
-  isReservedTableName,
-  isReservedFieldName,
-  JHIPSTER: RESERVED_WORDS.JHIPSTER,
-  ANGULAR: RESERVED_WORDS.ANGULAR,
-  JAVA: RESERVED_WORDS.JAVA,
-  TYPESCRIPT: RESERVED_WORDS.TYPESCRIPT,
-  MYSQL: RESERVED_WORDS.MYSQL,
-  POSTGRESQL: RESERVED_WORDS.POSTGRESQL,
-  CASSANDRA: RESERVED_WORDS.CASSANDRA,
-  ORACLE: RESERVED_WORDS.ORACLE,
-  MONGODB: RESERVED_WORDS.MONGODB,
-  MSSQL: RESERVED_WORDS.MSSQL
-};

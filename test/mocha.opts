@@ -3,4 +3,4 @@
   --recursive
   --require mocha-clean
   --require ts-node/register
-  ./test/**/jhipster_core_exception_test.ts
+  ./test/**/*_test.ts

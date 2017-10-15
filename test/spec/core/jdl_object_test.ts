@@ -8,12 +8,11 @@ import { JDLField } from '../../../lib/core/jdl_field';
 import { JDLEnum } from '../../../lib/core/jdl_enum';
 import { JDLEntity } from '../../../lib/core/jdl_entity';
 import { BinaryOptions } from '../../../lib/core/jhipster/binary_options';
+import { UnaryOptions } from '../../../lib/core/jhipster/unary_options';
+import { RelationshipTypes } from '../../../lib/core/jhipster/relationship_types';
 
 /* eslint-disable no-new, no-unused-expressions */
-
 const fail = expect.fail;
-const UNARY_OPTIONS = require('../../../lib/core/jhipster/unary_options');
-const RELATIONSHIP_TYPES = require('../../../lib/core/jhipster/relationship_types');
 
 describe('JDLObject', () => {
   describe('#addEntity', () => {
@@ -131,7 +130,7 @@ describe('JDLObject', () => {
           object.addRelationship({
             from: {},
             to: { name: 'Valid', tableName: 't_valid', fields: [] },
-            type: RELATIONSHIP_TYPES.RELATIONSHIP_TYPES.MANY_TO_MANY,
+            type: RelationshipTypes.RELATIONSHIP_TYPES.MANY_TO_MANY,
             injectedFieldInFrom: 'something'
           });
           fail();
@@ -149,7 +148,7 @@ describe('JDLObject', () => {
         const relationship = new JDLRelationship({
           from: { name: 'Valid2', tableName: 't_valid2', fields: [] },
           to: { name: 'Valid', tableName: 't_valid', fields: [] },
-          type: RELATIONSHIP_TYPES.RELATIONSHIP_TYPES.MANY_TO_MANY,
+          type: RelationshipTypes.RELATIONSHIP_TYPES.MANY_TO_MANY,
           injectedFieldInFrom: 'something'
         });
         object.addRelationship(relationship);
@@ -162,7 +161,7 @@ describe('JDLObject', () => {
         const relationship = new JDLRelationship({
           from: { name: 'Valid2', tableName: 't_valid2', fields: [] },
           to: { name: 'Valid', tableName: 't_valid', fields: [] },
-          type: RELATIONSHIP_TYPES.RELATIONSHIP_TYPES.MANY_TO_MANY,
+          type: RelationshipTypes.RELATIONSHIP_TYPES.MANY_TO_MANY,
           injectedFieldInFrom: 'something'
         });
         object.addRelationship(relationship);
@@ -193,7 +192,7 @@ describe('JDLObject', () => {
         }
         try {
           object.addOption({
-            name: UNARY_OPTIONS.UNARY_OPTIONS.SKIP_CLIENT,
+            name: UnaryOptions.UNARY_OPTIONS.SKIP_CLIENT,
             type: 'WrongType'
           });
           fail();
@@ -208,7 +207,7 @@ describe('JDLObject', () => {
     describe('when adding a valid option', () => {
       it('works', () => {
         const object = new JDLObject();
-        const emptyOption = new JDLUnaryOption({ name: UNARY_OPTIONS.UNARY_OPTIONS.SKIP_CLIENT });
+        const emptyOption = new JDLUnaryOption({ name: UnaryOptions.UNARY_OPTIONS.SKIP_CLIENT });
         object.addOption(emptyOption);
       });
     });
@@ -228,12 +227,12 @@ describe('JDLObject', () => {
       const relationship = new JDLRelationship({
         from: entityA,
         to: entityB,
-        type: RELATIONSHIP_TYPES.RELATIONSHIP_TYPES.ONE_TO_ONE,
+        type: RelationshipTypes.RELATIONSHIP_TYPES.ONE_TO_ONE,
         injectedFieldInFrom: 'entityB',
         injectedFieldInTo: 'entityA(myField)'
       });
       object.addRelationship(relationship);
-      const option = new JDLUnaryOption({ name: UNARY_OPTIONS.UNARY_OPTIONS.SKIP_CLIENT });
+      const option = new JDLUnaryOption({ name: UnaryOptions.UNARY_OPTIONS.SKIP_CLIENT });
       option.excludeEntity(entityA);
       object.addOption(option);
       const option2 = new JDLBinaryOption({

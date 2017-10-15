@@ -2,11 +2,12 @@ import { expect } from 'chai';
 import { JsonFileReader } from '../../../lib/reader/json_file_reader';
 import { JsonParser } from '../../../lib/parser/json_parser';
 import { BinaryOptions } from '../../../lib/core/jhipster/binary_options';
+import { UnaryOptions } from '../../../lib/core/jhipster/unary_options';
 
 /* eslint-disable no-new, no-unused-expressions */
 
 const fail = expect.fail;
-const UnaryOptions = require('../../../lib/core/jhipster/unary_options').UNARY_OPTIONS;
+const UNARY_OPTIONS = UnaryOptions.UNARY_OPTIONS;
 const BINARY_OPTIONS = BinaryOptions.BINARY_OPTIONS;
 const BINARY_OPTION_VALUES = BinaryOptions.BINARY_OPTION_VALUES;
 
@@ -103,7 +104,7 @@ describe('::parse', () => {
       expect(
         content.getOptions().filter(
           option =>
-          option.name === UnaryOptions.NO_FLUENT_METHOD &&
+          option.name === UNARY_OPTIONS.NO_FLUENT_METHOD &&
           option.entityNames.has('Employee')
         ).length
       ).to.eq(1);
@@ -173,11 +174,11 @@ describe('::parse', () => {
     const content = JsonParser.parseServerOptions(yoRcJson['generator-jhipster']);
     it('parses server options', () => {
       expect(content.getOptions().filter(
-        option => option.name === UnaryOptions.SKIP_CLIENT && option.entityNames.has('*')).length
+        option => option.name === UNARY_OPTIONS.SKIP_CLIENT && option.entityNames.has('*')).length
       ).to.eq(1);
       expect(
         content.getOptions().filter(
-          option => option.name === UnaryOptions.SKIP_SERVER && option.entityNames.has('*')).length
+          option => option.name === UNARY_OPTIONS.SKIP_SERVER && option.entityNames.has('*')).length
       ).to.eq(1);
     });
   });

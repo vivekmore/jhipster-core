@@ -21,25 +21,25 @@ import { JDLEntity } from '../lib/core/jdl_entity';
 import { JDLEnum } from '../lib/core/jdl_enum';
 import { BinaryOptions } from '../lib/core/jhipster/binary_options';
 import { Set } from '../lib/utils/objects/set';
+import { UnaryOptions } from '../lib/core/jhipster/unary_options';
+import { RelationshipTypes } from '../lib/core/jhipster/relationship_types';
+import { FieldTypes } from '../lib/core/jhipster/field_types';
+import { Validations } from '../lib/core/jhipster/validations';
+import { DatabaseTypes } from '../lib/core/jhipster/database_types';
+import { ReservedKeywords } from '../lib/core/jhipster/reserved_keywords';
 
-const UNARY_OPTIONS = require('../lib/core/jhipster/unary_options');
-const RELATIONSHIP_TYPES = require('../lib/core/jhipster/relationship_types');
-const FIELD_TYPES = require('../lib/core/jhipster/field_types');
-const VALIDATIONS = require('../lib/core/jhipster/validations');
-const DATABASE_TYPES = require('../lib/core/jhipster/database_types');
 const convertToJDL = JdlParser.parse;
 const convertToJHipsterJSON = EntityParser.parse;
 const exportToJDL = JdlExporter.exportToJDL;
-const ReservedKeywords = require('../lib/core/jhipster/reserved_keywords');
 
 export = {
   /* JHipster notions */
   JHipsterBinaryOptions: BinaryOptions,
-  JHipsterUnaryOptions: UNARY_OPTIONS,
-  JHipsterRelationshipTypes: RELATIONSHIP_TYPES,
-  JHipsterValidations: VALIDATIONS,
-  JHipsterFieldTypes: FIELD_TYPES,
-  JHipsterDatabaseTypes: DATABASE_TYPES,
+  JHipsterUnaryOptions: UnaryOptions,
+  JHipsterRelationshipTypes: RelationshipTypes,
+  JHipsterValidations: Validations,
+  JHipsterFieldTypes: FieldTypes,
+  JHipsterDatabaseTypes: DatabaseTypes,
   isReservedKeyword: ReservedKeywords.isReserved,
   isReservedClassName: ReservedKeywords.isReservedClassName,
   isReservedTableName: ReservedKeywords.isReservedTableName,

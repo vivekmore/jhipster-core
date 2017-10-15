@@ -1,11 +1,11 @@
 import { expect } from 'chai';
 import { JDLValidation } from '../../../lib/core/jdl_validation';
 import { JDLField } from '../../../lib/core/jdl_field';
+import { Validations } from '../../../lib/core/jhipster/validations';
 
 /* eslint-disable no-new, no-unused-expressions */
-
 const fail = expect.fail;
-const VALIDATIONS = require('../../../lib/core/jhipster/validations').VALIDATIONS;
+const VALIDATIONS = Validations.VALIDATIONS;
 
 describe('JDLField', () => {
   describe('::new', () => {

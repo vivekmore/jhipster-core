@@ -10,9 +10,11 @@ import { JDLField } from '../core/jdl_field';
 import { JDLEntity } from '../core/jdl_entity';
 import { JDLEnum } from '../core/jdl_enum';
 import { BinaryOptions } from '../core/jhipster/binary_options';
+import { RelationshipTypes } from '../core/jhipster/relationship_types';
+import { UnaryOptions } from '../core/jhipster/unary_options';
 
-const RelationshipTypes = require('../core/jhipster/relationship_types').RELATIONSHIP_TYPES;
-const UnaryOptions = require('../core/jhipster/unary_options').UNARY_OPTIONS;
+const RELATIONSHIP_TYPES = RelationshipTypes.RELATIONSHIP_TYPES;
+const UNARY_OPTIONS = UnaryOptions.UNARY_OPTIONS;
 const BINARY_OPTIONS = BinaryOptions.BINARY_OPTIONS;
 const USER = 'User';
 const USER_ENTITY = new JDLEntity({ name: USER });
@@ -61,7 +63,7 @@ export class JsonParser {
     if (!jdl) {
       jdl = new JDLObject();
     }
-    [UnaryOptions.SKIP_CLIENT, UnaryOptions.SKIP_SERVER, UnaryOptions.SKIP_USER_MANAGEMENT].forEach((option) => {
+    [UNARY_OPTIONS.SKIP_CLIENT, UNARY_OPTIONS.SKIP_SERVER, UNARY_OPTIONS.SKIP_USER_MANAGEMENT].forEach((option) => {
       if (jhConfig[option] === true) {
         jdl.addOption(new JDLUnaryOption({
           name: option,
@@ -182,7 +184,7 @@ export class JsonParser {
         return new JDLRelationship({ // eslint-disable-line consistent-return
           from: jdl.entities[_.upperFirst(relationship.otherEntityName)],
           to: jdl.entities[entityName],
-          type: RelationshipTypes.ONE_TO_MANY,
+          type: RELATIONSHIP_TYPES.ONE_TO_MANY,
           injectedFieldInFrom: injectedFieldInTo,
           injectedFieldInTo: JsonParser.getInjectedFieldInFrom(relationship),
           isInjectedFieldInFromRequired: isInjectedFieldInToRequired,
@@ -192,11 +194,11 @@ export class JsonParser {
         });
       }
       // Unidirectional ManyToOne
-      type = RelationshipTypes.MANY_TO_ONE;
+      type = RELATIONSHIP_TYPES.MANY_TO_ONE;
     } else if (relationship.relationshipType === 'one-to-one' && relationship.ownerSide === true) {
-      type = RelationshipTypes.ONE_TO_ONE;
+      type = RELATIONSHIP_TYPES.ONE_TO_ONE;
     } else if (relationship.relationshipType === 'many-to-many' && relationship.ownerSide === true) {
-      type = RelationshipTypes.MANY_TO_MANY;
+      type = RELATIONSHIP_TYPES.MANY_TO_MANY;
     }
     if (type) {
       return new JDLRelationship({ // eslint-disable-line consistent-return
@@ -218,7 +220,7 @@ export class JsonParser {
       jdl.addOption(
         new JDLUnaryOption(
           {
-            name: UnaryOptions.NO_FLUENT_METHOD,
+            name: UNARY_OPTIONS.NO_FLUENT_METHOD,
             entityNames: [entityName]
           }
         )
@@ -264,6 +266,6 @@ export class JsonParser {
   }
 
   private static hasSkipUserManagement(jdl) {
-    return jdl.options.has(UnaryOptions.SKIP_USER_MANAGEMENT);
+    return jdl.options.has(UNARY_OPTIONS.SKIP_USER_MANAGEMENT);
   }
 }

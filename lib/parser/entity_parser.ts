@@ -5,13 +5,13 @@ import { JhipsterObjectUtils } from '../utils/object_utils';
 import { JhipsterFormatUtils } from '../utils/format_utils';
 import { BinaryOptions } from '../core/jhipster/binary_options';
 import * as _ from 'lodash';
+import { FieldTypes } from '../core/jhipster/field_types';
+import { UnaryOptions } from '../core/jhipster/unary_options';
+import { RelationshipTypes } from '../core/jhipster/relationship_types';
+import { DatabaseTypes } from '../core/jhipster/database_types';
 
-const FieldTypes = require('../core/jhipster/field_types');
-const RelationshipTypes = require('../core/jhipster/relationship_types').RELATIONSHIP_TYPES;
-const DatabaseTypes = require('../core/jhipster/database_types');
-const UnaryOptions = require('../core/jhipster/unary_options').UNARY_OPTIONS;
+const RELATIONSHIP_TYPES = RelationshipTypes.RELATIONSHIP_TYPES;
 const BINARY_OPTIONS = BinaryOptions.BINARY_OPTIONS;
-
 const USER = 'User';
 
 export class EntityParser {
@@ -118,20 +118,20 @@ export class EntityParser {
   private static setEntityNamesOptions(option) {
     option.entityNames.forEach((entityName) => {
       switch (option.name) {
-        case UnaryOptions.SKIP_CLIENT:
-        case UnaryOptions.SKIP_SERVER:
+        case UnaryOptions.UNARY_OPTIONS.SKIP_CLIENT:
+        case UnaryOptions.UNARY_OPTIONS.SKIP_SERVER:
           this.entities[entityName][option.name] = true;
           break;
         case BINARY_OPTIONS.MICROSERVICE:
           this.entities[entityName].microserviceName = option.value;
           break;
-        case UnaryOptions.NO_FLUENT_METHOD:
+        case UnaryOptions.UNARY_OPTIONS.NO_FLUENT_METHOD:
           this.entities[entityName].fluentMethods = false;
           break;
         case BINARY_OPTIONS.ANGULAR_SUFFIX:
           this.entities[entityName].angularJSSuffix = option.value;
           break;
-        case UnaryOptions.FILTER:
+        case UnaryOptions.UNARY_OPTIONS.FILTER:
           this.entities[entityName].jpaMetamodelFiltering = true;
           break;
         default:
@@ -271,14 +271,14 @@ export class EntityParser {
       if (relatedRelationship.commentInFrom) {
         relationship.javadoc = relatedRelationship.commentInFrom;
       }
-      if (relatedRelationship.type === RelationshipTypes.ONE_TO_ONE) {
+      if (relatedRelationship.type === RELATIONSHIP_TYPES.ONE_TO_ONE) {
         splitField = this.extractField(relatedRelationship.injectedFieldInFrom);
         relationship.relationshipName = JhipsterStringUtils.camelCase(splitField.relationshipName);
         relationship.otherEntityName = JhipsterStringUtils.camelCase(relatedRelationship.to.name);
         relationship.otherEntityField = _.lowerFirst(splitField.otherEntityField);
         relationship.ownerSide = true;
         relationship.otherEntityRelationshipName = _.lowerFirst(relatedRelationship.injectedFieldInTo || relatedRelationship.from.name);
-      } else if (relatedRelationship.type === RelationshipTypes.ONE_TO_MANY) {
+      } else if (relatedRelationship.type === RELATIONSHIP_TYPES.ONE_TO_MANY) {
         splitField = this.extractField(relatedRelationship.injectedFieldInFrom);
         otherSplitField = this.extractField(relatedRelationship.injectedFieldInTo);
         relationship.relationshipName = JhipsterStringUtils.camelCase(splitField.relationshipName || relatedRelationship.to.name);
@@ -290,18 +290,18 @@ export class EntityParser {
           const otherSideRelationship = {
             relationshipName: JhipsterStringUtils.camelCase(relatedRelationship.from.name),
             otherEntityName: JhipsterStringUtils.camelCase(relatedRelationship.from.name),
-            relationshipType: _.kebabCase(RelationshipTypes.MANY_TO_ONE),
+            relationshipType: _.kebabCase(RELATIONSHIP_TYPES.MANY_TO_ONE),
             otherEntityField: _.lowerFirst(otherSplitField.otherEntityField)
           };
-          relatedRelationship.type = RelationshipTypes.MANY_TO_ONE;
+          relatedRelationship.type = RELATIONSHIP_TYPES.MANY_TO_ONE;
           this.entities[relatedRelationship.to.name].relationships.push(otherSideRelationship);
         }
-      } else if (relatedRelationship.type === RelationshipTypes.MANY_TO_ONE && relatedRelationship.injectedFieldInFrom) {
+      } else if (relatedRelationship.type === RELATIONSHIP_TYPES.MANY_TO_ONE && relatedRelationship.injectedFieldInFrom) {
         splitField = this.extractField(relatedRelationship.injectedFieldInFrom);
         relationship.relationshipName = JhipsterStringUtils.camelCase(splitField.relationshipName);
         relationship.otherEntityName = JhipsterStringUtils.camelCase(relatedRelationship.to.name);
         relationship.otherEntityField = _.lowerFirst(splitField.otherEntityField);
-      } else if (relatedRelationship.type === RelationshipTypes.MANY_TO_MANY) {
+      } else if (relatedRelationship.type === RELATIONSHIP_TYPES.MANY_TO_MANY) {
         splitField = this.extractField(relatedRelationship.injectedFieldInFrom);
         relationship.otherEntityRelationshipName = _.lowerFirst(this.extractField(relatedRelationship.injectedFieldInTo).relationshipName);
         relationship.relationshipName = JhipsterStringUtils.camelCase(splitField.relationshipName);
@@ -318,7 +318,7 @@ export class EntityParser {
       let splitField;
       let otherSplitField;
       const relatedRelationship = relatedRelationships.to[i];
-      const relationshipType = relatedRelationship.type === RelationshipTypes.ONE_TO_MANY ? RelationshipTypes.MANY_TO_ONE : relatedRelationship.type;
+      const relationshipType = relatedRelationship.type === RELATIONSHIP_TYPES.ONE_TO_MANY ? RELATIONSHIP_TYPES.MANY_TO_ONE : relatedRelationship.type;
       const relationship: any = {
         relationshipType: _.kebabCase(relationshipType)
       };
@@ -328,27 +328,27 @@ export class EntityParser {
       if (relatedRelationship.commentInTo) {
         relationship.javadoc = relatedRelationship.commentInTo;
       }
-      if (relatedRelationship.type === RelationshipTypes.ONE_TO_ONE) {
+      if (relatedRelationship.type === RELATIONSHIP_TYPES.ONE_TO_ONE) {
         splitField = this.extractField(relatedRelationship.injectedFieldInTo);
         otherSplitField = this.extractField(relatedRelationship.injectedFieldInFrom);
         relationship.relationshipName = JhipsterStringUtils.camelCase(splitField.relationshipName);
         relationship.otherEntityName = JhipsterStringUtils.camelCase(relatedRelationship.from.name);
         relationship.ownerSide = false;
         relationship.otherEntityRelationshipName = _.lowerFirst(otherSplitField.relationshipName);
-      } else if (relatedRelationship.type === RelationshipTypes.ONE_TO_MANY) {
+      } else if (relatedRelationship.type === RELATIONSHIP_TYPES.ONE_TO_MANY) {
         relatedRelationship.injectedFieldInTo = relatedRelationship.injectedFieldInTo || _.lowerFirst(relatedRelationship.from);
         splitField = this.extractField(relatedRelationship.injectedFieldInTo);
         relationship.relationshipName = JhipsterStringUtils.camelCase(splitField.relationshipName || relatedRelationship.from.name);
         relationship.otherEntityName = JhipsterStringUtils.camelCase(relatedRelationship.from.name);
         relationship.otherEntityField = _.lowerFirst(splitField.otherEntityField);
-      } else if (relatedRelationship.type === RelationshipTypes.MANY_TO_ONE && relatedRelationship.injectedFieldInTo) {
+      } else if (relatedRelationship.type === RELATIONSHIP_TYPES.MANY_TO_ONE && relatedRelationship.injectedFieldInTo) {
         splitField = this.extractField(relatedRelationship.injectedFieldInTo);
         relationship.relationshipName = JhipsterStringUtils.camelCase(splitField.relationshipName);
         relationship.otherEntityName = JhipsterStringUtils.camelCase(relatedRelationship.from.name);
         relationship.relationshipType = 'one-to-many';
         otherSplitField = this.extractField(relatedRelationship.injectedFieldInFrom);
         relationship.otherEntityRelationshipName = _.lowerFirst(otherSplitField.relationshipName);
-      } else if (relatedRelationship.type === RelationshipTypes.MANY_TO_MANY) {
+      } else if (relatedRelationship.type === RELATIONSHIP_TYPES.MANY_TO_MANY) {
         splitField = this.extractField(relatedRelationship.injectedFieldInTo);
         relationship.relationshipName = JhipsterStringUtils.camelCase(splitField.relationshipName);
         relationship.otherEntityName = JhipsterStringUtils.camelCase(relatedRelationship.from.name);

@@ -1,5 +1,6 @@
 import { expect } from 'chai';
 import * as fs from 'fs';
+import * as _ from 'lodash';
 import { JsonReader } from '../../../lib/reader/json_reader';
 import { JdlReader } from '../../../lib/reader/jdl_reader';
 import { JsonFileReader } from '../../../lib/reader/json_file_reader';
@@ -42,10 +43,10 @@ describe('::exportToJDL', () => {
           previousEntities[entityName].javadoc = undefined;
         }
         // Sort arrays to ease comparison
-        previousEntities[entityName].fields.sort((f1, f2) => (f1.fieldName < f2.fieldName) - (f1.fieldName > f2.fieldName));
-        newEntities[entityName].fields.sort((f1, f2) => (f1.fieldName < f2.fieldName) - (f1.fieldName > f2.fieldName));
-        previousEntities[entityName].relationships.sort((r1, r2) => (r1.relationshipName < r2.relationshipName) - (r1.relationshipName > r2.relationshipName));
-        newEntities[entityName].relationships.sort((r1, r2) => (r1.relationshipName < r2.relationshipName) - (r1.relationshipName > r2.relationshipName));
+        previousEntities[entityName].fields = _.sortBy(previousEntities[entityName].fields, 'fieldName');
+        newEntities[entityName].fields = _.sortBy(newEntities[entityName].fields, 'fieldName');
+        previousEntities[entityName].relationships = _.sortBy(previousEntities[entityName].relationships, 'relationshipName');
+        newEntities[entityName].relationships = _.sortBy(newEntities[entityName].relationships, 'relationshipName');
       });
       it('exports it', () => {
         expect(fs.statSync('./jhipster-jdl.jh').isFile()).to.be.true;

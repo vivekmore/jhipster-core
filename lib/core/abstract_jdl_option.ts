@@ -4,8 +4,7 @@ import { JhipsterStringUtils } from '../utils/string_utils';
 import { JhipsterObjectUtils } from '../utils/object_utils';
 import { Set } from '../utils/objects/set';
 import { JDLEntity } from './jdl_entity';
-
-const ErrorCases = require('../exceptions/error_cases').ErrorCases;
+import { ErrorCasesEnum } from '../exceptions/error_cases';
 
 export abstract class AbstractJDLOption {
 
@@ -71,28 +70,28 @@ export abstract class AbstractJDLOption {
   public static checkValidity(object) {
     const errors = [];
     if (!object) {
-      errors.push(ErrorCases.options.NoOption);
+      errors.push(ErrorCasesEnum.ErrorCases.options.NoOption);
       return errors;
     }
     if (JhipsterStringUtils.isNilOrEmpty(object.name)) {
-      errors.push(ErrorCases.options.NoName);
+      errors.push(ErrorCasesEnum.ErrorCases.options.NoName);
     }
     if (!object.entityNames) {
-      errors.push(ErrorCases.options.NoEntityNames);
+      errors.push(ErrorCasesEnum.ErrorCases.options.NoEntityNames);
     }
     if (object.entityNames && object.entityNames.has(null)) {
-      errors.push(ErrorCases.options.NilInEntityNames);
+      errors.push(ErrorCasesEnum.ErrorCases.options.NilInEntityNames);
     }
     if (!object.excludedNames) {
-      errors.push(ErrorCases.options.NoExcludedNames);
+      errors.push(ErrorCasesEnum.ErrorCases.options.NoExcludedNames);
     }
     if (object.excludedNames && object.excludedNames.has(null)) {
-      errors.push(ErrorCases.options.NilInExcludedNames);
+      errors.push(ErrorCasesEnum.ErrorCases.options.NilInExcludedNames);
     }
     try {
       AbstractJDLOption.getType();
     } catch (error) {
-      errors.push(ErrorCases.options.NoType);
+      errors.push(ErrorCasesEnum.ErrorCases.options.NoType);
     }
     return errors;
   }

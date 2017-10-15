@@ -2,12 +2,12 @@ import { JhipsterCoreException } from '../../exceptions/jhipster_core_exception'
 import { JhipsterCoreExceptionType } from '../../exceptions/jhipster_core_exception_type';
 import { Set } from '../../utils/objects/set';
 import { JDLEnum } from '../jdl_enum';
+import { Validations } from './validations';
+import { DatabaseTypes } from './database_types';
 import * as _ from 'lodash';
 
-const _v = require('./validations');
-const DatabaseTypes = require('./database_types').Types;
-
-const VALIDATIONS = _v.VALIDATIONS;
+const DbTypes = DatabaseTypes.Types;
+const VALIDATIONS = Validations.VALIDATIONS;
 
 const SQL_TYPES = {
   STRING: 'String',
@@ -101,70 +101,72 @@ const CASSANDRA_VALIDATIONS = {
   UUID: new Set([VALIDATIONS.REQUIRED]),
   Instant: new Set([VALIDATIONS.REQUIRED])
 };
-function isSQLType(type) {
-  if (!type) {
-    throw new JhipsterCoreException(JhipsterCoreExceptionType.NullPointer, 'The passed type must not be nil.');
+
+export class FieldTypes {
+
+  public static readonly SQL_TYPES = SQL_TYPES;
+  public static readonly MONGODB_TYPES = MONGODB_TYPES;
+  public static readonly CASSANDRA_TYPES = CASSANDRA_TYPES;
+
+  public static isSQLType(type) {
+    if (!type) {
+      throw new JhipsterCoreException(JhipsterCoreExceptionType.NullPointer, 'The passed type must not be nil.');
+    }
+    return (_.snakeCase(type).toUpperCase() in SQL_TYPES) || type instanceof JDLEnum;
   }
-  return (_.snakeCase(type).toUpperCase() in SQL_TYPES) || type instanceof JDLEnum;
+
+  public static isMongoDBType(type) {
+    if (!type) {
+      throw new JhipsterCoreException(JhipsterCoreExceptionType.NullPointer, 'The passed type must not be nil.');
+    }
+    return (_.snakeCase(type).toUpperCase() in MONGODB_TYPES) || type instanceof JDLEnum;
+  }
+
+  public static isCassandraType(type) {
+    if (!type) {
+      throw new JhipsterCoreException(JhipsterCoreExceptionType.NullPointer, 'The passed type must not be nil.');
+    }
+    return (_.snakeCase(type).toUpperCase() in CASSANDRA_TYPES) && !(type instanceof JDLEnum);
+  }
+
+  public static hasValidation(type?, validation?, isAnEnum?) {
+    if (!type || !validation) {
+      throw new JhipsterCoreException(JhipsterCoreExceptionType.NullPointer, 'The passed type and value must not be nil.');
+    }
+    if (isAnEnum) {
+      type = 'Enum';
+    }
+    return (FieldTypes.isSQLType(type) && SQL_VALIDATIONS[type].has(validation))
+      || (FieldTypes.isMongoDBType(type) && MONGODB_VALIDATIONS[type].has(validation))
+      || (FieldTypes.isCassandraType(type) && CASSANDRA_VALIDATIONS[type].has(validation));
+  }
+
+  public static getIsType(databaseType?, callback?) {
+    if (!databaseType) {
+      throw new JhipsterCoreException(JhipsterCoreExceptionType.NullPointer, 'The passed type must not be nil.');
+    }
+    let isType;
+    switch (databaseType) {
+      case DbTypes.sql:
+      case DbTypes.mysql:
+      case DbTypes.mariadb:
+      case DbTypes.postgresql:
+      case DbTypes.oracle:
+      case DbTypes.mssql:
+        isType = FieldTypes.isSQLType;
+        break;
+      case DbTypes.mongodb:
+        isType = FieldTypes.isMongoDBType;
+        break;
+      case DbTypes.cassandra:
+        isType = FieldTypes.isCassandraType;
+        break;
+      default:
+        callback && callback();
+        throw new JhipsterCoreException(
+          JhipsterCoreExceptionType.IllegalArgument,
+          'The passed database type must either be \'sql\', \'mysql\', \'mariadb\', \'postgresql\', \'oracle\', \'mssql\', \'mongodb\', or \'cassandra\'');
+    }
+    return isType;
+  }
 }
-function isMongoDBType(type) {
-  if (!type) {
-    throw new JhipsterCoreException(JhipsterCoreExceptionType.NullPointer, 'The passed type must not be nil.');
-  }
-  return (_.snakeCase(type).toUpperCase() in MONGODB_TYPES) || type instanceof JDLEnum;
-}
-function isCassandraType(type) {
-  if (!type) {
-    throw new JhipsterCoreException(JhipsterCoreExceptionType.NullPointer, 'The passed type must not be nil.');
-  }
-  return (_.snakeCase(type).toUpperCase() in CASSANDRA_TYPES) && !(type instanceof JDLEnum);
-}
-function hasValidation(type, validation, isAnEnum) {
-  if (!type || !validation) {
-    throw new JhipsterCoreException(JhipsterCoreExceptionType.NullPointer, 'The passed type and value must not be nil.');
-  }
-  if (isAnEnum) {
-    type = 'Enum';
-  }
-  return (isSQLType(type) && SQL_VALIDATIONS[type].has(validation))
-    || (isMongoDBType(type) && MONGODB_VALIDATIONS[type].has(validation))
-    || (isCassandraType(type) && CASSANDRA_VALIDATIONS[type].has(validation));
-}
-function getIsType(databaseType, callback) {
-  if (!databaseType) {
-    throw new JhipsterCoreException(JhipsterCoreExceptionType.NullPointer, 'The passed type must not be nil.');
-  }
-  let isType;
-  switch (databaseType) {
-  case DatabaseTypes.sql:
-  case DatabaseTypes.mysql:
-  case DatabaseTypes.mariadb:
-  case DatabaseTypes.postgresql:
-  case DatabaseTypes.oracle:
-  case DatabaseTypes.mssql:
-    isType = isSQLType;
-    break;
-  case DatabaseTypes.mongodb:
-    isType = isMongoDBType;
-    break;
-  case DatabaseTypes.cassandra:
-    isType = isCassandraType;
-    break;
-  default:
-    callback && callback();
-    throw new JhipsterCoreException(
-      JhipsterCoreExceptionType.IllegalArgument,
-      'The passed database type must either be \'sql\', \'mysql\', \'mariadb\', \'postgresql\', \'oracle\', \'mssql\', \'mongodb\', or \'cassandra\'');
-  }
-  return isType;
-}
-export = {
-  SQL_TYPES,
-  MONGODB_TYPES,
-  CASSANDRA_TYPES,
-  isSQLType,
-  isMongoDBType,
-  isCassandraType,
-  hasValidation,
-  getIsType
-};

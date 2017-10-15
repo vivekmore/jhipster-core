@@ -3,11 +3,11 @@ import { JhipsterCoreExceptionType } from '../exceptions/jhipster_core_exception
 import { JhipsterStringUtils } from '../utils/string_utils';
 import { JhipsterObjectUtils } from '../utils/object_utils';
 import { Set } from '../utils/objects/set';
+import { ErrorCasesEnum } from '../exceptions/error_cases';
+import { ReservedKeywords } from './jhipster/reserved_keywords';
 
-const ErrorCases = require('../exceptions/error_cases').ErrorCases;
-const ReservedKeyWord = require('../core/jhipster/reserved_keywords');
-
-const isReservedClassName = ReservedKeyWord.isReservedClassName;
+const ErrorCases = ErrorCasesEnum.ErrorCases;
+const isReservedClassName = ReservedKeywords.isReservedClassName;
 
 export class JDLEnum {
 

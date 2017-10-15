@@ -1,9 +1,10 @@
 import { expect } from 'chai';
+import { Validations } from '../../../../lib/core/jhipster/validations';
 
 /* eslint-disable no-new, no-unused-expressions */
-const VALIDATIONS = require('../../../../lib/core/jhipster/validations').VALIDATIONS;
-const exists = require('../../../../lib/core/jhipster/validations').exists;
-const needsValue = require('../../../../lib/core/jhipster/validations').needsValue;
+const VALIDATIONS = Validations.VALIDATIONS;
+const exists = Validations.exists;
+const needsValue = Validations.needsValue;
 
 describe('VALIDATIONS', () => {
   describe('::exists', () => {

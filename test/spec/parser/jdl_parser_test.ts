@@ -9,15 +9,19 @@ import { JDLField } from '../../../lib/core/jdl_field';
 import { JDLEntity } from '../../../lib/core/jdl_entity';
 import { JDLEnum } from '../../../lib/core/jdl_enum';
 import { BinaryOptions } from '../../../lib/core/jhipster/binary_options';
+import { UnaryOptions } from '../../../lib/core/jhipster/unary_options';
+import { DatabaseTypes } from '../../../lib/core/jhipster/database_types';
+import { FieldTypes } from '../../../lib/core/jhipster/field_types';
+import { Validations } from '../../../lib/core/jhipster/validations';
 
 /* eslint-disable no-new, no-unused-expressions */
 
 const fail = expect.fail;
 const parseFromFiles = JdlReader.parseFromFiles;
-const DatabaseTypes = require('../../../lib/core/jhipster/database_types').Types;
-const FieldTypes = require('../../../lib/core/jhipster/field_types').SQL_TYPES;
-const Validations = require('../../../lib/core/jhipster/validations').VALIDATIONS;
-const UnaryOptions = require('../../../lib/core/jhipster/unary_options').UNARY_OPTIONS;
+const DbTypes = DatabaseTypes.Types;
+const SQL_TYPES = FieldTypes.SQL_TYPES;
+const VALIDATIONS = Validations.VALIDATIONS;
+const UNARY_OPTIONS = UnaryOptions.UNARY_OPTIONS;
 const BINARY_OPTIONS = BinaryOptions.BINARY_OPTIONS;
 const BINARY_OPTION_VALUES = BinaryOptions.BINARY_OPTION_VALUES;
 
@@ -71,12 +75,12 @@ describe('JDLParser', () => {
             fields: {
               departmentId: new JDLField({
                 name: 'departmentId',
-                type: FieldTypes.LONG
+                type: SQL_TYPES.LONG
               }),
               departmentName: new JDLField({
                 name: 'departmentName',
-                type: FieldTypes.STRING,
-                validations: { required: new JDLValidation({ name: Validations.REQUIRED }) }
+                type: SQL_TYPES.STRING,
+                validations: { required: new JDLValidation({ name: VALIDATIONS.REQUIRED }) }
               })
             }
           }));
@@ -86,11 +90,11 @@ describe('JDLParser', () => {
             fields: {
               startDate: new JDLField({
                 name: 'startDate',
-                type: FieldTypes.ZONED_DATE_TIME
+                type: SQL_TYPES.ZONED_DATE_TIME
               }),
               endDate: new JDLField({
                 name: 'endDate',
-                type: FieldTypes.ZONED_DATE_TIME
+                type: SQL_TYPES.ZONED_DATE_TIME
               }),
               language: new JDLField({ name: 'language', type: 'Language' })
             },
@@ -104,17 +108,17 @@ describe('JDLParser', () => {
             name: 'Job',
             tableName: 'Job',
             fields: {
-              jobId: new JDLField({ name: 'jobId', type: FieldTypes.LONG }),
+              jobId: new JDLField({ name: 'jobId', type: SQL_TYPES.LONG }),
               jobTitle: new JDLField({
                 name: 'jobTitle',
-                type: FieldTypes.STRING,
+                type: SQL_TYPES.STRING,
                 validations: {
                   minlength: new JDLValidation({
-                    name: Validations.MINLENGTH,
+                    name: VALIDATIONS.MINLENGTH,
                     value: 5
                   }),
                   maxlength: new JDLValidation({
-                    name: Validations.MAXLENGTH,
+                    name: VALIDATIONS.MAXLENGTH,
                     value: 25
                   })
                 }
@@ -122,17 +126,17 @@ describe('JDLParser', () => {
               jobType: new JDLField({ name: 'jobType', type: 'JobType' }),
               minSalary: new JDLField({
                 name: 'minSalary',
-                type: FieldTypes.LONG
+                type: SQL_TYPES.LONG
               }),
               maxSalary: new JDLField({
                 name: 'maxSalary',
-                type: FieldTypes.LONG
+                type: SQL_TYPES.LONG
               })
             }
           }));
           expect(content.getOptions()).to.deep.eq([
             new JDLUnaryOption({
-              name: UnaryOptions.SKIP_SERVER,
+              name: UNARY_OPTIONS.SKIP_SERVER,
               entityNames: ['Country']
             }),
             new JDLBinaryOption({
@@ -190,7 +194,7 @@ describe('JDLParser', () => {
             name: 'A',
             tableName: 'A',
             fields: {
-              email: new JDLField({ name: 'email', type: FieldTypes.STRING })
+              email: new JDLField({ name: 'email', type: SQL_TYPES.STRING })
             }
           }));
         });
@@ -266,7 +270,7 @@ describe('JDLParser', () => {
           type: 'MyEnum'
         });
         enumField.addValidation(new JDLValidation({
-          name: Validations.REQUIRED
+          name: VALIDATIONS.REQUIRED
         }));
         it('adds it', () => {
           expect(content.enums.MyEnum).to.deep.eq(new JDLEnum({
@@ -282,7 +286,7 @@ describe('JDLParser', () => {
         it('adds it correctly', () => {
           expect(content.getOptions()).to.deep.eq([
             new JDLUnaryOption({
-              name: UnaryOptions.NO_FLUENT_METHOD,
+              name: UNARY_OPTIONS.NO_FLUENT_METHOD,
               entityNames: ['A']
             })
           ]);
@@ -290,7 +294,7 @@ describe('JDLParser', () => {
           content = JdlParser.parse(input, 'sql');
           expect(content.getOptions()).to.deep.eq([
             new JDLUnaryOption({
-              name: UnaryOptions.NO_FLUENT_METHOD,
+              name: UNARY_OPTIONS.NO_FLUENT_METHOD,
               entityNames: ['*'],
               excludedNames: ['A']
             })
@@ -602,7 +606,7 @@ describe('JDLParser', () => {
 
           beforeEach(() => {
             input = parseFromFiles(['./test/test_files/no_microservice.jdl']);
-            content = JdlParser.parse(input, DatabaseTypes.sql, ApplicationTypes.MICROSERVICE, 'toto');
+            content = JdlParser.parse(input, DbTypes.sql, ApplicationTypes.MICROSERVICE, 'toto');
           });
 
           it('adds it to every entity', () => {

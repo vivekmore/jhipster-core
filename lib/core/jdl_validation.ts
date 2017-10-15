@@ -1,8 +1,7 @@
 import { JhipsterStringUtils } from '../utils/string_utils';
 import { JhipsterObjectUtils } from '../utils/object_utils';
-
-const ErrorCases = require('../exceptions/error_cases').ErrorCases;
-const VALIDATIONS = require('./jhipster/validations');
+import { ErrorCasesEnum } from '../exceptions/error_cases';
+import { Validations } from './jhipster/validations';
 
 export class JDLValidation {
 
@@ -18,17 +17,17 @@ export class JDLValidation {
   public static checkValidity(validation) {
     const errors = [];
     if (!validation) {
-      errors.push(ErrorCases.validations.NoValidation);
+      errors.push(ErrorCasesEnum.ErrorCases.validations.NoValidation);
       return errors;
     }
     if (JhipsterStringUtils.isNilOrEmpty(validation.name)) {
-      errors.push(ErrorCases.validations.NoName);
+      errors.push(ErrorCasesEnum.ErrorCases.validations.NoName);
     }
-    if (!VALIDATIONS.exists(validation.name)) {
-      errors.push(ErrorCases.validations.WrongValidation);
+    if (!Validations.exists(validation.name)) {
+      errors.push(ErrorCasesEnum.ErrorCases.validations.WrongValidation);
     }
-    if (VALIDATIONS.needsValue(validation.name) && JhipsterStringUtils.isNilOrEmpty(validation.value)) {
-      errors.push(ErrorCases.validations.NoValue);
+    if (Validations.needsValue(validation.name) && JhipsterStringUtils.isNilOrEmpty(validation.value)) {
+      errors.push(ErrorCasesEnum.ErrorCases.validations.NoValue);
     }
     return errors;
   }

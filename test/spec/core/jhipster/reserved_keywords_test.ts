@@ -1,9 +1,10 @@
 import { expect } from 'chai';
+import { ReservedKeywords } from '../../../../lib/core/jhipster/reserved_keywords';
 
 /* eslint-disable no-new, no-unused-expressions */
-const isReserved = require('../../../../lib/core/jhipster/reserved_keywords').isReserved;
-const isReservedClassName = require('../../../../lib/core/jhipster/reserved_keywords').isReservedClassName;
-const isReservedFieldName = require('../../../../lib/core/jhipster/reserved_keywords').isReservedFieldName;
+const isReserved = ReservedKeywords.isReserved;
+const isReservedClassName = ReservedKeywords.isReservedClassName;
+const isReservedFieldName = ReservedKeywords.isReservedFieldName;
 
 describe('ReservedKeywords', () => {
   describe('::isReserved', () => {

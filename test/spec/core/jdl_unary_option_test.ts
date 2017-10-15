@@ -1,11 +1,12 @@
 import { expect } from 'chai';
 import { JDLUnaryOption } from '../../../lib/core/jdl_unary_option';
 import { JDLEntity } from '../../../lib/core/jdl_entity';
+import { UnaryOptions } from '../../../lib/core/jhipster/unary_options';
 
 /* eslint-disable no-new, no-unused-expressions */
 
 const fail = expect.fail;
-const UNARY_OPTIONS = require('../../../lib/core/jhipster/unary_options').UNARY_OPTIONS;
+const UNARY_OPTIONS = UnaryOptions.UNARY_OPTIONS;
 
 describe('JDLUnaryOption', () => {
   describe('::new', () => {

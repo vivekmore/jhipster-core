@@ -1,8 +1,9 @@
 import { expect } from 'chai';
 import { JDLValidation } from '../../../lib/core/jdl_validation';
+import { Validations } from '../../../lib/core/jhipster/validations';
 
 /* eslint-disable no-new, no-unused-expressions */
-const VALIDATIONS = require('../../../lib/core/jhipster/validations').VALIDATIONS;
+const VALIDATIONS = Validations.VALIDATIONS;
 
 describe('JDLValidation', () => {
   describe('::new', () => {

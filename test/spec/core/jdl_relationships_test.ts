@@ -2,11 +2,12 @@ import { expect } from 'chai';
 import { JDLRelationships } from '../../../lib/core/jdl_relationships';
 import { JDLRelationship } from '../../../lib/core/jdl_relationship';
 import { JDLEntity } from '../../../lib/core/jdl_entity';
+import { RelationshipTypes } from '../../../lib/core/jhipster/relationship_types';
 
 /* eslint-disable no-new, no-unused-expressions */
 
 const fail = expect.fail;
-const RELATIONSHIP_TYPES = require('../../../lib/core/jhipster/relationship_types').RELATIONSHIP_TYPES;
+const RELATIONSHIP_TYPES = RelationshipTypes.RELATIONSHIP_TYPES;
 
 describe('JDLRelationships', () => {
   describe('#add', () => {

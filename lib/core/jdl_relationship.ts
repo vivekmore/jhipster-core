@@ -3,10 +3,12 @@ import { JhipsterCoreExceptionType } from '../exceptions/jhipster_core_exception
 import { JhipsterObjectUtils } from '../utils/object_utils';
 import * as _ from 'lodash';
 import { JDLEntity } from './jdl_entity';
+import { ErrorCasesEnum } from '../exceptions/error_cases';
+import { RelationshipTypes } from './jhipster/relationship_types';
 
-const ErrorCases = require('../exceptions/error_cases').ErrorCases;
-const RELATIONSHIP_TYPES = require('./jhipster/relationship_types').RELATIONSHIP_TYPES;
-const exists = require('./jhipster/relationship_types').exists;
+const EC = ErrorCasesEnum.ErrorCases;
+const RELATIONSHIP_TYPES = RelationshipTypes.RELATIONSHIP_TYPES;
+const exists = RelationshipTypes.exists;
 
 export class JDLRelationship {
 
@@ -42,22 +44,22 @@ export class JDLRelationship {
   static checkValidity(relationship) {
     const errors = [];
     if (!relationship) {
-      errors.push(ErrorCases.relationships.NoRelationship);
+      errors.push(EC.relationships.NoRelationship);
       return errors;
     }
     if (!exists(relationship.type)) {
-      errors.push(`${ErrorCases.relationships.WrongType}: got '${relationship.type}'`);
+      errors.push(`${EC.relationships.WrongType}: got '${relationship.type}'`);
     }
     const sourceEntityErrors = JDLEntity.checkValidity(relationship.from);
     if (sourceEntityErrors.length !== 0) {
-      errors.push(`${ErrorCases.relationships.WrongFromSide}: ${sourceEntityErrors.join(', ')}`);
+      errors.push(`${EC.relationships.WrongFromSide}: ${sourceEntityErrors.join(', ')}`);
     }
     const destinationEntityErrors = JDLEntity.checkValidity(relationship.to);
     if (destinationEntityErrors.length !== 0) {
-      errors.push(`${ErrorCases.relationships.WrongToSide}: ${destinationEntityErrors.join(', ')}`);
+      errors.push(`${EC.relationships.WrongToSide}: ${destinationEntityErrors.join(', ')}`);
     }
     if (!relationship.injectedFieldInFrom && !relationship.injectedFieldInTo) {
-      errors.push(ErrorCases.relationships.DeclarationError);
+      errors.push(EC.relationships.DeclarationError);
     }
     return errors;
   }

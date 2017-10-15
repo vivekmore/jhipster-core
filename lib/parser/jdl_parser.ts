@@ -11,15 +11,14 @@ import { JDLObject } from '../core/jdl_object';
 import { JDLField } from '../core/jdl_field';
 import { JDLEnum } from '../core/jdl_enum';
 import { BinaryOptions } from '../core/jhipster/binary_options';
+import { ReservedKeywords } from '../core/jhipster/reserved_keywords';
+import { FieldTypes } from '../core/jhipster/field_types';
+import { UnaryOptions } from '../core/jhipster/unary_options';
+import { DatabaseTypes } from '../core/jhipster/database_types';
 
-const UnaryOptions = require('../core/jhipster/unary_options');
-const FieldTypes = require('../core/jhipster/field_types');
-const DatabaseTypes = require('../core/jhipster/database_types');
-const ReservedKeyWords = require('../core/jhipster/reserved_keywords');
-
-const isReservedClassName = ReservedKeyWords.isReservedClassName;
-const isReservedTableName = ReservedKeyWords.isReservedTableName;
-const isReservedFieldName = ReservedKeyWords.isReservedFieldName;
+const isReservedClassName = ReservedKeywords.isReservedClassName;
+const isReservedTableName = ReservedKeywords.isReservedTableName;
+const isReservedFieldName = ReservedKeywords.isReservedFieldName;
 
 
 export class JdlParser {

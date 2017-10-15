@@ -1,8 +1,9 @@
 import { expect } from 'chai';
+import { UnaryOptions } from '../../../../lib/core/jhipster/unary_options';
 
 /* eslint-disable no-new, no-unused-expressions */
-const UNARY_OPTIONS = require('../../../../lib/core/jhipster/unary_options').UNARY_OPTIONS;
-const exists = require('../../../../lib/core/jhipster/unary_options').exists;
+const UNARY_OPTIONS = UnaryOptions.UNARY_OPTIONS;
+const exists = UnaryOptions.exists;
 
 describe('UNARY_OPTIONS', () => {
   describe('::exists', () => {

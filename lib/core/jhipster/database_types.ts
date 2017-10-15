@@ -1,18 +1,17 @@
-const TYPES = {
-  sql: 'sql',
-  mysql: 'mysql',
-  mariadb: 'mariadb',
-  postgresql: 'postgresql',
-  mssql: 'mssql',
-  oracle: 'oracle',
-  mongodb: 'mongodb',
-  cassandra: 'cassandra'
-};
+export class DatabaseTypes {
 
-function isSql(type) {
-  return TYPES.sql === type || TYPES.mysql === type || TYPES.postgresql === type || TYPES.oracle === type || TYPES.mariadb === type || TYPES.mssql === type;
+  public static readonly Types = {
+    sql: 'sql',
+    mysql: 'mysql',
+    mariadb: 'mariadb',
+    postgresql: 'postgresql',
+    mssql: 'mssql',
+    oracle: 'oracle',
+    mongodb: 'mongodb',
+    cassandra: 'cassandra'
+  };
+
+  public static isSql(type) {
+    return DatabaseTypes.Types.sql === type || DatabaseTypes.Types.mysql === type || DatabaseTypes.Types.postgresql === type || DatabaseTypes.Types.oracle === type || DatabaseTypes.Types.mariadb === type || DatabaseTypes.Types.mssql === type;
+  }
 }
-export = {
-  Types: TYPES,
-  isSql
-};
