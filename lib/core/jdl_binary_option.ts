@@ -1,14 +1,16 @@
 import { JhipsterCoreException } from '../exceptions/jhipster_core_exception';
 import { JhipsterCoreExceptionType } from '../exceptions/jhipster_core_exception_type';
+import { AbstractJDLOption } from './abstract_jdl_option';
 
-const AbstractJDLOption = require('./abstract_jdl_option');
 const BINARY_OPTIONS = require('./jhipster/binary_options');
 
 /**
  * For options like the DTO, the service, etc.
  */
-class JDLBinaryOption extends AbstractJDLOption {
-  constructor(args) {
+export class JDLBinaryOption extends AbstractJDLOption {
+  value: any;
+
+  constructor(args?) {
     super(args);
     if (!BINARY_OPTIONS.exists(this.name, args.value)) {
       let valueText = `value '${args.value}'`;
@@ -40,13 +42,11 @@ class JDLBinaryOption extends AbstractJDLOption {
       return firstPart;
     }
     const excludedNames = this.excludedNames.join(', ');
-    excludedNames.slice(1, this.excludedNames.length - 1);
+    excludedNames.slice(1, this.excludedNames.size() - 1);
     return `${firstPart} except ${excludedNames}`;
   }
 
-  static isValid(option) {
+  static isValid(option?) {
     return AbstractJDLOption.isValid(option) && BINARY_OPTIONS.exists(option.name, option.value);
   }
 }
-
-export = JDLBinaryOption;

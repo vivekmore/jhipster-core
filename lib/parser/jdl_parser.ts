@@ -4,13 +4,13 @@ import { ApplicationTypes } from '../core/jhipster/application_types';
 import * as _ from 'lodash';
 import { JhipsterFormatUtils } from '../utils/format_utils';
 import { JDLValidation } from '../core/jdl_validation';
+import { JDLUnaryOption } from '../core/jdl_unary_option';
+import { JDLBinaryOption } from '../core/jdl_binary_option';
 
 const JDLObject = require('../core/jdl_object');
 const JDLEnum = require('../core/jdl_enum');
 const JDLField = require('../core/jdl_field');
 const JDLRelationship = require('../core/jdl_relationship');
-const JDLUnaryOption = require('../core/jdl_unary_option');
-const JDLBinaryOption = require('../core/jdl_binary_option');
 const UnaryOptions = require('../core/jhipster/unary_options');
 const BinaryOptions = require('../core/jhipster/binary_options');
 const FieldTypes = require('../core/jhipster/field_types');

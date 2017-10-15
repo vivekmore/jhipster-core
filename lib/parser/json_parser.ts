@@ -2,14 +2,14 @@ import { JhipsterCoreException } from '../exceptions/jhipster_core_exception';
 import { JhipsterCoreExceptionType } from '../exceptions/jhipster_core_exception_type';
 import * as _ from 'lodash';
 import { JDLValidation } from '../core/jdl_validation';
+import { JDLUnaryOption } from '../core/jdl_unary_option';
+import { JDLBinaryOption } from '../core/jdl_binary_option';
 
 const JDLObject = require('../core/jdl_object');
 const JDLEntity = require('../core/jdl_entity');
 const JDLField = require('../core/jdl_field');
 const JDLEnum = require('../core/jdl_enum');
 const JDLRelationship = require('../core/jdl_relationship');
-const JDLUnaryOption = require('../core/jdl_unary_option');
-const JDLBinaryOption = require('../core/jdl_binary_option');
 const RelationshipTypes = require('../core/jhipster/relationship_types').RELATIONSHIP_TYPES;
 const UnaryOptions = require('../core/jhipster/unary_options').UNARY_OPTIONS;
 const BinaryOptions = require('../core/jhipster/binary_options').BINARY_OPTIONS;

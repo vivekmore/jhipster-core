@@ -7,9 +7,14 @@ import { Set } from '../utils/objects/set';
 const JDLEntity = require('./jdl_entity');
 const ErrorCases = require('../exceptions/error_cases').ErrorCases;
 
-class AbstractJDLOption {
+export abstract class AbstractJDLOption {
+
+  name: any;
+  entityNames: Set;
+  excludedNames: Set;
+
   constructor(args) {
-    const merged = JhipsterObjectUtils.merge(defaults(), args);
+    const merged = JhipsterObjectUtils.merge(AbstractJDLOption.defaults(), args);
     if (!merged.name) {
       throw new JhipsterCoreException(JhipsterCoreExceptionType.NullPointer, 'The option\'s name must be passed.');
     }
@@ -21,7 +26,7 @@ class AbstractJDLOption {
     this.excludedNames = new Set(merged.excludedNames);
   }
 
-  addEntity(entity) {
+  public addEntity(entity) {
     const errors = JDLEntity.checkValidity(entity);
     if (errors.length !== 0) {
       throw new JhipsterCoreException(
@@ -37,7 +42,7 @@ class AbstractJDLOption {
     return this.entityNames.add(entity.name);
   }
 
-  addEntitiesFromAnotherOption(option) {
+  public addEntitiesFromAnotherOption(option) {
     if (!option || !AbstractJDLOption.isValid(option)) {
       return false;
     }
@@ -46,7 +51,7 @@ class AbstractJDLOption {
     return true;
   }
 
-  excludeEntity(entity) {
+  public excludeEntity(entity) {
     const errors = JDLEntity.checkValidity(entity);
     if (errors.length !== 0) {
       throw new JhipsterCoreException(
@@ -59,11 +64,11 @@ class AbstractJDLOption {
     return this.excludedNames.add(entity.name);
   }
 
-  getType() {
+  public static getType(): any {
     throw new JhipsterCoreException(JhipsterCoreExceptionType.UnsupportedOperation);
   }
 
-  static checkValidity(object) {
+  public static checkValidity(object) {
     const errors = [];
     if (!object) {
       errors.push(ErrorCases.options.NoOption);
@@ -85,24 +90,23 @@ class AbstractJDLOption {
       errors.push(ErrorCases.options.NilInExcludedNames);
     }
     try {
-      object.getType();
+      AbstractJDLOption.getType();
     } catch (error) {
       errors.push(ErrorCases.options.NoType);
     }
     return errors;
   }
 
-  static isValid(object) {
-    const errors = this.checkValidity(object);
+  public static isValid(object) {
+    const errors = AbstractJDLOption.checkValidity(object);
     return errors.length === 0;
+  }
+
+  private static defaults() {
+    return {
+      entityNames: new Set(['*']),
+      excludedNames: new Set()
+    };
   }
 }
 
-export = AbstractJDLOption;
-
-function defaults() {
-  return {
-    entityNames: new Set(['*']),
-    excludedNames: new Set()
-  };
-}

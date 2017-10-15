@@ -1,5 +1,7 @@
 import { expect } from 'chai';
 import { JDLValidation } from '../../../lib/core/jdl_validation';
+import { JDLUnaryOption } from '../../../lib/core/jdl_unary_option';
+import { JDLBinaryOption } from '../../../lib/core/jdl_binary_option';
 
 /* eslint-disable no-new, no-unused-expressions */
 
@@ -12,8 +14,6 @@ const JDLEntity = require('../../../lib/core/jdl_entity');
 const JDLField = require('../../../lib/core/jdl_field');
 const JDLEnum = require('../../../lib/core/jdl_enum');
 const JDLRelationship = require('../../../lib/core/jdl_relationship');
-const JDLUnaryOption = require('../../../lib/core/jdl_unary_option');
-const JDLBinaryOption = require('../../../lib/core/jdl_binary_option');
 
 describe('JDLObject', () => {
   describe('#addEntity', () => {

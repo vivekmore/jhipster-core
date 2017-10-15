@@ -1,9 +1,9 @@
 import { expect } from 'chai';
+import { JDLUnaryOption } from '../../../lib/core/jdl_unary_option';
 /* eslint-disable no-unused-expressions */
 
 const fail = expect.fail;
 const JDLOptions = require('../../../lib/core/jdl_options');
-const JDLUnaryOption = require('../../../lib/core/jdl_unary_option');
 const UNARY_OPTIONS = require('../../../lib/core/jhipster/unary_options').UNARY_OPTIONS;
 
 describe('JDLOptions', () => {

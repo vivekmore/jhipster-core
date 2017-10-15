@@ -1,6 +1,6 @@
 import { JhipsterCoreException } from '../exceptions/jhipster_core_exception';
 import { JhipsterCoreExceptionType } from '../exceptions/jhipster_core_exception_type';
-const AbstractJDLOption = require('./abstract_jdl_option');
+import { AbstractJDLOption } from './abstract_jdl_option';
 
 class JDLOptions {
   constructor() {
@@ -45,7 +45,7 @@ class JDLOptions {
 }
 
 function getOptionKey(option) {
-  return (option.getType() === 'UNARY') ? option.name : `${option.name}_${option.value}`;
+  return (AbstractJDLOption.getType() === 'UNARY') ? option.name : `${option.name}_${option.value}`;
 }
 
 export = JDLOptions;

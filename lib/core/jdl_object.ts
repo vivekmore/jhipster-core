@@ -1,11 +1,11 @@
 import { JhipsterCoreException } from '../exceptions/jhipster_core_exception';
 import { JhipsterCoreExceptionType } from '../exceptions/jhipster_core_exception_type';
+import { AbstractJDLOption } from './abstract_jdl_option';
 
 const JDLEntity = require('./jdl_entity');
 const JDLEnum = require('./jdl_enum');
 const JDLRelationship = require('./jdl_relationship');
 const JDLRelationships = require('./jdl_relationships');
-const JDLAbstractRelationship = require('./abstract_jdl_option');
 const JDLOptions = require('./jdl_options');
 
 class JDLObject {
@@ -59,7 +59,7 @@ class JDLObject {
   }
 
   addOption(option) {
-    const errors = JDLAbstractRelationship.checkValidity(option);
+    const errors = AbstractJDLOption.checkValidity(option);
     if (errors.length !== 0) {
       throw new JhipsterCoreException(
         JhipsterCoreExceptionType.InvalidObject,
