@@ -1,10 +1,6 @@
 import { expect } from 'chai';
 import { JhipsterStringUtils } from '../../../lib/utils/string_utils';
 
-/* eslint-disable no-new, no-unused-expressions */
-
-const fail = expect.fail;
-
 describe('JhipsterStringUtils.', () => {
   describe('::camelCase', () => {
     describe('when passing a valid string', () => {
