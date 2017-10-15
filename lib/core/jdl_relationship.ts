@@ -1,8 +1,8 @@
 import { JhipsterCoreException } from '../exceptions/jhipster_core_exception';
 import { JhipsterCoreExceptionType } from '../exceptions/jhipster_core_exception_type';
+import * as _ from 'lodash';
 
 const merge = require('../utils/object_utils').merge;
-const _ = require('lodash');
 const ErrorCases = require('../exceptions/error_cases').ErrorCases;
 const JDLEntity = require('./jdl_entity');
 const RELATIONSHIP_TYPES = require('./jhipster/relationship_types').RELATIONSHIP_TYPES;

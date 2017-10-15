@@ -1,4 +1,4 @@
-const _ = require('lodash');
+import * as _ from 'lodash';
 
 const RELATIONSHIP_TYPES = {
   ONE_TO_ONE: 'OneToOne',

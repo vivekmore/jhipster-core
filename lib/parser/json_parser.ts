@@ -1,7 +1,7 @@
 import { JhipsterCoreException } from '../exceptions/jhipster_core_exception';
 import { JhipsterCoreExceptionType } from '../exceptions/jhipster_core_exception_type';
+import * as _ from 'lodash';
 
-const _ = require('lodash');
 const JDLObject = require('../core/jdl_object');
 const JDLEntity = require('../core/jdl_entity');
 const JDLField = require('../core/jdl_field');

@@ -1,8 +1,8 @@
 import { JhipsterCoreException } from '../../exceptions/jhipster_core_exception';
 import { JhipsterCoreExceptionType } from '../../exceptions/jhipster_core_exception_type';
+import * as _ from 'lodash';
 
 const Set = require('../../utils/objects/set');
-const _ = require('lodash');
 const _v = require('./validations');
 const JDLEnum = require('../jdl_enum');
 const DatabaseTypes = require('./database_types').Types;

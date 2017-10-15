@@ -1,8 +1,8 @@
 import { JhipsterCoreException } from '../exceptions/jhipster_core_exception';
 import { JhipsterCoreExceptionType } from '../exceptions/jhipster_core_exception_type';
 import { ApplicationTypes } from '../core/jhipster/application_types';
+import * as _ from 'lodash';
 
-const _ = require('lodash');
 const JDLObject = require('../core/jdl_object');
 const JDLEnum = require('../core/jdl_enum');
 const JDLField = require('../core/jdl_field');

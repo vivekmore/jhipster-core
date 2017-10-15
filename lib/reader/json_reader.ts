@@ -1,8 +1,8 @@
 import { JhipsterCoreException } from '../exceptions/jhipster_core_exception';
 import { JhipsterCoreExceptionType } from '../exceptions/jhipster_core_exception_type';
 import * as fs from 'fs';
+import * as _ from 'lodash';
 
-const _ = require('lodash');
 const Parser = require('../parser/json_parser');
 const Reader = require('../reader/json_file_reader');
 

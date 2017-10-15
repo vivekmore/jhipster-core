@@ -2,8 +2,7 @@ import { JhipsterCoreException } from '../exceptions/jhipster_core_exception';
 import { JhipsterCoreExceptionType } from '../exceptions/jhipster_core_exception_type';
 import { JhipsterStringUtils } from '../utils/string_utils';
 import * as fs from 'fs';
-
-const _ = require('lodash');
+import * as _ from 'lodash';
 
 export = {
   readEntityJSON,
