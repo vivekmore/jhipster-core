@@ -5,8 +5,8 @@ import { JDLValidation } from '../core/jdl_validation';
 import { JDLUnaryOption } from '../core/jdl_unary_option';
 import { JDLBinaryOption } from '../core/jdl_binary_option';
 import { JDLRelationship } from '../core/jdl_relationship';
+import { JDLObject } from '../core/jdl_object';
 
-const JDLObject = require('../core/jdl_object');
 const JDLEntity = require('../core/jdl_entity');
 const JDLField = require('../core/jdl_field');
 const JDLEnum = require('../core/jdl_enum');

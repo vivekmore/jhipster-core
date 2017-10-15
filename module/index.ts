@@ -14,6 +14,8 @@ import { JDLUnaryOption } from '../lib/core/jdl_unary_option';
 import { JDLBinaryOption } from '../lib/core/jdl_binary_option';
 import { JDLRelationships } from '../lib/core/jdl_relationships';
 import { JDLRelationship } from '../lib/core/jdl_relationship';
+import { JDLObject } from '../lib/core/jdl_object';
+import { JDLOptions } from '../lib/core/jdl_options';
 
 const BINARY_OPTIONS = require('../lib/core/jhipster/binary_options');
 const UNARY_OPTIONS = require('../lib/core/jhipster/unary_options');
@@ -23,7 +25,6 @@ const VALIDATIONS = require('../lib/core/jhipster/validations');
 const DATABASE_TYPES = require('../lib/core/jhipster/database_types');
 const convertToJDL = JdlParser.parse;
 const convertToJHipsterJSON = EntityParser.parse;
-const JDLObject = require('../lib/core/jdl_object');
 const JDLEntity = require('../lib/core/jdl_entity');
 const JDLField = require('../lib/core/jdl_field');
 const JDLEnum = require('../lib/core/jdl_enum');

@@ -8,7 +8,13 @@ import { JDLOptions } from './jdl_options';
 const JDLEntity = require('./jdl_entity');
 const JDLEnum = require('./jdl_enum');
 
-class JDLObject {
+export class JDLObject {
+
+  entities: any;
+  enums: any;
+  relationships: JDLRelationships;
+  options: JDLOptions;
+
   constructor() {
     this.entities = {};
     this.enums = {};
@@ -70,41 +76,43 @@ class JDLObject {
 
   toString() {
     let string = '';
-    string += `${entitiesToString(this.entities)}\n`;
-    string += `${enumsToString(this.enums)}\n`;
-    string += `${relationshipsToString(this.relationships)}\n`;
-    string += `${optionsToString(this.options)}`;
+    string += `${JDLObject.entitiesToString(this.entities)}\n`;
+    string += `${JDLObject.enumsToString(this.enums)}\n`;
+    string += `${JDLObject.relationshipsToString(this.relationships)}\n`;
+    string += `${JDLObject.optionsToString(this.options)}`;
     return string;
   }
+
+  private static entitiesToString(entities) {
+    let string = '';
+    Object.keys(entities).forEach((entityName) => {
+      string += `${entities[entityName].toString()}\n`;
+    });
+    return string.slice(0, string.length - 1);
+  }
+
+  private static enumsToString(enums) {
+    let string = '';
+    Object.keys(enums).forEach((enumName) => {
+      string += `${enums[enumName].toString()}\n`;
+    });
+    return string;
+  }
+
+  private static relationshipsToString(relationships) {
+    const string = relationships.toString();
+    if (string === '') {
+      return '';
+    }
+    return `${relationships.toString()}\n`;
+  }
+
+  private static optionsToString(options) {
+    const string = options.toString();
+    if (string === '') {
+      return '';
+    }
+    return `${string}\n`;
+  }
 }
 
-function entitiesToString(entities) {
-  let string = '';
-  Object.keys(entities).forEach((entityName) => {
-    string += `${entities[entityName].toString()}\n`;
-  });
-  return string.slice(0, string.length - 1);
-}
-function enumsToString(enums) {
-  let string = '';
-  Object.keys(enums).forEach((enumName) => {
-    string += `${enums[enumName].toString()}\n`;
-  });
-  return string;
-}
-function relationshipsToString(relationships) {
-  const string = relationships.toString();
-  if (string === '') {
-    return '';
-  }
-  return `${relationships.toString()}\n`;
-}
-function optionsToString(options) {
-  const string = options.toString();
-  if (string === '') {
-    return '';
-  }
-  return `${string}\n`;
-}
-
-export = JDLObject;
