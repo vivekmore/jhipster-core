@@ -26,7 +26,7 @@ export class JhipsterFormatUtils {
       }
       return previousValue.concat(
         delimiter,
-        currentValue.trim().replace(/[*]*\s*/, ''));
+        `${currentValue}`.trim().replace(/[*]*\s*/, ''));
     }, '');
   }
 
