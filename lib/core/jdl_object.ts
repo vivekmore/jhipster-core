@@ -1,11 +1,11 @@
 import { JhipsterCoreException } from '../exceptions/jhipster_core_exception';
 import { JhipsterCoreExceptionType } from '../exceptions/jhipster_core_exception_type';
 import { AbstractJDLOption } from './abstract_jdl_option';
+import { JDLRelationships } from './jdl_relationships';
 
 const JDLEntity = require('./jdl_entity');
 const JDLEnum = require('./jdl_enum');
 const JDLRelationship = require('./jdl_relationship');
-const JDLRelationships = require('./jdl_relationships');
 const JDLOptions = require('./jdl_options');
 
 class JDLObject {

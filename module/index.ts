@@ -12,6 +12,7 @@ import { JsonExporter } from '../lib/export/json_exporter';
 import { JDLValidation } from '../lib/core/jdl_validation';
 import { JDLUnaryOption } from '../lib/core/jdl_unary_option';
 import { JDLBinaryOption } from '../lib/core/jdl_binary_option';
+import { JDLRelationships } from '../lib/core/jdl_relationships';
 
 const BINARY_OPTIONS = require('../lib/core/jhipster/binary_options');
 const UNARY_OPTIONS = require('../lib/core/jhipster/unary_options');
@@ -26,7 +27,6 @@ const JDLEntity = require('../lib/core/jdl_entity');
 const JDLField = require('../lib/core/jdl_field');
 const JDLEnum = require('../lib/core/jdl_enum');
 const JDLRelationship = require('../lib/core/jdl_relationship');
-const JDLRelationships = require('../lib/core/jdl_relationships');
 const JDLOptions = require('../lib/core/jdl_options');
 const exportToJDL = JdlExporter.exportToJDL;
 const ReservedKeywords = require('../lib/core/jhipster/reserved_keywords');

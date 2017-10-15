@@ -3,7 +3,10 @@ import { JhipsterCoreExceptionType } from '../exceptions/jhipster_core_exception
 
 const JDLRelationship = require('./jdl_relationship');
 
-class JDLRelationships {
+export class JDLRelationships {
+  size: number;
+  relationships: { OneToOne?: {}; OneToMany?: {}; ManyToOne?: {}; ManyToMany?: {}; };
+
   constructor() {
     this.relationships = {
       OneToOne: {},
@@ -14,7 +17,7 @@ class JDLRelationships {
     this.size = 0;
   }
 
-  add(relationship) {
+  public add(relationship) {
     if (!relationship) {
       throw new JhipsterCoreException(JhipsterCoreExceptionType.NullPointer, 'A relationship must be passed.');
     }
@@ -25,7 +28,7 @@ class JDLRelationships {
     this.size++;
   }
 
-  toArray() {
+  public toArray() {
     const relationships = [];
     Object.keys(this.relationships).forEach((type) => {
       Object.keys(this.relationships[type]).forEach((relationshipId) => {
@@ -35,30 +38,28 @@ class JDLRelationships {
     return relationships;
   }
 
-  toString() {
+  public toString() {
     if (Object.keys(this.relationships).length === 0) {
       return '';
     }
     let string = '';
     Object.keys(this.relationships).forEach((type) => {
       if (Object.keys(this.relationships[type]).length !== 0) {
-        const result = relationshipTypeToString(this.relationships[type], type);
+        const result = JDLRelationships.relationshipTypeToString(this.relationships[type], type);
         string += `${result}\n`;
       }
     });
     return string.slice(0, string.length - 1);
   }
-}
 
-export = JDLRelationships;
-
-function relationshipTypeToString(relationships, type) {
-  let relationship = `relationship ${type} {\n`;
-  Object.keys(relationships).forEach((internalRelationship) => {
-    let lines = relationships[internalRelationship].toString().split('\n');
-    lines = lines.slice(1, lines.length - 1);
-    relationship += `${lines.join('\n')},\n`;
-  });
-  relationship = `${relationship.slice(0, relationship.length - 2)}\n}`;
-  return relationship;
+  private static relationshipTypeToString(relationships, type) {
+    let relationship = `relationship ${type} {\n`;
+    Object.keys(relationships).forEach((internalRelationship) => {
+      let lines = relationships[internalRelationship].toString().split('\n');
+      lines = lines.slice(1, lines.length - 1);
+      relationship += `${lines.join('\n')},\n`;
+    });
+    relationship = `${relationship.slice(0, relationship.length - 2)}\n}`;
+    return relationship;
+  }
 }
