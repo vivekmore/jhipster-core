@@ -2,6 +2,7 @@ import { expect } from 'chai';
 import { ApplicationTypes } from '../../../lib/core/jhipster/application_types';
 import { JdlReader } from '../../../lib/reader/jdl_reader';
 import { JdlParser } from '../../../lib/parser/jdl_parser';
+import { JDLValidation } from '../../../lib/core/jdl_validation';
 
 /* eslint-disable no-new, no-unused-expressions */
 
@@ -10,7 +11,6 @@ const parseFromFiles = JdlReader.parseFromFiles;
 const JDLEntity = require('../../../lib/core/jdl_entity');
 const JDLEnum = require('../../../lib/core/jdl_enum');
 const JDLField = require('../../../lib/core/jdl_field');
-const JDLValidation = require('../../../lib/core/jdl_validation');
 const JDLUnaryOption = require('../../../lib/core/jdl_unary_option');
 const JDLBinaryOption = require('../../../lib/core/jdl_binary_option');
 const DatabaseTypes = require('../../../lib/core/jhipster/database_types').Types;

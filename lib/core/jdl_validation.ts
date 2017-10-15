@@ -4,14 +4,18 @@ import { JhipsterObjectUtils } from '../utils/object_utils';
 const ErrorCases = require('../exceptions/error_cases').ErrorCases;
 const VALIDATIONS = require('./jhipster/validations');
 
-class JDLValidation {
-  constructor(args) {
-    const merged = JhipsterObjectUtils.merge(defaults(), args);
+export class JDLValidation {
+
+  value: any;
+  name: any;
+
+  constructor(args?) {
+    const merged = JhipsterObjectUtils.merge(JDLValidation.defaults(), args);
     this.name = merged.name;
     this.value = merged.value;
   }
 
-  static checkValidity(validation) {
+  public static checkValidity(validation) {
     const errors = [];
     if (!validation) {
       errors.push(ErrorCases.validations.NoValidation);
@@ -29,25 +33,23 @@ class JDLValidation {
     return errors;
   }
 
-  static isValid(validation) {
+  public static isValid(validation) {
     const errors = this.checkValidity(validation);
     return errors.length === 0;
   }
 
-  toString() {
+  public toString() {
     let string = `${this.name}`;
     if (this.value || this.value === 0) {
       string += `(${this.value})`;
     }
     return string;
   }
-}
 
-export = JDLValidation;
-
-function defaults() {
-  return {
-    name: 'required',
-    value: ''
-  };
+  private static defaults() {
+    return {
+      name: 'required',
+      value: ''
+    };
+  }
 }

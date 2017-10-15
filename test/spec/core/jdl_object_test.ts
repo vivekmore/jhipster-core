@@ -1,4 +1,5 @@
 import { expect } from 'chai';
+import { JDLValidation } from '../../../lib/core/jdl_validation';
 
 /* eslint-disable no-new, no-unused-expressions */
 
@@ -9,7 +10,6 @@ const RELATIONSHIP_TYPES = require('../../../lib/core/jhipster/relationship_type
 const JDLObject = require('../../../lib/core/jdl_object');
 const JDLEntity = require('../../../lib/core/jdl_entity');
 const JDLField = require('../../../lib/core/jdl_field');
-const JDLValidation = require('../../../lib/core/jdl_validation');
 const JDLEnum = require('../../../lib/core/jdl_enum');
 const JDLRelationship = require('../../../lib/core/jdl_relationship');
 const JDLUnaryOption = require('../../../lib/core/jdl_unary_option');

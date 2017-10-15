@@ -1,11 +1,11 @@
 import { JhipsterCoreException } from '../exceptions/jhipster_core_exception';
 import { JhipsterCoreExceptionType } from '../exceptions/jhipster_core_exception_type';
 import * as _ from 'lodash';
+import { JDLValidation } from '../core/jdl_validation';
 
 const JDLObject = require('../core/jdl_object');
 const JDLEntity = require('../core/jdl_entity');
 const JDLField = require('../core/jdl_field');
-const JDLValidation = require('../core/jdl_validation');
 const JDLEnum = require('../core/jdl_enum');
 const JDLRelationship = require('../core/jdl_relationship');
 const JDLUnaryOption = require('../core/jdl_unary_option');

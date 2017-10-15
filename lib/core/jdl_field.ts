@@ -2,9 +2,9 @@ import { JhipsterCoreException } from '../exceptions/jhipster_core_exception';
 import { JhipsterCoreExceptionType } from '../exceptions/jhipster_core_exception_type';
 import { JhipsterStringUtils } from '../utils/string_utils';
 import { JhipsterObjectUtils } from '../utils/object_utils';
+import { JDLValidation } from './jdl_validation';
 
 const ErrorCases = require('../exceptions/error_cases').ErrorCases;
-const JDLValidation = require('./jdl_validation');
 const ReservedKeyWord = require('../core/jhipster/reserved_keywords');
 
 const isReservedFieldName = ReservedKeyWord.isReservedFieldName;

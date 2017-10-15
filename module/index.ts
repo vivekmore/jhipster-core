@@ -9,6 +9,7 @@ import { JdlParser } from '../lib/parser/jdl_parser';
 import { JsonParser } from '../lib/parser/json_parser';
 import { JdlExporter } from '../lib/export/jdl_exporter';
 import { JsonExporter } from '../lib/export/json_exporter';
+import { JDLValidation } from '../lib/core/jdl_validation';
 
 const BINARY_OPTIONS = require('../lib/core/jhipster/binary_options');
 const UNARY_OPTIONS = require('../lib/core/jhipster/unary_options');
@@ -21,7 +22,6 @@ const convertToJHipsterJSON = EntityParser.parse;
 const JDLObject = require('../lib/core/jdl_object');
 const JDLEntity = require('../lib/core/jdl_entity');
 const JDLField = require('../lib/core/jdl_field');
-const JDLValidation = require('../lib/core/jdl_validation');
 const JDLEnum = require('../lib/core/jdl_enum');
 const JDLRelationship = require('../lib/core/jdl_relationship');
 const JDLRelationships = require('../lib/core/jdl_relationships');
