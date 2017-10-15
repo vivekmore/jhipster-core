@@ -47,6 +47,6 @@ export class JDLOptions {
   }
 
   private static getOptionKey(option) {
-    return (AbstractJDLOption.getType() === 'UNARY') ? option.name : `${option.name}_${option.value}`;
+    return (option.getType() === 'UNARY') ? option.name : `${option.name}_${option.value}`;
   }
 }

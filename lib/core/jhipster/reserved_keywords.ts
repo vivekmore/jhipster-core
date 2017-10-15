@@ -160,6 +160,8 @@ export class ReservedKeywords {
   ];
 
   private static readonly RESERVED_WORDS = {
+    JHIPSTER: ReservedKeywords.JHIPSTER,
+    ANGULAR: ReservedKeywords.ANGULAR,
     JAVA: ReservedKeywords.JAVA,
     TYPESCRIPT: ReservedKeywords.TYPESCRIPT,
     MYSQL: ReservedKeywords.MYSQL,

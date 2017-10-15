@@ -89,7 +89,7 @@ export abstract class AbstractJDLOption {
       errors.push(ErrorCasesEnum.ErrorCases.options.NilInExcludedNames);
     }
     try {
-      AbstractJDLOption.getType();
+      object.getType();
     } catch (error) {
       errors.push(ErrorCasesEnum.ErrorCases.options.NoType);
     }
