@@ -1,5 +1,6 @@
 import { expect } from 'chai';
 import * as fs from 'fs';
+import { JsonReader } from '../../../lib/reader/json_reader';
 
 /* eslint-disable no-new, no-unused-expressions */
 
@@ -9,7 +10,6 @@ const Exporter = require('../../../lib/export/jdl_exporter');
 const JDLReader = require('../../../lib/reader/jdl_reader');
 const JDLParser = require('../../../lib/parser/jdl_parser');
 const EntityParser = require('../../../lib/parser/entity_parser');
-const parseFromDir = require('../../../lib/reader/json_reader').parseFromDir;
 
 describe('::exportToJDL', () => {
   describe('when passing invalid parameters', () => {
@@ -26,7 +26,7 @@ describe('::exportToJDL', () => {
   });
   describe('when passing valid arguments', () => {
     describe('when exporting json to entity JDL', () => {
-      const jdl = parseFromDir('./test/test_files/jhipster_app');
+      const jdl = JsonReader.parseFromDir('./test/test_files/jhipster_app');
       Exporter.exportToJDL(jdl);
       const input = JDLReader.parseFromFiles(['./jhipster-jdl.jh']);
       const newEntities = EntityParser.parse({

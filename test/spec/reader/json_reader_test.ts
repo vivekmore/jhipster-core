@@ -1,9 +1,9 @@
 import { expect } from 'chai';
+import { JsonReader } from '../../../lib/reader/json_reader';
 
 /* eslint-disable no-new, no-unused-expressions */
 
 const fail = expect.fail;
-const parseFromDir = require('../../../lib/reader/json_reader').parseFromDir;
 const UnaryOptions = require('../../../lib/core/jhipster/unary_options').UNARY_OPTIONS;
 
 describe('::parseFromDir', () => {
@@ -11,7 +11,7 @@ describe('::parseFromDir', () => {
     describe('such as nil', () => {
       it('throws an error', () => {
         try {
-          parseFromDir(null);
+          JsonReader.parseFromDir(null);
           fail();
         } catch (error) {
           expect(error.name).to.eq('IllegalArgumentException');
@@ -21,7 +21,7 @@ describe('::parseFromDir', () => {
     describe('such as a file', () => {
       it('throws an error', () => {
         try {
-          parseFromDir('../../test_files/invalid_file.txt');
+          JsonReader.parseFromDir('../../test_files/invalid_file.txt');
           fail();
         } catch (error) {
           expect(error.name).to.eq('WrongDirException');
@@ -31,7 +31,7 @@ describe('::parseFromDir', () => {
     describe('such as a dir that does not exist', () => {
       it('throws an error', () => {
         try {
-          parseFromDir('nodir');
+          JsonReader.parseFromDir('nodir');
           fail();
         } catch (error) {
           expect(error.name).to.eq('WrongDirException');
@@ -41,7 +41,7 @@ describe('::parseFromDir', () => {
   });
   describe('when passing valid arguments', () => {
     describe('when reading a jhipster app dir', () => {
-      const content = parseFromDir('./test/test_files/jhipster_app');
+      const content = JsonReader.parseFromDir('./test/test_files/jhipster_app');
       it('reads it', () => {
         expect(content.entities.Country).not.to.be.undefined;
         expect(content.entities.Department).not.to.be.undefined;

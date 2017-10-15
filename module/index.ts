@@ -1,4 +1,5 @@
 import { JhipsterStringUtils } from '../lib/utils/string_utils';
+import { JsonReader } from '../lib/reader/json_reader';
 
 const BINARY_OPTIONS = require('../lib/core/jhipster/binary_options');
 const UNARY_OPTIONS = require('../lib/core/jhipster/unary_options');
@@ -7,7 +8,6 @@ const FIELD_TYPES = require('../lib/core/jhipster/field_types');
 const VALIDATIONS = require('../lib/core/jhipster/validations');
 const DATABASE_TYPES = require('../lib/core/jhipster/database_types');
 const JDLReader = require('../lib/reader/jdl_reader');
-const JsonReader = require('../lib/reader/json_reader');
 const convertToJDL = require('../lib/parser/jdl_parser').parse;
 const convertToJHipsterJSON = require('../lib/parser/entity_parser').parse;
 const JsonParser = require('../lib/parser/json_parser');
