@@ -2,7 +2,10 @@ import { JhipsterCoreException } from '../exceptions/jhipster_core_exception';
 import { JhipsterCoreExceptionType } from '../exceptions/jhipster_core_exception_type';
 import { AbstractJDLOption } from './abstract_jdl_option';
 
-class JDLOptions {
+export class JDLOptions {
+
+  options: any;
+
   constructor() {
     this.options = {};
   }
@@ -14,7 +17,7 @@ class JDLOptions {
         JhipsterCoreExceptionType.InvalidObject,
         `The passed options is invalid'.\nErrors: ${errors.join(', ')}`);
     }
-    const key = getOptionKey(option);
+    const key = JDLOptions.getOptionKey(option);
     if (!this.options[key]) {
       this.options[key] = option;
       return;
@@ -42,10 +45,8 @@ class JDLOptions {
       .map(optionKey => `${this.options[optionKey].toString()}`)
       .join('\n');
   }
-}
 
-function getOptionKey(option) {
-  return (AbstractJDLOption.getType() === 'UNARY') ? option.name : `${option.name}_${option.value}`;
+  private static getOptionKey(option) {
+    return (AbstractJDLOption.getType() === 'UNARY') ? option.name : `${option.name}_${option.value}`;
+  }
 }
-
-export = JDLOptions;
