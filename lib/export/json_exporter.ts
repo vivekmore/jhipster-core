@@ -1,11 +1,11 @@
 import { JhipsterCoreException } from '../exceptions/jhipster_core_exception';
 import { JhipsterCoreExceptionType } from '../exceptions/jhipster_core_exception_type';
+import { JhipsterObjectUtils } from '../utils/object_utils';
 import * as fs from 'fs';
 
 const readEntityJSON = require('../reader/json_file_reader').readEntityJSON;
 const toFilePath = require('../reader/json_file_reader').toFilePath;
 const doesfileExist = require('../reader/json_file_reader').doesfileExist;
-const areJHipsterEntitiesEqual = require('../utils/object_utils').areEntitiesEqual;
 
 export = {
   exportToJSON,
@@ -56,7 +56,7 @@ function filterOutUnchangedEntities(entities) {
   for (let i = 0, entityNames = Object.keys(entities); i < entityNames.length; i++) {
     const entityName = entityNames[i];
     const filePath = toFilePath(entityName);
-    if (!(doesfileExist(filePath) && areJHipsterEntitiesEqual(readEntityJSON(filePath), entities[entityName]))) {
+    if (!(doesfileExist(filePath) && JhipsterObjectUtils.areEntitiesEqual(readEntityJSON(filePath), entities[entityName]))) {
       filtered[entityName] = (entities[entityName]);
     }
   }

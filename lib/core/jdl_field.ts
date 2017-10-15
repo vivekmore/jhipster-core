@@ -1,8 +1,8 @@
 import { JhipsterCoreException } from '../exceptions/jhipster_core_exception';
 import { JhipsterCoreExceptionType } from '../exceptions/jhipster_core_exception_type';
 import { JhipsterStringUtils } from '../utils/string_utils';
+import { JhipsterObjectUtils } from '../utils/object_utils';
 
-const merge = require('../utils/object_utils').merge;
 const ErrorCases = require('../exceptions/error_cases').ErrorCases;
 const JDLValidation = require('./jdl_validation');
 const ReservedKeyWord = require('../core/jhipster/reserved_keywords');
@@ -11,7 +11,7 @@ const isReservedFieldName = ReservedKeyWord.isReservedFieldName;
 
 class JDLField {
   constructor(args) {
-    const merged = merge(defaults(), args);
+    const merged = JhipsterObjectUtils.merge(defaults(), args);
     if (JhipsterStringUtils.isNilOrEmpty(merged.name) || JhipsterStringUtils.isNilOrEmpty(merged.type)) {
       throw new JhipsterCoreException(
         JhipsterCoreExceptionType.NullPointer,

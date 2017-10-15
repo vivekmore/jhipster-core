@@ -1,12 +1,12 @@
 import { JhipsterStringUtils } from '../utils/string_utils';
+import { JhipsterObjectUtils } from '../utils/object_utils';
 
-const merge = require('../utils/object_utils').merge;
 const ErrorCases = require('../exceptions/error_cases').ErrorCases;
 const VALIDATIONS = require('./jhipster/validations');
 
 class JDLValidation {
   constructor(args) {
-    const merged = merge(defaults(), args);
+    const merged = JhipsterObjectUtils.merge(defaults(), args);
     this.name = merged.name;
     this.value = merged.value;
   }

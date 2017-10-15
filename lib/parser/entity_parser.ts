@@ -2,8 +2,8 @@ import { JhipsterCoreException } from '../exceptions/jhipster_core_exception';
 import { JhipsterCoreExceptionType } from '../exceptions/jhipster_core_exception_type';
 import { JhipsterStringUtils } from '../utils/string_utils';
 import * as _ from 'lodash';
+import { JhipsterObjectUtils } from '../utils/object_utils';
 
-const merge = require('../utils/object_utils').merge;
 const FieldTypes = require('../core/jhipster/field_types');
 const RelationshipTypes = require('../core/jhipster/relationship_types').RELATIONSHIP_TYPES;
 const DatabaseTypes = require('../core/jhipster/database_types');
@@ -29,7 +29,7 @@ export = {
  *   - applicationType
  */
 function parse(args) {
-  const merged = merge(defaults(), args);
+  const merged = JhipsterObjectUtils.merge(defaults(), args);
   if (!args || !merged.jdlObject || !args.databaseType) {
     throw new JhipsterCoreException(
       JhipsterCoreExceptionType.NullPointer,

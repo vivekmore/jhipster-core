@@ -1,4 +1,4 @@
-const values = require('../../utils/object_utils').values;
+import { JhipsterObjectUtils } from '../../utils/object_utils';
 
 const BINARY_OPTIONS = {
   DTO: 'dto',
@@ -24,7 +24,7 @@ function exists(passedOption, passedValue) {
   return options.some((option) => {
     if (passedOption === option
       && (passedOption === BINARY_OPTIONS.MICROSERVICE || passedOption === BINARY_OPTIONS.ANGULAR_SUFFIX
-      || values(VALUES[option]).indexOf(passedValue) !== -1)) {
+      || JhipsterObjectUtils.values(VALUES[option]).indexOf(passedValue) !== -1)) {
       return true;
     }
     return false;
