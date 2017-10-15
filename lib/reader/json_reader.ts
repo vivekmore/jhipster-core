@@ -1,10 +1,10 @@
-import { JhipsterCoreException } from '../exceptions/jhipster_core_exception';
-import { JhipsterCoreExceptionType } from '../exceptions/jhipster_core_exception_type';
 import * as fs from 'fs';
 import * as _ from 'lodash';
+import { JhipsterCoreException } from '../exceptions/jhipster_core_exception';
+import { JhipsterCoreExceptionType } from '../exceptions/jhipster_core_exception_type';
+import { JsonFileReader } from './json_file_reader';
 
 const Parser = require('../parser/json_parser');
-const Reader = require('../reader/json_file_reader');
 
 export = {
   parseFromDir
@@ -27,7 +27,7 @@ function parseFromDir(dir) {
       JhipsterCoreExceptionType.WrongDir,
       'The passed dir must exist and must be a directory.');
   }
-  const jdl = Parser.parseServerOptions(Reader.readEntityJSON(`${dir}/.yo-rc.json`)['generator-jhipster']);
+  const jdl = Parser.parseServerOptions(JsonFileReader.readEntityJSON(`${dir}/.yo-rc.json`)['generator-jhipster']);
   const entityDir = `${dir}/.jhipster`;
   let isJhipsterDirectory = false;
   try {
@@ -46,7 +46,7 @@ function parseFromDir(dir) {
     if (file.slice(file.length - 5, file.length) === '.json') {
       const entityName = file.slice(0, file.length - 5);
       try {
-        entities[entityName] = Reader.readEntityJSON(`${entityDir}/${file}`);
+        entities[entityName] = JsonFileReader.readEntityJSON(`${entityDir}/${file}`);
       } catch (error) {
         // Not an entity file, not adding
       }

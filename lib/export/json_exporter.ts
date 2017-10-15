@@ -1,11 +1,8 @@
 import { JhipsterCoreException } from '../exceptions/jhipster_core_exception';
 import { JhipsterCoreExceptionType } from '../exceptions/jhipster_core_exception_type';
 import { JhipsterObjectUtils } from '../utils/object_utils';
+import { JsonFileReader } from '../reader/json_file_reader';
 import * as fs from 'fs';
-
-const readEntityJSON = require('../reader/json_file_reader').readEntityJSON;
-const toFilePath = require('../reader/json_file_reader').toFilePath;
-const doesfileExist = require('../reader/json_file_reader').doesfileExist;
 
 export = {
   exportToJSON,
@@ -24,7 +21,7 @@ function exportToJSON(entities, forceNoFiltering) {
     entities = filterOutUnchangedEntities(entities);
   }
   for (let i = 0, entityNames = Object.keys(entities); i < entityNames.length; i++) {
-    const filePath = toFilePath(entityNames[i]);
+    const filePath = JsonFileReader.toFilePath(entityNames[i]);
     const entity = updateChangelogDate(filePath, entities[entityNames[i]]);
     fs.writeFileSync(filePath, JSON.stringify(entity, null, 4));
   }
@@ -42,8 +39,8 @@ function createJHipsterJSONFolder() {
 }
 
 function updateChangelogDate(filePath, entity) {
-  if (doesfileExist(filePath)) {
-    const fileOnDisk = readEntityJSON(filePath);
+  if (JsonFileReader.doesfileExist(filePath)) {
+    const fileOnDisk = JsonFileReader.readEntityJSON(filePath);
     if (fileOnDisk && fileOnDisk.changelogDate) {
       entity.changelogDate = fileOnDisk.changelogDate;
     }
@@ -55,8 +52,8 @@ function filterOutUnchangedEntities(entities) {
   const filtered = {};
   for (let i = 0, entityNames = Object.keys(entities); i < entityNames.length; i++) {
     const entityName = entityNames[i];
-    const filePath = toFilePath(entityName);
-    if (!(doesfileExist(filePath) && JhipsterObjectUtils.areEntitiesEqual(readEntityJSON(filePath), entities[entityName]))) {
+    const filePath = JsonFileReader.toFilePath(entityName);
+    if (!(JsonFileReader.doesfileExist(filePath) && JhipsterObjectUtils.areEntitiesEqual(JsonFileReader.readEntityJSON(filePath), entities[entityName]))) {
       filtered[entityName] = (entities[entityName]);
     }
   }
