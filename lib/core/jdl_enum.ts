@@ -2,9 +2,9 @@ import { JhipsterCoreException } from '../exceptions/jhipster_core_exception';
 import { JhipsterCoreExceptionType } from '../exceptions/jhipster_core_exception_type';
 import { JhipsterStringUtils } from '../utils/string_utils';
 import { JhipsterObjectUtils } from '../utils/object_utils';
+import { Set } from '../utils/objects/set';
 
 const ErrorCases = require('../exceptions/error_cases').ErrorCases;
-const Set = require('../utils/objects/set');
 const ReservedKeyWord = require('../core/jhipster/reserved_keywords');
 
 const isReservedClassName = ReservedKeyWord.isReservedClassName;
