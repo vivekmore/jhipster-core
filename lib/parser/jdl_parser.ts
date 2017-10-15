@@ -10,9 +10,9 @@ import { JDLRelationship } from '../core/jdl_relationship';
 import { JDLObject } from '../core/jdl_object';
 import { JDLField } from '../core/jdl_field';
 import { JDLEnum } from '../core/jdl_enum';
+import { BinaryOptions } from '../core/jhipster/binary_options';
 
 const UnaryOptions = require('../core/jhipster/unary_options');
-const BinaryOptions = require('../core/jhipster/binary_options');
 const FieldTypes = require('../core/jhipster/field_types');
 const DatabaseTypes = require('../core/jhipster/database_types');
 const ReservedKeyWords = require('../core/jhipster/reserved_keywords');

@@ -1,13 +1,14 @@
 import { expect } from 'chai';
 import { JsonFileReader } from '../../../lib/reader/json_file_reader';
 import { JsonParser } from '../../../lib/parser/json_parser';
+import { BinaryOptions } from '../../../lib/core/jhipster/binary_options';
 
 /* eslint-disable no-new, no-unused-expressions */
 
 const fail = expect.fail;
 const UnaryOptions = require('../../../lib/core/jhipster/unary_options').UNARY_OPTIONS;
-const BinaryOptions = require('../../../lib/core/jhipster/binary_options').BINARY_OPTIONS;
-const BinaryOptionValues = require('../../../lib/core/jhipster/binary_options').BINARY_OPTION_VALUES;
+const BINARY_OPTIONS = BinaryOptions.BINARY_OPTIONS;
+const BINARY_OPTION_VALUES = BinaryOptions.BINARY_OPTION_VALUES;
 
 describe('::parse', () => {
   const entities = {
@@ -54,39 +55,39 @@ describe('::parse', () => {
       expect(
         content.getOptions().filter(
           option =>
-          option.name === BinaryOptions.DTO &&
-          option.value === BinaryOptionValues.dto.MAPSTRUCT &&
+          option.name === BINARY_OPTIONS.DTO &&
+          option.value === BINARY_OPTION_VALUES.dto.MAPSTRUCT &&
           option.entityNames.has('Employee')
         ).length
       ).to.eq(1);
       expect(
         content.getOptions().filter(
           option =>
-          option.name === BinaryOptions.PAGINATION &&
-          option.value === BinaryOptionValues.pagination['INFINITE-SCROLL'] &&
+          option.name === BINARY_OPTIONS.PAGINATION &&
+          option.value === BINARY_OPTION_VALUES.pagination['INFINITE-SCROLL'] &&
           option.entityNames.has('Employee')
         ).length
       ).to.eq(1);
       expect(
         content.getOptions().filter(
           option =>
-          option.name === BinaryOptions.SERVICE &&
-          option.value === BinaryOptionValues.service.SERVICE_CLASS &&
+          option.name === BINARY_OPTIONS.SERVICE &&
+          option.value === BINARY_OPTION_VALUES.service.SERVICE_CLASS &&
           option.entityNames.has('Employee')
         ).length
       ).to.eq(1);
       expect(
         content.getOptions().filter(
           option =>
-          option.name === BinaryOptions.SEARCH_ENGINE &&
-          option.value === BinaryOptionValues.searchEngine.ELASTIC_SEARCH &&
+          option.name === BINARY_OPTIONS.SEARCH_ENGINE &&
+          option.value === BINARY_OPTION_VALUES.searchEngine.ELASTIC_SEARCH &&
           option.entityNames.has('Employee')
         ).length
       ).to.eq(1);
       expect(
         content.getOptions().filter(
           option =>
-          option.name === BinaryOptions.MICROSERVICE &&
+          option.name === BINARY_OPTIONS.MICROSERVICE &&
           option.value === 'mymicroservice' &&
           option.entityNames.has('Employee')
         ).length
@@ -94,7 +95,7 @@ describe('::parse', () => {
       expect(
         content.getOptions().filter(
           option =>
-          option.name === BinaryOptions.ANGULAR_SUFFIX &&
+          option.name === BINARY_OPTIONS.ANGULAR_SUFFIX &&
           option.value === 'myentities' &&
           option.entityNames.has('Employee')
         ).length

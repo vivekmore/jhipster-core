@@ -1,10 +1,11 @@
 import { expect } from 'chai';
 import { JDLBinaryOption } from '../../../lib/core/jdl_binary_option';
 import { JDLEntity } from '../../../lib/core/jdl_entity';
+import { BinaryOptions } from '../../../lib/core/jhipster/binary_options';
 
 /* eslint-disable no-new, no-unused-expressions */
-const BINARY_OPTIONS = require('../../../lib/core/jhipster/binary_options').BINARY_OPTIONS;
-const BINARY_OPTION_VALUES = require('../../../lib/core/jhipster/binary_options').BINARY_OPTION_VALUES;
+const BINARY_OPTIONS = BinaryOptions.BINARY_OPTIONS;
+const BINARY_OPTION_VALUES = BinaryOptions.BINARY_OPTION_VALUES;
 
 const fail = expect.fail;
 

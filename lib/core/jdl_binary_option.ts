@@ -1,8 +1,7 @@
 import { JhipsterCoreException } from '../exceptions/jhipster_core_exception';
 import { JhipsterCoreExceptionType } from '../exceptions/jhipster_core_exception_type';
 import { AbstractJDLOption } from './abstract_jdl_option';
-
-const BINARY_OPTIONS = require('./jhipster/binary_options');
+import { BinaryOptions } from './jhipster/binary_options';
 
 /**
  * For options like the DTO, the service, etc.
@@ -12,7 +11,7 @@ export class JDLBinaryOption extends AbstractJDLOption {
 
   constructor(args?) {
     super(args);
-    if (!BINARY_OPTIONS.exists(this.name, args.value)) {
+    if (!BinaryOptions.exists(this.name, args.value)) {
       let valueText = `value '${args.value}'`;
       if (!args.value) {
         valueText = 'no value';
@@ -32,9 +31,9 @@ export class JDLBinaryOption extends AbstractJDLOption {
     const entityNames = this.entityNames.join(', ');
     entityNames.slice(1, entityNames.length - 1);
     let optionName = this.name;
-    if (this.name === BINARY_OPTIONS.BINARY_OPTIONS.PAGINATION) {
+    if (this.name === BinaryOptions.BINARY_OPTIONS.PAGINATION) {
       optionName = 'paginate';
-    } else if (this.name === BINARY_OPTIONS.BINARY_OPTIONS.SEARCH_ENGINE) {
+    } else if (this.name === BinaryOptions.BINARY_OPTIONS.SEARCH_ENGINE) {
       optionName = 'search';
     }
     const firstPart = `${optionName} ${entityNames} with ${this.value}`;
@@ -47,6 +46,6 @@ export class JDLBinaryOption extends AbstractJDLOption {
   }
 
   static isValid(option?) {
-    return AbstractJDLOption.isValid(option) && BINARY_OPTIONS.exists(option.name, option.value);
+    return AbstractJDLOption.isValid(option) && BinaryOptions.exists(option.name, option.value);
   }
 }

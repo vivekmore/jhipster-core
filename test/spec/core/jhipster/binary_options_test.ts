@@ -1,9 +1,10 @@
 import { expect } from 'chai';
+import { BinaryOptions } from '../../../../lib/core/jhipster/binary_options';
 
 /* eslint-disable no-new, no-unused-expressions */
-const BINARY_OPTIONS = require('../../../../lib/core/jhipster/binary_options').BINARY_OPTIONS;
-const BINARY_OPTION_VALUE = require('../../../../lib/core/jhipster/binary_options').BINARY_OPTION_VALUES;
-const exists = require('../../../../lib/core/jhipster/binary_options').exists;
+const BINARY_OPTIONS = BinaryOptions.BINARY_OPTIONS;
+const BINARY_OPTION_VALUE = BinaryOptions.BINARY_OPTION_VALUES;
+const exists = BinaryOptions.exists;
 
 describe('BINARY_OPTIONS', () => {
   describe('::exists', () => {

@@ -3,13 +3,14 @@ import { JhipsterCoreExceptionType } from '../exceptions/jhipster_core_exception
 import { JhipsterStringUtils } from '../utils/string_utils';
 import { JhipsterObjectUtils } from '../utils/object_utils';
 import { JhipsterFormatUtils } from '../utils/format_utils';
+import { BinaryOptions } from '../core/jhipster/binary_options';
 import * as _ from 'lodash';
 
 const FieldTypes = require('../core/jhipster/field_types');
 const RelationshipTypes = require('../core/jhipster/relationship_types').RELATIONSHIP_TYPES;
 const DatabaseTypes = require('../core/jhipster/database_types');
 const UnaryOptions = require('../core/jhipster/unary_options').UNARY_OPTIONS;
-const BinaryOptions = require('../core/jhipster/binary_options').BINARY_OPTIONS;
+const BINARY_OPTIONS = BinaryOptions.BINARY_OPTIONS;
 
 const USER = 'User';
 
@@ -121,13 +122,13 @@ export class EntityParser {
         case UnaryOptions.SKIP_SERVER:
           this.entities[entityName][option.name] = true;
           break;
-        case BinaryOptions.MICROSERVICE:
+        case BINARY_OPTIONS.MICROSERVICE:
           this.entities[entityName].microserviceName = option.value;
           break;
         case UnaryOptions.NO_FLUENT_METHOD:
           this.entities[entityName].fluentMethods = false;
           break;
-        case BinaryOptions.ANGULAR_SUFFIX:
+        case BINARY_OPTIONS.ANGULAR_SUFFIX:
           this.entities[entityName].angularJSSuffix = option.value;
           break;
         case UnaryOptions.FILTER:

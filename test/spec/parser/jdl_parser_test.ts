@@ -8,6 +8,7 @@ import { JDLBinaryOption } from '../../../lib/core/jdl_binary_option';
 import { JDLField } from '../../../lib/core/jdl_field';
 import { JDLEntity } from '../../../lib/core/jdl_entity';
 import { JDLEnum } from '../../../lib/core/jdl_enum';
+import { BinaryOptions } from '../../../lib/core/jhipster/binary_options';
 
 /* eslint-disable no-new, no-unused-expressions */
 
@@ -17,8 +18,8 @@ const DatabaseTypes = require('../../../lib/core/jhipster/database_types').Types
 const FieldTypes = require('../../../lib/core/jhipster/field_types').SQL_TYPES;
 const Validations = require('../../../lib/core/jhipster/validations').VALIDATIONS;
 const UnaryOptions = require('../../../lib/core/jhipster/unary_options').UNARY_OPTIONS;
-const BinaryOptions = require('../../../lib/core/jhipster/binary_options').BINARY_OPTIONS;
-const BinaryOptionValues = require('../../../lib/core/jhipster/binary_options').BINARY_OPTION_VALUES;
+const BINARY_OPTIONS = BinaryOptions.BINARY_OPTIONS;
+const BINARY_OPTION_VALUES = BinaryOptions.BINARY_OPTION_VALUES;
 
 describe('JDLParser', () => {
   describe('::parse', () => {
@@ -135,34 +136,34 @@ describe('JDLParser', () => {
               entityNames: ['Country']
             }),
             new JDLBinaryOption({
-              name: BinaryOptions.DTO,
+              name: BINARY_OPTIONS.DTO,
               entityNames: ['Employee'],
-              value: BinaryOptionValues.dto.MAPSTRUCT
+              value: BINARY_OPTION_VALUES.dto.MAPSTRUCT
             }),
             new JDLBinaryOption({
-              name: BinaryOptions.SERVICE,
+              name: BINARY_OPTIONS.SERVICE,
               entityNames: ['Employee'],
-              value: BinaryOptionValues.service.SERVICE_CLASS
+              value: BINARY_OPTION_VALUES.service.SERVICE_CLASS
             }),
             new JDLBinaryOption({
-              name: BinaryOptions.PAGINATION,
+              name: BINARY_OPTIONS.PAGINATION,
               entityNames: ['JobHistory', 'Employee'],
-              value: BinaryOptionValues.pagination['INFINITE-SCROLL']
+              value: BINARY_OPTION_VALUES.pagination['INFINITE-SCROLL']
             }),
             new JDLBinaryOption({
-              name: BinaryOptions.PAGINATION,
+              name: BINARY_OPTIONS.PAGINATION,
               entityNames: ['Job'],
-              value: BinaryOptionValues.pagination.PAGINATION
+              value: BINARY_OPTION_VALUES.pagination.PAGINATION
             }),
             new JDLBinaryOption({
-              name: BinaryOptions.MICROSERVICE,
+              name: BINARY_OPTIONS.MICROSERVICE,
               entityNames: ['*'],
               value: 'mymicroservice'
             }),
             new JDLBinaryOption({
-              name: BinaryOptions.SEARCH_ENGINE,
+              name: BINARY_OPTIONS.SEARCH_ENGINE,
               entityNames: ['Employee'],
-              value: BinaryOptionValues.searchEngine.ELASTIC_SEARCH
+              value: BINARY_OPTION_VALUES.searchEngine.ELASTIC_SEARCH
             })
           ]);
         });

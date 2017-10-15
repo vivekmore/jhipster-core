@@ -9,11 +9,11 @@ import { JDLObject } from '../core/jdl_object';
 import { JDLField } from '../core/jdl_field';
 import { JDLEntity } from '../core/jdl_entity';
 import { JDLEnum } from '../core/jdl_enum';
+import { BinaryOptions } from '../core/jhipster/binary_options';
 
 const RelationshipTypes = require('../core/jhipster/relationship_types').RELATIONSHIP_TYPES;
 const UnaryOptions = require('../core/jhipster/unary_options').UNARY_OPTIONS;
-const BinaryOptions = require('../core/jhipster/binary_options').BINARY_OPTIONS;
-
+const BINARY_OPTIONS = BinaryOptions.BINARY_OPTIONS;
 const USER = 'User';
 const USER_ENTITY = new JDLEntity({ name: USER });
 
@@ -224,7 +224,7 @@ export class JsonParser {
         )
       );
     }
-    [BinaryOptions.DTO, BinaryOptions.PAGINATION, BinaryOptions.SERVICE, BinaryOptions.SEARCH_ENGINE].forEach((option) => {
+    [BINARY_OPTIONS.DTO, BINARY_OPTIONS.PAGINATION, BINARY_OPTIONS.SERVICE, BINARY_OPTIONS.SEARCH_ENGINE].forEach((option) => {
       if (entity[option] && entity[option] !== 'no') {
         jdl.addOption(
           new JDLBinaryOption(
@@ -242,7 +242,7 @@ export class JsonParser {
       jdl.addOption(
         new JDLBinaryOption(
           {
-            name: BinaryOptions.ANGULAR_SUFFIX,
+            name: BINARY_OPTIONS.ANGULAR_SUFFIX,
             value: entity.angularJSSuffix,
             entityNames: [entityName]
           }
@@ -254,7 +254,7 @@ export class JsonParser {
       jdl.addOption(
         new JDLBinaryOption(
           {
-            name: BinaryOptions.MICROSERVICE,
+            name: BINARY_OPTIONS.MICROSERVICE,
             value: entity.microserviceName,
             entityNames: [entityName]
           }

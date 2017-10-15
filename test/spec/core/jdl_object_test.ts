@@ -7,11 +7,11 @@ import { JDLObject } from '../../../lib/core/jdl_object';
 import { JDLField } from '../../../lib/core/jdl_field';
 import { JDLEnum } from '../../../lib/core/jdl_enum';
 import { JDLEntity } from '../../../lib/core/jdl_entity';
+import { BinaryOptions } from '../../../lib/core/jhipster/binary_options';
 
 /* eslint-disable no-new, no-unused-expressions */
 
 const fail = expect.fail;
-const BINARY_OPTIONS = require('../../../lib/core/jhipster/binary_options');
 const UNARY_OPTIONS = require('../../../lib/core/jhipster/unary_options');
 const RELATIONSHIP_TYPES = require('../../../lib/core/jhipster/relationship_types');
 
@@ -237,8 +237,8 @@ describe('JDLObject', () => {
       option.excludeEntity(entityA);
       object.addOption(option);
       const option2 = new JDLBinaryOption({
-        name: BINARY_OPTIONS.BINARY_OPTIONS.DTO,
-        value: BINARY_OPTIONS.BINARY_OPTION_VALUES.dto.MAPSTRUCT
+        name: BinaryOptions.BINARY_OPTIONS.DTO,
+        value: BinaryOptions.BINARY_OPTION_VALUES.dto.MAPSTRUCT
       });
       option2.addEntity(entityB);
       object.addOption(option2);
