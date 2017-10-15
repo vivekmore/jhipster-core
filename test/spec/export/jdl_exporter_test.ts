@@ -5,19 +5,19 @@ import { JdlReader } from '../../../lib/reader/jdl_reader';
 import { JsonFileReader } from '../../../lib/reader/json_file_reader';
 import { EntityParser } from '../../../lib/parser/entity_parser';
 import { JdlParser } from '../../../lib/parser/jdl_parser';
+import { JdlExporter } from '../../../lib/export/jdl_exporter';
 
 /* eslint-disable no-new, no-unused-expressions */
 
 const fail = expect.fail;
 const readEntityJSON = JsonFileReader.readEntityJSON;
-const Exporter = require('../../../lib/export/jdl_exporter');
 
 describe('::exportToJDL', () => {
   describe('when passing invalid parameters', () => {
     describe('such as undefined', () => {
       it('throws an error', () => {
         try {
-          Exporter.exportToJDL();
+          JdlExporter.exportToJDL();
           fail();
         } catch (error) {
           expect(error.name).to.eq('NullPointerException');
@@ -28,7 +28,7 @@ describe('::exportToJDL', () => {
   describe('when passing valid arguments', () => {
     describe('when exporting json to entity JDL', () => {
       const jdl = JsonReader.parseFromDir('./test/test_files/jhipster_app');
-      Exporter.exportToJDL(jdl);
+      JdlExporter.exportToJDL(jdl);
       const input = JdlReader.parseFromFiles(['./jhipster-jdl.jh']);
       const newEntities = EntityParser.parse({
         jdlObject: JdlParser.parse(input, 'sql'),

@@ -7,6 +7,8 @@ import { JsonFileReader } from '../lib/reader/json_file_reader';
 import { EntityParser } from '../lib/parser/entity_parser';
 import { JdlParser } from '../lib/parser/jdl_parser';
 import { JsonParser } from '../lib/parser/json_parser';
+import { JdlExporter } from '../lib/export/jdl_exporter';
+import { JsonExporter } from '../lib/export/json_exporter';
 
 const BINARY_OPTIONS = require('../lib/core/jhipster/binary_options');
 const UNARY_OPTIONS = require('../lib/core/jhipster/unary_options');
@@ -26,8 +28,7 @@ const JDLRelationships = require('../lib/core/jdl_relationships');
 const JDLUnaryOption = require('../lib/core/jdl_unary_option');
 const JDLBinaryOption = require('../lib/core/jdl_binary_option');
 const JDLOptions = require('../lib/core/jdl_options');
-const JSONExporter = require('../lib/export/json_exporter');
-const exportToJDL = require('../lib/export/jdl_exporter').exportToJDL;
+const exportToJDL = JdlExporter.exportToJDL;
 const ReservedKeywords = require('../lib/core/jhipster/reserved_keywords');
 const Set = require('../lib/utils/objects/set');
 
@@ -66,15 +67,15 @@ export = {
   convertJsonEntitiesToJDL: JsonParser.parseEntities,
   convertJsonServerOptionsToJDL: JsonParser.parseServerOptions,
   /* JSON exporting */
-  exportToJSON: JSONExporter.exportToJSON,
+  exportToJSON: JsonExporter.exportToJSON,
   /* JDL exporting */
   exportToJDL,
   /* JDL utils */
   isJDLFile: JdlReader.checkFileIsJDLFile,
   /* JSON utils */
   ObjectUtils: JhipsterObjectUtils,
-  createJHipsterJSONFolder: JSONExporter.createJHipsterJSONFolder,
-  filterOutUnchangedEntities: JSONExporter.filterOutUnchangedEntities,
+  createJHipsterJSONFolder: JsonExporter.createJHipsterJSONFolder,
+  filterOutUnchangedEntities: JsonExporter.filterOutUnchangedEntities,
   readEntityJSON: JsonFileReader.readEntityJSON,
   toFilePath: JsonFileReader.toFilePath,
   /* Objects */

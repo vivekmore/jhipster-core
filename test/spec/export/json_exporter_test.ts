@@ -3,11 +3,11 @@ import * as fs from 'fs';
 import { JdlReader } from '../../../lib/reader/jdl_reader';
 import { EntityParser } from '../../../lib/parser/entity_parser';
 import { JdlParser } from '../../../lib/parser/jdl_parser';
+import { JsonExporter } from '../../../lib/export/json_exporter';
 
 /* eslint-disable no-new, no-unused-expressions */
 
 const fail = expect.fail;
-const Exporter = require('../../../lib/export/json_exporter');
 const parseFromFiles = JdlReader.parseFromFiles;
 
 describe('::exportToJSON', () => {
@@ -15,7 +15,7 @@ describe('::exportToJSON', () => {
     describe('such as undefined', () => {
       it('throws an error', () => {
         try {
-          Exporter.exportToJSON();
+          JsonExporter.exportToJSON();
           fail();
         } catch (error) {
           expect(error.name).to.eq('NullPointerException');
@@ -30,7 +30,7 @@ describe('::exportToJSON', () => {
         jdlObject: JdlParser.parse(input, 'sql'),
         databaseType: 'sql'
       });
-      Exporter.exportToJSON(content);
+      JsonExporter.exportToJSON(content);
       const department = JSON.parse(fs.readFileSync('.jhipster/Department.json', { encoding: 'utf-8' }));
       const jobHistory = JSON.parse(fs.readFileSync('.jhipster/JobHistory.json', { encoding: 'utf-8' }));
       it('exports it', () => {
@@ -136,7 +136,7 @@ describe('::exportToJSON', () => {
         databaseType: 'sql'
       });
       it('exports it with same changeLogDate', (done) => {
-        Exporter.exportToJSON(content);
+        JsonExporter.exportToJSON(content);
         expect(fs.statSync('.jhipster/A.json').isFile()).to.be.true;
         const changeLogDate = JSON.parse(fs.readFileSync('.jhipster/A.json', { encoding: 'utf-8' })).changelogDate;
         setTimeout(() => {
@@ -145,7 +145,7 @@ describe('::exportToJSON', () => {
             jdlObject: JdlParser.parse(input, 'sql'),
             databaseType: 'sql'
           });
-          Exporter.exportToJSON(content, true);
+          JsonExporter.exportToJSON(content, true);
           expect(fs.statSync('.jhipster/A.json').isFile()).to.be.true;
           const newChangeLogDate = JSON.parse(fs.readFileSync('.jhipster/A.json', { encoding: 'utf-8' })).changelogDate;
           expect(newChangeLogDate).to.eq(changeLogDate);
