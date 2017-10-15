@@ -2,11 +2,12 @@ import { expect } from 'chai';
 import * as fs from 'fs';
 import { JsonReader } from '../../../lib/reader/json_reader';
 import { JdlReader } from '../../../lib/reader/jdl_reader';
+import { JsonFileReader } from '../../../lib/reader/json_file_reader';
 
 /* eslint-disable no-new, no-unused-expressions */
 
 const fail = expect.fail;
-const readEntityJSON = require('../../../lib/reader/json_file_reader').readEntityJSON;
+const readEntityJSON = JsonFileReader.readEntityJSON;
 const Exporter = require('../../../lib/export/jdl_exporter');
 const JDLParser = require('../../../lib/parser/jdl_parser');
 const EntityParser = require('../../../lib/parser/entity_parser');

@@ -3,6 +3,7 @@ import { JhipsterStringUtils } from '../lib/utils/string_utils';
 import { JhipsterObjectUtils } from '../lib/utils/object_utils';
 import { JhipsterFormatUtils } from '../lib/utils/format_utils';
 import { JdlReader } from '../lib/reader/jdl_reader';
+import { JsonFileReader } from '../lib/reader/json_file_reader';
 
 const BINARY_OPTIONS = require('../lib/core/jhipster/binary_options');
 const UNARY_OPTIONS = require('../lib/core/jhipster/unary_options');
@@ -25,7 +26,6 @@ const JDLBinaryOption = require('../lib/core/jdl_binary_option');
 const JDLOptions = require('../lib/core/jdl_options');
 const JSONExporter = require('../lib/export/json_exporter');
 const exportToJDL = require('../lib/export/jdl_exporter').exportToJDL;
-const JSONFileReader = require('../lib/reader/json_file_reader');
 const ReservedKeywords = require('../lib/core/jhipster/reserved_keywords');
 const Set = require('../lib/utils/objects/set');
 
@@ -73,8 +73,8 @@ export = {
   ObjectUtils: JhipsterObjectUtils,
   createJHipsterJSONFolder: JSONExporter.createJHipsterJSONFolder,
   filterOutUnchangedEntities: JSONExporter.filterOutUnchangedEntities,
-  readEntityJSON: JSONFileReader.readEntityJSON,
-  toFilePath: JSONFileReader.toFilePath,
+  readEntityJSON: JsonFileReader.readEntityJSON,
+  toFilePath: JsonFileReader.toFilePath,
   /* Objects */
   Set,
   /* Utils */

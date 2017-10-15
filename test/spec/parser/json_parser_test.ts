@@ -1,9 +1,9 @@
 import { expect } from 'chai';
+import { JsonFileReader } from '../../../lib/reader/json_file_reader';
 
 /* eslint-disable no-new, no-unused-expressions */
 
 const fail = expect.fail;
-const Reader = require('../../../lib/reader/json_file_reader');
 const Parser = require('../../../lib/parser/json_parser');
 const UnaryOptions = require('../../../lib/core/jhipster/unary_options').UNARY_OPTIONS;
 const BinaryOptions = require('../../../lib/core/jhipster/binary_options').BINARY_OPTIONS;
@@ -11,14 +11,14 @@ const BinaryOptionValues = require('../../../lib/core/jhipster/binary_options').
 
 describe('::parse', () => {
   const entities = {
-    Employee: Reader.readEntityJSON('./test/test_files/jhipster_app/.jhipster/Employee.json'),
-    Country: Reader.readEntityJSON('./test/test_files/jhipster_app/.jhipster/Country.json'),
-    Department: Reader.readEntityJSON('./test/test_files/jhipster_app/.jhipster/Department.json'),
-    JobHistory: Reader.readEntityJSON('./test/test_files/jhipster_app/.jhipster/JobHistory.json'),
-    Location: Reader.readEntityJSON('./test/test_files/jhipster_app/.jhipster/Location.json'),
-    Region: Reader.readEntityJSON('./test/test_files/jhipster_app/.jhipster/Region.json'),
-    Job: Reader.readEntityJSON('./test/test_files/jhipster_app/.jhipster/Job.json'),
-    Task: Reader.readEntityJSON('./test/test_files/jhipster_app/.jhipster/Task.json')
+    Employee: JsonFileReader.readEntityJSON('./test/test_files/jhipster_app/.jhipster/Employee.json'),
+    Country: JsonFileReader.readEntityJSON('./test/test_files/jhipster_app/.jhipster/Country.json'),
+    Department: JsonFileReader.readEntityJSON('./test/test_files/jhipster_app/.jhipster/Department.json'),
+    JobHistory: JsonFileReader.readEntityJSON('./test/test_files/jhipster_app/.jhipster/JobHistory.json'),
+    Location: JsonFileReader.readEntityJSON('./test/test_files/jhipster_app/.jhipster/Location.json'),
+    Region: JsonFileReader.readEntityJSON('./test/test_files/jhipster_app/.jhipster/Region.json'),
+    Job: JsonFileReader.readEntityJSON('./test/test_files/jhipster_app/.jhipster/Job.json'),
+    Task: JsonFileReader.readEntityJSON('./test/test_files/jhipster_app/.jhipster/Task.json')
   };
   entities.Employee.relationships.filter(r => r.relationshipName === 'department')[0].javadoc = undefined;
   const content = Parser.parseEntities(entities);
@@ -137,8 +137,8 @@ describe('::parse', () => {
     });
     it('parses comments in relationships for owned', () => {
       const entities = {
-        Department: Reader.readEntityJSON('./test/test_files/jhipster_app/.jhipster/Department.json'),
-        Employee: Reader.readEntityJSON('./test/test_files/jhipster_app/.jhipster/Employee.json')
+        Department: JsonFileReader.readEntityJSON('./test/test_files/jhipster_app/.jhipster/Department.json'),
+        Employee: JsonFileReader.readEntityJSON('./test/test_files/jhipster_app/.jhipster/Employee.json')
       };
       entities.Department.relationships.filter(r => r.relationshipName === 'employee')[0].javadoc = undefined;
       const content = Parser.parseEntities(entities);
@@ -168,7 +168,7 @@ describe('::parse', () => {
   });
 
   describe('when parsing app config file to JDL', () => {
-    const yoRcJson = Reader.readEntityJSON('./test/test_files/jhipster_app/.yo-rc.json');
+    const yoRcJson = JsonFileReader.readEntityJSON('./test/test_files/jhipster_app/.yo-rc.json');
     const content = Parser.parseServerOptions(yoRcJson['generator-jhipster']);
     it('parses server options', () => {
       expect(content.getOptions().filter(
@@ -185,7 +185,7 @@ describe('::parse', () => {
     describe('when skipUserManagement flag is not set', () => {
       describe('when there is no User.json entity', () => {
         const entities = {
-          Country: Reader.readEntityJSON('./test/test_files/jhipster_app/.jhipster/Country.json')
+          Country: JsonFileReader.readEntityJSON('./test/test_files/jhipster_app/.jhipster/Country.json')
         };
         const content = Parser.parseEntities(entities);
         it('parses relationships to the JHipster managed User entity', () => {
@@ -196,8 +196,8 @@ describe('::parse', () => {
         it('throws an error ', () => {
           try {
             Parser.parseEntities({
-              Country: Reader.readEntityJSON('./test/test_files/jhipster_app/.jhipster/Country.json'),
-              User: Reader.readEntityJSON('./test/test_files/jhipster_app/.jhipster/Region.json')
+              Country: JsonFileReader.readEntityJSON('./test/test_files/jhipster_app/.jhipster/Country.json'),
+              User: JsonFileReader.readEntityJSON('./test/test_files/jhipster_app/.jhipster/Region.json')
             });
             fail();
           } catch (error) {
@@ -208,11 +208,11 @@ describe('::parse', () => {
     });
     describe('when skipUserManagement flag is set', () => {
       const entities = {
-        Country: Reader.readEntityJSON('./test/test_files/jhipster_app/.jhipster/Country.json'),
-        User: Reader.readEntityJSON('./test/test_files/jhipster_app/.jhipster/Region.json')
+        Country: JsonFileReader.readEntityJSON('./test/test_files/jhipster_app/.jhipster/Country.json'),
+        User: JsonFileReader.readEntityJSON('./test/test_files/jhipster_app/.jhipster/Region.json')
       };
       entities.User.relationships[0].otherEntityRelationshipName = 'user';
-      const yoRcJson = Reader.readEntityJSON('./test/test_files/jhipster_app/.yo-rc.json');
+      const yoRcJson = JsonFileReader.readEntityJSON('./test/test_files/jhipster_app/.yo-rc.json');
       yoRcJson['generator-jhipster'].skipUserManagement = true;
       const content = Parser.parseServerOptions(yoRcJson['generator-jhipster']);
       Parser.parseEntities(entities, content);
